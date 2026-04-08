@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kass Diarra — PT · Athlete · Creator</title>
+<meta name="description" content="Kass Diarra — certified personal trainer at Raw Gyms Dublin, Prozis athlete and content creator. Apply for personal training today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+img{display:block;max-width:100%}
+
+/* ── TOKENS ── */
+:root{
+  --bg:#f0ede6;
+  --fg:#0c0c0c;
+  --accent:#ff3c00;
+  --mid:#7a7a72;
+  --border:rgba(12,12,12,.12);
+  --green:#1aff6e;
+  --green-bg:#080f09;
+  --f-head:'Syne',sans-serif;
+  --f-body:'DM Sans',sans-serif;
+}
+
+/* ── BASE ── */
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--f-body);
+  overflow-x:hidden;
+  cursor:none;
+}
+@media(hover:none){body{cursor:auto}}
+
+/* ── CUSTOM CURSOR (desktop only) ── */
+#cur{
+  position:fixed;top:0;left:0;
+  width:10px;height:10px;
+  background:var(--fg);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width .2s,height .2s,background .2s;
+  will-change:left,top;
+}
+#cur.big{width:52px;height:52px;background:var(--accent)}
+@media(hover:none){#cur{display:none}}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:24px 40px;
+  mix-blend-mode:multiply;
+}
+.nav-logo{
+  font-family:var(--f-head);font-weight:800;font-size:17px;
+  letter-spacing:.04em;text-transform:uppercase;
+  color:var(--fg);text-decoration:none;
+}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{
+  font-family:var(--f-body);font-size:13px;
+  color:var(--fg);text-decoration:none;opacity:.45;
+  transition:opacity .2s;
+}
+.nav-links a:hover{opacity:1}
+.nav-cta{
+  font-family:var(--f-head);font-size:12px;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;
+  border:1.5px solid var(--fg);padding:9px 20px;
+  opacity:1!important;
+  transition:background .2s,color .2s;
+}
+.nav-cta:hover{background:var(--fg);color:var(--bg)}
+
+@media(max-width:768px){
+  nav{padding:18px 20px}
+  .nav-links a:not(.nav-cta){display:none}
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:100svh;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  padding:0 40px 56px;
+  position:relative;overflow:hidden;
+}
+.hero-bg-word{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:var(--f-head);font-weight:800;
+  font-size:clamp(140px,20vw,300px);
+  letter-spacing:-.04em;line-height:1;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(12,12,12,.06);
+  pointer-events:none;white-space:nowrap;user-select:none;
+}
+.hero-eyebrow{
+  font-family:var(--f-body);font-size:12px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+  position:relative;z-index:2;
+}
+.hero-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--mid)}
+.hero-title{
+  font-family:var(--f-head);font-weight:800;
+  font-size:clamp(52px,9vw,140px);
+  line-height:.93;letter-spacing:-.03em;
+  text-transform:uppercase;
+  position:relative;z-index:2;
+  margin-bottom:36px;
+}
+.hero-title em{
+  font-style:italic;font-weight:400;
+  color:var(--accent);
+  display:block;
+}
+.hero-bottom{
+  display:flex;align-items:flex-end;
+  justify-content:space-between;gap:32px;
+  position:relative;z-index:2;
+}
+.hero-desc{
+  font-size:16px;font-weight:300;line-height:1.7;
+  color:var(--mid);max-width:360px;
+}
+.hero-actions{
+  display:flex;flex-direction:column;
+  align-items:flex-end;gap:14px;flex-shrink:0;
+}
+.hero-btn{
+  font-family:var(--f-head);font-size:13px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  background:var(--fg);color:var(--bg);
+  padding:17px 34px;text-decoration:none;
+  display:inline-block;
+  transition:background .25s,transform .2s;
+}
+.hero-btn:hover{background:var(--accent);transform:translate(3px,-3px)}
+.hero-scroll-hint{
+  font-family:var(--f-body);font-size:11px;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--mid);display:flex;align-items:center;gap:8px;
+}
+.scroll-line{
+  width:1px;height:44px;background:var(--mid);display:block;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:1}}
+
+@media(max-width:768px){
+  .hero{padding:0 20px 48px;min-height:100svh}
+  .hero-bottom{flex-direction:column;align-items:flex-start;gap:24px}
+  .hero-actions{align-items:flex-start}
+  .hero-scroll-hint{display:none}
+  .hero-title{margin-bottom:28px}
+}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:var(--border);margin:0 40px}
+@media(max-width:768px){.divider{margin:0 20px}}
+
+/* ─────────────────────────────
+   TILE GRID
+───────────────────────────── */
+.tiles{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+}
+.t{
+  position:relative;overflow:hidden;
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  cursor:none;
+}
+@media(hover:none){.t{cursor:auto}}
+.t.bl{border-left:1px solid var(--border)}
+.t.bt{border-top:1px solid var(--border)}
+
+/* ─── ABOUT ─── */
+.t-about{
+  grid-column:1/7;
+  display:flex;flex-direction:column;
+  min-height:520px;
+}
+.t-about-img{
+  flex:1;overflow:hidden;min-height:260px;
+  position:relative;
+}
+.t-about-img img{
+  width:100%;height:100%;object-fit:cover;object-position:center 20%;
+  filter:grayscale(15%) contrast(1.05);
+  transition:transform .6s cubic-bezier(.25,.46,.45,.94),filter .4s;
+}
+.t-about:hover .t-about-img img{transform:scale(1.04);filter:grayscale(0%) contrast(1.1)}
+.t-about-body{
+  padding:32px 36px;
+  border-top:1px solid var(--border);
+}
+.t-label{
+  font-family:var(--f-body);font-size:11px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:14px;
+}
+.t-about-body h2{
+  font-family:var(--f-head);font-weight:800;
+  font-size:clamp(28px,3vw,48px);
+  line-height:.95;letter-spacing:-.02em;text-transform:uppercase;
+  margin-bottom:14px;
+}
+.t-about-body p{
+  font-size:15px;line-height:1.7;color:var(--mid);
+  font-weight:300;max-width:420px;
+}
+.t-stats{
+  display:flex;margin-top:28px;
+  border-top:1px solid var(--border);
+}
+.stat{flex:1;padding:18px 0;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-n{
+  font-family:var(--f-head);font-weight:800;font-size:30px;
+  letter-spacing:-.02em;line-height:1;color:var(--accent);
+}
+.stat-l{
+  font-family:var(--f-body);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--mid);margin-top:4px;
+}
+
+/* ─── IDENTITY ─── */
+.t-identity{
+  grid-column:7/13;
+  background:var(--fg);
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:36px;min-height:520px;
+  position:relative;overflow:hidden;
+}
+.t-identity-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=85&auto=format') center/cover;
+  opacity:.2;transition:opacity .5s;filter:contrast(1.2);
+}
+.t-identity:hover .t-identity-bg{opacity:.32}
+.t-identity-top,.t-identity-bottom{position:relative;z-index:2}
+.t-identity-label{
+  font-family:var(--f-body);font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(240,237,230,.35);margin-bottom:10px;
+}
+.t-identity-ghost{
+  position:absolute;bottom:32px;right:28px;
+  font-family:var(--f-head);font-weight:800;
+  font-size:clamp(72px,9vw,130px);
+  line-height:.88;letter-spacing:-.04em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(240,237,230,.1);
+  pointer-events:none;user-select:none;
+}
+.t-identity-title{
+  font-family:var(--f-head);font-weight:800;
+  font-size:clamp(32px,3.5vw,54px);
+  line-height:.95;letter-spacing:-.02em;text-transform:uppercase;
+  color:#f0ede6;margin-bottom:14px;
+}
+.t-identity-title em{font-style:italic;font-weight:400;color:var(--accent)}
+.t-identity-desc{
+  font-size:14px;line-height:1.65;
+  color:rgba(240,237,230,.42);font-weight:300;max-width:300px;
+}
+.t-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tag{
+  font-family:var(--f-body);font-size:11px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid rgba(240,237,230,.18);
+  color:rgba(240,237,230,.45);padding:5px 12px;
+  transition:border-color .2s,color .2s;
+}
+.t-identity:hover .tag{border-color:var(--accent);color:var(--accent)}
+
+/* ─── INSTAGRAM ─── */
+.t-ig{
+  grid-column:1/5;
+  display:flex;flex-direction:column;
+  background:var(--bg);transition:background .4s;
+}
+.t-ig:hover{background:#191919}
+.ig-header{
+  padding:24px 28px 18px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:12px;
+}
+.ig-ava{
+  width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  background:conic-gradient(from 200deg,#833ab4,#fd1d1d,#fcb045,#833ab4);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--f-head);font-weight:800;font-size:15px;color:#fff;
+}
+.ig-meta{flex:1;min-width:0}
+.ig-handle{
+  font-family:var(--f-head);font-weight:700;font-size:14px;
+  color:var(--fg);transition:color .3s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.t-ig:hover .ig-handle{color:#f0ede6}
+.ig-sub{font-size:11px;color:var(--mid);transition:color .3s;margin-top:1px}
+.t-ig:hover .ig-sub{color:rgba(240,237,230,.35)}
+.ig-btn{
+  font-family:var(--f-head);font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  border:1.5px solid var(--fg);color:var(--fg);
+  padding:7px 14px;text-decoration:none;flex-shrink:0;
+  transition:background .2s,color .2s,border-color .2s;
+}
+.t-ig:hover .ig-btn{border-color:#f0ede6;color:#f0ede6}
+.ig-btn:hover{background:var(--accent)!important;border-color:var(--accent)!important;color:#fff!important}
+.ig-mosaic{
+  flex:1;display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:repeat(3,1fr);
+  gap:2px;padding:2px;min-height:320px;
+}
+.ig-cell{position:relative;overflow:hidden;background:#111;aspect-ratio:1}
+.ig-cell img{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(.8);
+  transition:transform .45s,filter .3s;
+}
+.ig-cell:hover img{transform:scale(1.07);filter:saturate(1.3)}
+.ig-ov{
+  position:absolute;inset:0;background:var(--accent);
+  opacity:0;transition:opacity .3s;
+}
+.ig-cell:hover .ig-ov{opacity:.12}
+.ig-footer{
+  padding:14px 28px;border-top:1px solid var(--border);
+  font-family:var(--f-body);font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mid);
+  display:flex;align-items:center;justify-content:space-between;
+  transition:color .3s;
+}
+.t-ig:hover .ig-footer{color:rgba(240,237,230,.25)}
+.ig-footer a{color:var(--accent);text-decoration:none;font-weight:500;transition:opacity .2s}
+.ig-footer a:hover{opacity:.7}
+
+/* ─── PROZIS MONTHLY PICKS ─── */
+.t-prozis{
+  grid-column:5/13;
+  background:var(--green-bg);
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+}
+.prozis-glow{
+  position:absolute;bottom:-80px;right:-80px;
+  width:260px;height:260px;
+  background:radial-gradient(circle,rgba(26,255,110,.05) 0%,transparent 70%);
+  pointer-events:none;
+}
+.prozis-hdr{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:24px 32px 20px;
+  border-bottom:1px solid rgba(26,255,110,.08);
+  position:relative;z-index:2;
+  flex-wrap:wrap;gap:12px;
+}
+.prozis-hdr-l{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.prozis-mark{
+  font-family:var(--f-head);font-weight:800;
+  font-size:32px;letter-spacing:-.02em;
+  color:var(--green);line-height:1;
+}
+.prozis-sep{width:1px;height:28px;background:rgba(26,255,110,.15)}
+.prozis-badge{
+  font-family:var(--f-head);font-weight:700;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(26,255,110,.55);
+  border:1px solid rgba(26,255,110,.2);
+  padding:4px 10px;
+}
+.prozis-sub{
+  font-family:var(--f-body);font-size:12px;font-weight:300;
+  color:rgba(26,255,110,.28);font-style:italic;
+}
+.prozis-shop-link{
+  font-family:var(--f-head);font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--green);text-decoration:none;
+  border:1px solid rgba(26,255,110,.28);
+  padding:7px 16px;flex-shrink:0;
+  transition:background .2s,border-color .2s;
+  display:flex;align-items:center;gap:5px;
+}
+.prozis-shop-link:hover{background:rgba(26,255,110,.07);border-color:var(--green)}
+.prozis-shop-link .arr{transition:transform .2s}
+.prozis-shop-link:hover .arr{transform:translate(3px,-3px)}
+
+/* carousel wrapper */
+.prozis-picks{
+  flex:1;overflow:hidden;
+  position:relative;z-index:2;
+}
+.picks-track{
+  display:flex;height:100%;
+  transition:transform .5s cubic-bezier(.25,.46,.45,.94);
+}
+
+/* card — width set via JS / CSS var */
+.pick-card{
+  flex-shrink:0;
+  width:33.333%;
+  border-right:1px solid rgba(26,255,110,.07);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  transition:background .3s;
+}
+.pick-card:hover{background:rgba(26,255,110,.03)}
+.pick-img{
+  height:140px;background:#0d1f0f;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.pick-img-inner{
+  transition:transform .45s cubic-bezier(.25,.46,.45,.94);
+  display:flex;align-items:center;justify-content:center;
+  width:100%;height:100%;
+}
+.pick-card:hover .pick-img-inner{transform:scale(1.06)}
+/* CSS supplement tub illustration */
+.supp{display:flex;flex-direction:column;align-items:center;gap:4px}
+.supp-lid{
+  width:44px;height:9px;
+  border:1.5px solid rgba(26,255,110,.35);border-bottom:none;
+}
+.supp-body{
+  width:58px;height:66px;
+  border:1.5px solid rgba(26,255,110,.35);
+  display:flex;align-items:center;justify-content:center;
+}
+.supp-text{
+  font-family:var(--f-head);font-weight:800;font-size:8px;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--green);text-align:center;line-height:1.3;
+}
+.pick-badge{
+  position:absolute;top:10px;right:10px;
+  font-family:var(--f-head);font-size:9px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  background:var(--green);color:var(--green-bg);
+  padding:2px 7px;
+}
+.pick-body{
+  flex:1;padding:16px 20px;
+  border-top:1px solid rgba(26,255,110,.07);
+}
+.pick-cat{
+  font-family:var(--f-body);font-size:10px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(26,255,110,.32);margin-bottom:5px;
+}
+.pick-name{
+  font-family:var(--f-head);font-weight:800;font-size:16px;
+  letter-spacing:-.01em;line-height:1.05;
+  color:#f0ede6;margin-bottom:7px;
+}
+.pick-why{
+  font-family:var(--f-body);font-size:12px;font-weight:300;
+  line-height:1.6;color:rgba(240,237,230,.38);
+}
+.pick-foot{
+  padding:12px 20px;
+  border-top:1px solid rgba(26,255,110,.07);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.pick-foot a{
+  font-family:var(--f-head);font-size:10px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--green);text-decoration:none;
+  transition:opacity .2s;
+}
+.pick-foot a:hover{opacity:.55}
+.stars{display:flex;gap:2px}
+.star{
+  width:7px;height:7px;background:var(--green);opacity:.3;
+  clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+}
+.star.on{opacity:1}
+
+/* carousel nav */
+.prozis-nav{
+  display:flex;align-items:center;justify-content:flex-end;
+  gap:8px;padding:12px 32px;
+  border-top:1px solid rgba(26,255,110,.07);
+  position:relative;z-index:2;
+}
+.p-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:rgba(26,255,110,.18);
+  cursor:pointer;transition:background .2s,transform .2s;
+}
+.p-dot.active{background:var(--green);transform:scale(1.4)}
+.p-btn{
+  background:transparent;border:1px solid rgba(26,255,110,.2);
+  color:rgba(26,255,110,.45);padding:5px 12px;
+  font-family:var(--f-head);font-size:13px;font-weight:700;
+  cursor:pointer;margin-left:6px;
+  transition:border-color .2s,color .2s,background .2s;
+}
+.p-btn:hover{border-color:var(--green);color:var(--green);background:rgba(26,255,110,.06)}
+
+/* ─── MARQUEE ─── */
+.t-marquee{
+  grid-column:1/13;
+  overflow:hidden;
+  background:var(--accent);
+  border-left:1px solid var(--accent);
+  border-right:1px solid var(--accent);
+}
+.mq-track{
+  display:flex;white-space:nowrap;padding:18px 0;
+  animation:mq 24s linear infinite;
+}
+.mq-track:hover{animation-play-state:paused}
+.mq-item{
+  font-family:var(--f-head);font-weight:800;
+  font-size:clamp(22px,3vw,40px);
+  letter-spacing:-.01em;text-transform:uppercase;
+  color:#0c0c0c;padding:0 28px;
+  display:flex;align-items:center;gap:28px;
+}
+.mq-dot{width:8px;height:8px;border-radius:50%;background:#0c0c0c;flex-shrink:0}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─── RAW GYMS ─── */
+.t-rawgym{
+  grid-column:1/5;
+  padding:36px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  min-height:260px;
+  background:var(--bg);transition:background .35s;
+}
+.t-rawgym:hover{background:var(--fg)}
+.rawgym-name{
+  font-family:var(--f-head);font-weight:800;
+  font-size:clamp(32px,4vw,60px);
+  line-height:.9;letter-spacing:-.03em;text-transform:uppercase;
+  transition:color .3s;
+}
+.rawgym-name span{color:var(--accent)}
+.t-rawgym:hover .rawgym-name{color:#f0ede6}
+.rawgym-desc{
+  font-size:14px;line-height:1.65;color:var(--mid);
+  max-width:260px;font-weight:300;transition:color .3s;
+}
+.t-rawgym:hover .rawgym-desc{color:rgba(240,237,230,.38)}
+.rawgym-pills{display:flex;gap:8px;flex-wrap:wrap}
+.rawgym-pill{
+  font-family:var(--f-head);font-size:10px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  border:1.5px solid var(--fg);padding:5px 12px;
+  transition:border-color .3s,color .3s;
+}
+.t-rawgym:hover .rawgym-pill{border-color:rgba(240,237,230,.28);color:#f0ede6}
+
+/* ─── FORM ─── */
+.t-form{
+  grid-column:5/13;
+  padding:40px 44px;
+  background:var(--bg);
+  display:flex;flex-direction:column;
+}
+.t-form-hdr{
+  display:flex;align-items:baseline;justify-content:space-between;
+  margin-bottom:28px;flex-wrap:wrap;gap:8px;
+}
+.t-form-hdr h2{
+  font-family:var(--f-head);font-weight:800;
+  font-size:clamp(28px,3.5vw,52px);
+  line-height:.93;letter-spacing:-.03em;text-transform:uppercase;
+}
+.t-form-hdr h2 em{font-style:italic;font-weight:400;color:var(--accent)}
+.spots{
+  font-family:var(--f-body);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--mid);
+  display:flex;align-items:center;gap:6px;white-space:nowrap;
+}
+.spots::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--accent);display:block;
+  animation:blink 1.8s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+.form-fields{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--border);
+}
+.f-field{
+  padding:18px 22px;border-right:1px solid var(--border);
+  display:flex;flex-direction:column;gap:7px;
+  transition:background .2s;
+}
+.f-field:last-of-type{border-right:none}
+.f-field:focus-within{background:rgba(255,60,0,.03)}
+.f-lbl{
+  font-family:var(--f-body);font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--mid);
+}
+.f-in{
+  background:transparent;border:none;outline:none;
+  font-family:var(--f-head);font-weight:700;font-size:15px;
+  letter-spacing:-.01em;color:var(--fg);width:100%;
+}
+.f-in::placeholder{color:rgba(12,12,12,.2)}
+.f-in[type="select"],.f-sel{
+  -webkit-appearance:none;appearance:none;cursor:pointer;
+}
+.f-sel{
+  background:transparent;border:none;outline:none;
+  font-family:var(--f-head);font-weight:700;font-size:15px;
+  letter-spacing:-.01em;color:var(--fg);width:100%;
+  cursor:pointer;
+}
+.f-sel option{background:var(--bg);color:var(--fg)}
+.form-bottom{
+  display:flex;align-items:stretch;
+  border:1px solid var(--border);border-top:none;
+}
+.f-msg-wrap{
+  flex:1;padding:18px 22px;
+  border-right:1px solid var(--border);
+}
+.f-msg-wrap textarea{
+  width:100%;background:transparent;border:none;outline:none;
+  font-family:var(--f-body);font-size:14px;font-weight:300;
+  color:var(--fg);resize:none;min-height:72px;line-height:1.6;
+}
+.f-msg-wrap textarea::placeholder{color:rgba(12,12,12,.22)}
+.f-submit{
+  flex-shrink:0;background:var(--fg);border:none;
+  font-family:var(--f-head);font-weight:800;
+  font-size:13px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--bg);padding:0 36px;cursor:pointer;
+  display:flex;align-items:center;gap:8px;
+  transition:background .25s;
+}
+.f-submit:hover{background:var(--accent)}
+.f-submit svg{transition:transform .2s}
+.f-submit:hover svg{transform:translate(3px,-3px)}
+.form-ok{
+  display:none;border:1px solid var(--border);
+  padding:48px;text-align:center;
+  flex-direction:column;align-items:center;gap:8px;
+}
+.form-ok .ok-head{
+  font-family:var(--f-head);font-weight:800;
+  font-size:clamp(28px,4vw,60px);
+  letter-spacing:-.03em;text-transform:uppercase;
+  color:var(--accent);line-height:1;
+}
+.form-ok p{font-size:15px;color:var(--mid);font-weight:300}
+
+/* ─── QUOTE ─── */
+.t-quote{
+  grid-column:1/13;
+  border-left:1px solid var(--border);
+  padding:72px 40px;
+  display:flex;align-items:center;gap:40px;
+  background:var(--fg);
+  position:relative;overflow:hidden;
+}
+.t-quote blockquote{
+  font-family:var(--f-head);font-weight:800;
+  font-size:clamp(28px,4vw,64px);
+  line-height:.95;letter-spacing:-.03em;text-transform:uppercase;
+  color:#f0ede6;max-width:840px;position:relative;z-index:2;
+}
+.t-quote blockquote em{font-style:italic;font-weight:400;color:var(--accent)}
+.t-quote-attr{
+  margin-left:auto;flex-shrink:0;
+  text-align:right;position:relative;z-index:2;
+}
+.t-quote-attr p{
+  font-family:var(--f-body);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(240,237,230,.22);line-height:1.9;
+}
+
+/* ─── FOOTER ─── */
+footer{
+  padding:36px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--border);
+  flex-wrap:wrap;gap:16px;
+}
+.footer-logo{
+  font-family:var(--f-head);font-weight:800;font-size:22px;
+  letter-spacing:.03em;text-transform:uppercase;color:var(--fg);
+}
+.footer-links{display:flex;gap:24px;list-style:none;flex-wrap:wrap}
+.footer-links a{
+  font-family:var(--f-body);font-size:12px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--mid);text-decoration:none;
+  transition:color .2s;
+}
+.footer-links a:hover{color:var(--accent)}
+.footer-copy{
+  font-family:var(--f-body);font-size:12px;
+  color:rgba(12,12,12,.22);letter-spacing:.04em;
+}
+
+/* ─── SCROLL REVEAL ─── */
+[data-r]{
+  opacity:0;transform:translateY(28px);
+  transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94);
+}
+[data-r].on{opacity:1;transform:none}
+
+/* ════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════ */
+
+/* ── Tablet (641–960px): 2-col tiles ── */
+@media(min-width:641px) and (max-width:960px){
+  .tiles{grid-template-columns:1fr 1fr}
+  .t-about{grid-column:1/2;min-height:auto}
+  .t-identity{grid-column:2/3;min-height:auto}
+  .t-ig{grid-column:1/2}
+  .t-prozis{grid-column:2/3}
+  .t-marquee{grid-column:1/-1}
+  .t-rawgym{grid-column:1/2}
+  .t-form{grid-column:2/3;padding:28px}
+  .t-quote{grid-column:1/-1;flex-direction:column;padding:48px 28px;gap:20px}
+  .t-quote-attr{margin-left:0;text-align:left}
+  .t-about,.t-identity,.t-ig,.t-prozis,.t-rawgym,.t-form{border-left:1px solid var(--border)}
+  /* Prozis: show 2 cards on tablet */
+  .pick-card{width:50%}
+  .form-fields{grid-template-columns:1fr 1fr}
+  .f-field:nth-child(2){border-right:none}
+  .f-field:nth-child(3){border-right:none;border-top:1px solid var(--border);grid-column:1/-1}
+}
+
+/* ── Mobile (≤640px): single column ── */
+@media(max-width:640px){
+  nav{padding:16px 20px}
+  .divider{margin:0 20px}
+
+  .tiles{grid-template-columns:1fr}
+  .t-about,.t-identity,.t-ig,.t-prozis,
+  .t-marquee,.t-rawgym,.t-form,.t-quote{
+    grid-column:1/-1;
+    border-left:1px solid var(--border);
+  }
+  .t-about{min-height:auto}
+  .t-about-body{padding:24px 20px}
+  .t-about-body h2{font-size:32px}
+
+  .t-identity{padding:28px 20px;min-height:auto}
+  .t-identity-ghost{font-size:80px;bottom:20px;right:16px}
+
+  /* IG: shrink mosaic on mobile */
+  .ig-mosaic{min-height:260px}
+  .ig-header{padding:18px 20px 14px}
+  .ig-footer{padding:12px 20px}
+
+  /* Prozis: 1 card on mobile */
+  .t-prozis{}
+  .prozis-hdr{padding:18px 20px 16px;gap:8px}
+  .prozis-sub{display:none}
+  .pick-card{width:100%;border-right:none}
+  .pick-img{height:120px}
+  .pick-body{padding:14px 16px}
+  .pick-foot{padding:10px 16px}
+  .prozis-nav{padding:10px 20px}
+
+  .t-rawgym{padding:28px 20px;min-height:auto}
+  .rawgym-name{font-size:40px}
+
+  .t-form{padding:28px 20px}
+  .t-form-hdr{margin-bottom:20px}
+  .form-fields{grid-template-columns:1fr}
+  .f-field{border-right:none;border-bottom:1px solid var(--border)}
+  .f-field:last-of-type{border-bottom:none}
+  .form-bottom{flex-direction:column}
+  .f-submit{padding:18px 24px;justify-content:center;width:100%}
+
+  .t-quote{flex-direction:column;padding:40px 20px;gap:20px}
+  .t-quote-attr{margin-left:0;text-align:left}
+  .t-stats .stat{padding:14px 0}
+  .stat-n{font-size:24px}
+
+  footer{padding:28px 20px;gap:20px}
+  .footer-links{gap:16px}
+
+  /* No tilt on mobile */
+  .t{transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#top" class="nav-logo">Kass Diarra</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#ig">Instagram</a>
+    <a href="#prozis">Picks</a>
+    <a href="#train" class="nav-cta">Train with me</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg-word" id="bgWord">KASS</div>
+  <p class="hero-eyebrow">Personal Trainer · Prozis Athlete · Creator</p>
+  <h1 class="hero-title">
+    Show up.<br>Do the work.<br><em>Get results.</em>
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">Kass Diarra is a certified personal trainer at Raw Gyms Dublin, a Prozis-sponsored athlete and content creator — coaching real people to hit real goals, one session at a time.</p>
+    <div class="hero-actions">
+      <a href="#train" class="hero-btn">Apply for PT →</a>
+      <div class="hero-scroll-hint">
+        <span class="scroll-line"></span>Scroll to explore
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TILES -->
+<div class="tiles">
+
+  <!-- ABOUT -->
+  <div class="t t-about bl bt" id="about" data-r>
+    <div class="t-about-img">
+      <img src="https://images.unsplash.com/photo-1549476464-37392f717541?w=900&q=90&auto=format&fit=crop" alt="Kass Diarra training" loading="lazy">
+    </div>
+    <div class="t-about-body">
+      <p class="t-label">01 — About Kass</p>
+      <h2>Built<br>Different</h2>
+      <p>Certified PT at Raw Gyms, Prozis-sponsored athlete, and content creator who documents the real grind — no filters, no shortcuts. Kass brings elite programming and relentless energy to every session.</p>
+      <div class="t-stats">
+        <div class="stat"><div class="stat-n">5+</div><div class="stat-l">Years coaching</div></div>
+        <div class="stat"><div class="stat-n">100+</div><div class="stat-l">Clients coached</div></div>
+        <div class="stat"><div class="stat-n">10K+</div><div class="stat-l">Community</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IDENTITY -->
+  <div class="t t-identity bt" data-r>
+    <div class="t-identity-bg"></div>
+    <div class="t-identity-top">
+      <p class="t-identity-label">02 — Identity</p>
+    </div>
+    <div class="t-identity-ghost">KASS</div>
+    <div class="t-identity-bottom">
+      <h2 class="t-identity-title">More than<br>a <em>trainer</em></h2>
+      <p class="t-identity-desc">A movement. A mindset. A brand built on showing up when it's hard and staying consistent when it's easy — and bringing others along for the ride.</p>
+      <div class="t-tags">
+        <span class="tag">Raw Gyms</span>
+        <span class="tag">Prozis Athlete</span>
+        <span class="tag">Content Creator</span>
+        <span class="tag">Dublin</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTAGRAM -->
+  <div class="t t-ig bl" id="ig" data-r>
+    <div class="ig-header">
+      <div class="ig-ava">K</div>
+      <div class="ig-meta">
+        <div class="ig-handle">@_kassdiarra</div>
+        <div class="ig-sub">PT · Athlete · Creator</div>
+      </div>
+      <a href="https://www.instagram.com/_kassdiarra/" target="_blank" rel="noopener" class="ig-btn">Follow</a>
+    </div>
+    <div class="ig-mosaic">
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400&q=80" alt="" loading="lazy"><div class="ig-ov"></div></div>
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=80" alt="" loading="lazy"><div class="ig-ov"></div></div>
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=400&q=80" alt="" loading="lazy"><div class="ig-ov"></div></div>
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=80" alt="" loading="lazy"><div class="ig-ov"></div></div>
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&q=80" alt="" loading="lazy"><div class="ig-ov"></div></div>
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400&q=80" alt="" loading="lazy"><div class="ig-ov"></div></div>
+    </div>
+    <div class="ig-footer">
+      <span>Latest posts</span>
+      <a href="https://www.instagram.com/_kassdiarra/" target="_blank" rel="noopener">View profile ↗</a>
+    </div>
+  </div>
+
+  <!-- PROZIS MONTHLY PICKS -->
+  <div class="t t-prozis" id="prozis" data-r>
+    <div class="prozis-glow"></div>
+    <div class="prozis-hdr">
+      <div class="prozis-hdr-l">
+        <div class="prozis-mark">PROZIS</div>
+        <div class="prozis-sep"></div>
+        <div class="prozis-badge">April Picks</div>
+        <span class="prozis-sub">Kass's current stack</span>
+      </div>
+      <a href="https://www.prozis.com/ie/en" target="_blank" rel="noopener" class="prozis-shop-link">
+        Shop all <span class="arr">↗</span>
+      </a>
+    </div>
+
+    <div class="prozis-picks">
+      <div class="picks-track" id="picksTrack">
+
+        <div class="pick-card">
+          <div class="pick-img">
+            <div class="pick-img-inner">
+              <div class="supp"><div class="supp-lid"></div><div class="supp-body"><div class="supp-text">WHEY<br>PRO</div></div></div>
+            </div>
+            <span class="pick-badge">Bestseller</span>
+          </div>
+          <div class="pick-body">
+            <div class="pick-cat">Protein</div>
+            <div class="pick-name">Whey Protein<br>Isolate 90</div>
+            <div class="pick-why">"My post-session non-negotiable. 27g protein, zero bloat, and actually tastes good."</div>
+          </div>
+          <div class="pick-foot">
+            <a href="https://www.prozis.com/ie/en" target="_blank" rel="noopener">View product ↗</a>
+            <div class="stars"><div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star on"></div></div>
+          </div>
+        </div>
+
+        <div class="pick-card">
+          <div class="pick-img">
+            <div class="pick-img-inner">
+              <div class="supp"><div class="supp-lid"></div><div class="supp-body"><div class="supp-text">PRE<br>WKT</div></div></div>
+            </div>
+            <span class="pick-badge">Kass's #1</span>
+          </div>
+          <div class="pick-body">
+            <div class="pick-cat">Pre-Workout</div>
+            <div class="pick-name">Black Series<br>Pre-Workout</div>
+            <div class="pick-why">"Hits fast, no crash. Everything you need to actually show up and perform every session."</div>
+          </div>
+          <div class="pick-foot">
+            <a href="https://www.prozis.com/ie/en" target="_blank" rel="noopener">View product ↗</a>
+            <div class="stars"><div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star on"></div></div>
+          </div>
+        </div>
+
+        <div class="pick-card">
+          <div class="pick-img">
+            <div class="pick-img-inner">
+              <div class="supp"><div class="supp-lid"></div><div class="supp-body"><div class="supp-text">CREA<br>TINE</div></div></div>
+            </div>
+          </div>
+          <div class="pick-body">
+            <div class="pick-cat">Performance</div>
+            <div class="pick-name">Creatine<br>Monohydrate</div>
+            <div class="pick-why">"Most researched supplement out there. 5g daily. Non-negotiable for strength gains."</div>
+          </div>
+          <div class="pick-foot">
+            <a href="https://www.prozis.com/ie/en" target="_blank" rel="noopener">View product ↗</a>
+            <div class="stars"><div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star"></div></div>
+          </div>
+        </div>
+
+        <div class="pick-card">
+          <div class="pick-img">
+            <div class="pick-img-inner">
+              <div class="supp"><div class="supp-lid"></div><div class="supp-body"><div class="supp-text">BCAA<br>EAA</div></div></div>
+            </div>
+          </div>
+          <div class="pick-body">
+            <div class="pick-cat">Recovery</div>
+            <div class="pick-name">BCAA + EAA<br>Formula</div>
+            <div class="pick-why">"Keeps the muscles fed between sessions. Recovery is just as important as the session itself."</div>
+          </div>
+          <div class="pick-foot">
+            <a href="https://www.prozis.com/ie/en" target="_blank" rel="noopener">View product ↗</a>
+            <div class="stars"><div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star"></div></div>
+          </div>
+        </div>
+
+        <div class="pick-card">
+          <div class="pick-img">
+            <div class="pick-img-inner">
+              <div class="supp"><div class="supp-lid"></div><div class="supp-body"><div class="supp-text">COLLA<br>GEN</div></div></div>
+            </div>
+            <span class="pick-badge">New</span>
+          </div>
+          <div class="pick-body">
+            <div class="pick-cat">Joints & Skin</div>
+            <div class="pick-name">Collagen<br>Peptides</div>
+            <div class="pick-why">"Started for my joints, stayed for the skin benefits. Long game supplement — trust it."</div>
+          </div>
+          <div class="pick-foot">
+            <a href="https://www.prozis.com/ie/en" target="_blank" rel="noopener">View product ↗</a>
+            <div class="stars"><div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star"></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="prozis-nav" id="prozisNav">
+      <!-- dots injected by JS -->
+      <button class="p-btn" id="pPrev" aria-label="Previous">←</button>
+      <button class="p-btn" id="pNext" aria-label="Next">→</button>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="t t-marquee">
+    <div class="mq-track" id="mqTrack">
+      <div class="mq-item">Show up<div class="mq-dot"></div></div>
+      <div class="mq-item">Do the work<div class="mq-dot"></div></div>
+      <div class="mq-item">Raw Gyms Dublin<div class="mq-dot"></div></div>
+      <div class="mq-item">Prozis Athlete<div class="mq-dot"></div></div>
+      <div class="mq-item">Get results<div class="mq-dot"></div></div>
+      <div class="mq-item">No shortcuts<div class="mq-dot"></div></div>
+      <div class="mq-item">Show up<div class="mq-dot"></div></div>
+      <div class="mq-item">Do the work<div class="mq-dot"></div></div>
+      <div class="mq-item">Raw Gyms Dublin<div class="mq-dot"></div></div>
+      <div class="mq-item">Prozis Athlete<div class="mq-dot"></div></div>
+      <div class="mq-item">Get results<div class="mq-dot"></div></div>
+      <div class="mq-item">No shortcuts<div class="mq-dot"></div></div>
+    </div>
+  </div>
+
+  <!-- RAW GYMS -->
+  <div class="t t-rawgym bl" data-r>
+    <div>
+      <p class="t-label">03 — Home gym</p>
+      <div class="rawgym-name">RAW<br><span>GYMS</span></div>
+    </div>
+    <p class="rawgym-desc">Find Kass on the floor at Raw Gyms — coaching, grinding, and building community every single session.</p>
+    <div class="rawgym-pills">
+      <span class="rawgym-pill">In-person PT</span>
+      <span class="rawgym-pill">Online coaching</span>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="t t-form" id="train" data-r>
+    <div class="t-form-hdr">
+      <h2>Train<br>with <em>Kass</em></h2>
+      <p class="spots">Limited spots open</p>
+    </div>
+    <div id="formBody">
+      <div class="form-fields">
+        <div class="f-field">
+          <label class="f-lbl" for="f-name">Your name</label>
+          <input class="f-in" type="text" id="f-name" placeholder="First name" autocomplete="given-name">
+        </div>
+        <div class="f-field">
+          <label class="f-lbl" for="f-email">Email</label>
+          <input class="f-in" type="email" id="f-email" placeholder="your@email.com" autocomplete="email">
+        </div>
+        <div class="f-field" style="border-right:none">
+          <label class="f-lbl" for="f-goal">Primary goal</label>
+          <select class="f-sel" id="f-goal">
+            <option value="" disabled selected>Select a goal</option>
+            <option>Build muscle</option>
+            <option>Lose body fat</option>
+            <option>Athletic performance</option>
+            <option>Body recomposition</option>
+            <option>Competition prep</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-bottom">
+        <div class="f-msg-wrap">
+          <label class="f-lbl" style="display:block;margin-bottom:7px">Tell Kass about you</label>
+          <textarea placeholder="Training history, schedule, anything relevant…"></textarea>
+        </div>
+        <button class="f-submit" onclick="submitForm()">
+          Apply now
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="form-ok" id="formOk">
+      <div class="ok-head">Application received.</div>
+      <p>Kass will be in touch within 48 hours. Get ready to work.</p>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="t t-quote bl" data-r>
+    <blockquote>"Consistency is the only <em>currency</em> that matters in this game."</blockquote>
+    <div class="t-quote-attr">
+      <p>Kass Diarra</p>
+      <p>PT & Athlete</p>
+      <p>Raw Gyms, Dublin</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Kass Diarra</span>
+  <ul class="footer-links">
+    <li><a href="https://www.instagram.com/_kassdiarra/" target="_blank" rel="noopener">Instagram ↗</a></li>
+    <li><a href="https://www.prozis.com/ie/en" target="_blank" rel="noopener">Prozis ↗</a></li>
+    <li><a href="#train">Train with me</a></li>
+  </ul>
+  <p class="footer-copy">Every rep counts. Every session matters. Start yours today.</p>
+</footer>
+
+<script>
+(function(){
+
+/* ── CURSOR (desktop only) ── */
+const cur = document.getElementById('cur');
+if(window.matchMedia('(hover:hover)').matches){
+  document.addEventListener('mousemove', e => {
+    cur.style.left = e.clientX + 'px';
+    cur.style.top  = e.clientY + 'px';
+  });
+  document.querySelectorAll('a,button,.t,.ig-cell').forEach(el => {
+    el.addEventListener('mouseenter', () => cur.classList.add('big'));
+    el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+  });
+}
+
+/* ── HERO BG PARALLAX (desktop only) ── */
+const bgWord = document.getElementById('bgWord');
+if(bgWord && window.matchMedia('(hover:hover)').matches){
+  document.addEventListener('mousemove', e => {
+    const dx = (e.clientX / innerWidth  - .5) * 20;
+    const dy = (e.clientY / innerHeight - .5) * 14;
+    bgWord.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
+  });
+}
+
+/* ── SCROLL REVEAL ── */
+const revealEls = document.querySelectorAll('[data-r]');
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('on');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.06 });
+revealEls.forEach(el => ro.observe(el));
+
+/* ── TILE TILT (desktop only) ── */
+if(window.matchMedia('(hover:hover)').matches){
+  document.querySelectorAll('.t').forEach(tile => {
+    tile.addEventListener('mousemove', e => {
+      const r = tile.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width  - .5) * 1.6;
+      const y = ((e.clientY - r.top)  / r.height - .5) * 1.6;
+      tile.style.transform = `perspective(900px) rotateX(${-y}deg) rotateY(${x}deg)`;
+    });
+    tile.addEventListener('mouseleave', () => {
+      tile.style.transition = 'transform .4s ease';
+      tile.style.transform  = '';
+      setTimeout(() => tile.style.transition = '', 420);
+    });
+    tile.addEventListener('mouseenter', () => tile.style.transition = 'none');
+  });
+}
+
+/* ── PROZIS CAROUSEL ── */
+const track  = document.getElementById('picksTrack');
+const navBar = document.getElementById('prozisNav');
+const prevBtn = document.getElementById('pPrev');
+const nextBtn = document.getElementById('pNext');
+const TOTAL  = 5;
+let idx = 0;
+let perView = 3;
+
+function getPerView(){
+  const w = window.innerWidth;
+  if(w <= 640) return 1;
+  if(w <= 960) return 2;
+  return 3;
+}
+
+function buildDots(){
+  // remove old dots
+  navBar.querySelectorAll('.p-dot').forEach(d => d.remove());
+  const max = TOTAL - perView;
+  for(let i = 0; i <= max; i++){
+    const d = document.createElement('div');
+    d.className = 'p-dot' + (i === idx ? ' active' : '');
+    d.addEventListener('click', () => { idx = i; render(); });
+    navBar.insertBefore(d, prevBtn);
+  }
+}
+
+function render(){
+  perView = getPerView();
+  const max = TOTAL - perView;
+  idx = Math.max(0, Math.min(idx, max));
+  const pct = (100 / perView);
+  // set card widths
+  track.querySelectorAll('.pick-card').forEach(c => c.style.width = pct + '%');
+  track.style.transform = `translateX(-${idx * pct}%)`;
+  navBar.querySelectorAll('.p-dot').forEach((d,i) => d.classList.toggle('active', i === idx));
+  prevBtn.style.opacity = idx === 0 ? '.3' : '1';
+  nextBtn.style.opacity = idx >= max ? '.3' : '1';
+}
+
+prevBtn.addEventListener('click', () => { if(idx > 0){ idx--; render(); }});
+nextBtn.addEventListener('click', () => { const max = TOTAL - getPerView(); if(idx < max){ idx++; render(); }});
+
+// touch swipe on carousel
+let tx = 0;
+track.parentElement.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+track.parentElement.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  if(Math.abs(dx) > 40){ if(dx < 0) nextBtn.click(); else prevBtn.click(); }
+}, {passive:true});
+
+function init(){
+  perView = getPerView();
+  buildDots();
+  render();
+}
+window.addEventListener('resize', () => { perView = getPerView(); buildDots(); render(); });
+init();
+
+/* ── MARQUEE PAUSE WHEN TAB HIDDEN ── */
+document.addEventListener('visibilitychange', () => {
+  const mq = document.getElementById('mqTrack');
+  if(mq) mq.style.animationPlayState = document.hidden ? 'paused' : 'running';
+});
+
+/* ── FORM SUBMIT ── */
+window.submitForm = function(){
+  const name  = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const nameEl  = document.getElementById('f-name');
+  const emailEl = document.getElementById('f-email');
+  nameEl.style.borderBottom  = '';
+  emailEl.style.borderBottom = '';
+  if(!name){  nameEl.style.borderBottom  = '2px solid var(--accent)'; nameEl.focus();  return; }
+  if(!email){ emailEl.style.borderBottom = '2px solid var(--accent)'; emailEl.focus(); return; }
+  document.getElementById('formBody').style.display = 'none';
+  const ok = document.getElementById('formOk');
+  ok.style.display = 'flex';
+};
+
+})();
+</script>
+</body>
+</html>
