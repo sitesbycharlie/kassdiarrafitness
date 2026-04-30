@@ -55,15 +55,22 @@ body{
 nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   display:flex;align-items:center;justify-content:space-between;
-  padding:24px 40px;
-  mix-blend-mode:multiply;
+  padding:20px 40px;
+  background:var(--bg);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s,box-shadow .3s;
+}
+nav.scrolled{
+  border-color:var(--border);
+  box-shadow:0 1px 24px rgba(12,12,12,.06);
 }
 .nav-logo{
   font-family:var(--f-head);font-weight:800;font-size:17px;
   letter-spacing:.04em;text-transform:uppercase;
   color:var(--fg);text-decoration:none;
+  position:relative;z-index:201;
 }
-.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links{display:flex;align-items:center;gap:28px}
 .nav-links a{
   font-family:var(--f-body);font-size:13px;
   color:var(--fg);text-decoration:none;opacity:.45;
@@ -79,9 +86,71 @@ nav{
 }
 .nav-cta:hover{background:var(--fg);color:var(--bg)}
 
+/* ── HAMBURGER ── */
+.nav-burger{
+  display:none;
+  flex-direction:column;justify-content:center;gap:5px;
+  width:36px;height:36px;
+  background:none;border:none;cursor:pointer;
+  padding:4px;position:relative;z-index:201;
+}
+.nav-burger span{
+  display:block;width:24px;height:1.5px;
+  background:var(--fg);
+  transition:transform .3s,opacity .3s;
+  transform-origin:center;
+}
+.nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ── MOBILE DRAWER ── */
+.nav-drawer{
+  display:none;
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:var(--bg);
+  z-index:199;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  opacity:0;
+  transition:opacity .3s;
+  pointer-events:none;
+}
+.nav-drawer.open{opacity:1;pointer-events:all}
+.nav-drawer a{
+  font-family:var(--f-head);font-weight:800;
+  font-size:clamp(32px,8vw,52px);
+  letter-spacing:-.02em;text-transform:uppercase;
+  color:var(--fg);text-decoration:none;
+  opacity:0;transform:translateY(16px);
+  transition:opacity .3s,transform .3s,color .2s;
+  line-height:1.1;
+}
+.nav-drawer.open a{opacity:1;transform:none}
+.nav-drawer.open a:nth-child(1){transition-delay:.05s}
+.nav-drawer.open a:nth-child(2){transition-delay:.1s}
+.nav-drawer.open a:nth-child(3){transition-delay:.15s}
+.nav-drawer.open a:nth-child(4){transition-delay:.2s}
+.nav-drawer a:hover{color:var(--accent)}
+.nav-drawer a.drawer-cta{
+  color:var(--accent);
+  border-bottom:2px solid var(--accent);
+  padding-bottom:2px;
+}
+.nav-drawer-footer{
+  position:absolute;bottom:32px;
+  font-family:var(--f-body);font-size:12px;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mid);
+}
+
 @media(max-width:768px){
-  nav{padding:18px 20px}
-  .nav-links a:not(.nav-cta){display:none}
+  nav{padding:16px 20px}
+  .nav-links{display:none}
+  .nav-burger{display:flex}
+  .nav-drawer{display:flex}
 }
 
 /* ── HERO ── */
@@ -89,7 +158,7 @@ nav{
   min-height:100svh;
   display:flex;flex-direction:column;
   justify-content:flex-end;
-  padding:0 40px 56px;
+  padding:80px 40px 56px;
   position:relative;overflow:hidden;
 }
 .hero-bg-word{
@@ -112,7 +181,7 @@ nav{
 .hero-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--mid)}
 .hero-title{
   font-family:var(--f-head);font-weight:800;
-  font-size:clamp(52px,9vw,140px);
+  font-size:clamp(48px,9vw,140px);
   line-height:.93;letter-spacing:-.03em;
   text-transform:uppercase;
   position:relative;z-index:2;
@@ -129,7 +198,7 @@ nav{
   position:relative;z-index:2;
 }
 .hero-desc{
-  font-size:16px;font-weight:300;line-height:1.7;
+  font-size:16px;font-weight:300;line-height:1.75;
   color:var(--mid);max-width:360px;
 }
 .hero-actions{
@@ -157,11 +226,22 @@ nav{
 @keyframes pulse{0%,100%{opacity:.25}50%{opacity:1}}
 
 @media(max-width:768px){
-  .hero{padding:0 20px 48px;min-height:100svh}
-  .hero-bottom{flex-direction:column;align-items:flex-start;gap:24px}
-  .hero-actions{align-items:flex-start}
+  .hero{
+    padding:100px 20px 48px;
+    min-height:100svh;
+    justify-content:flex-end;
+  }
+  .hero-eyebrow{font-size:11px;margin-bottom:14px}
+  .hero-title{
+    font-size:clamp(44px,13vw,80px);
+    margin-bottom:24px;
+    line-height:.92;
+  }
+  .hero-desc{font-size:15px;line-height:1.7;max-width:100%}
+  .hero-bottom{flex-direction:column;align-items:flex-start;gap:20px}
+  .hero-actions{align-items:flex-start;width:100%}
+  .hero-btn{width:100%;text-align:center;padding:18px 24px;font-size:14px}
   .hero-scroll-hint{display:none}
-  .hero-title{margin-bottom:28px}
 }
 
 /* ── DIVIDER ── */
@@ -737,7 +817,6 @@ footer{
   .t-quote{grid-column:1/-1;flex-direction:column;padding:48px 28px;gap:20px}
   .t-quote-attr{margin-left:0;text-align:left}
   .t-about,.t-identity,.t-ig,.t-prozis,.t-rawgym,.t-form{border-left:1px solid var(--border)}
-  /* Prozis: show 2 cards on tablet */
   .pick-card{width:50%}
   .form-fields{grid-template-columns:1fr 1fr}
   .f-field:nth-child(2){border-right:none}
@@ -746,58 +825,103 @@ footer{
 
 /* ── Mobile (≤640px): single column ── */
 @media(max-width:640px){
-  nav{padding:16px 20px}
-  .divider{margin:0 20px}
+  .divider{margin:0}
 
+  /* Tiles reset */
   .tiles{grid-template-columns:1fr}
   .t-about,.t-identity,.t-ig,.t-prozis,
   .t-marquee,.t-rawgym,.t-form,.t-quote{
     grid-column:1/-1;
     border-left:1px solid var(--border);
   }
+
+  /* ABOUT */
   .t-about{min-height:auto}
+  .t-about-img{min-height:220px}
   .t-about-body{padding:24px 20px}
-  .t-about-body h2{font-size:32px}
+  .t-about-body h2{font-size:36px}
+  .t-about-body p{font-size:15px}
+  .t-stats .stat{padding:16px 0}
+  .stat-n{font-size:26px}
+  .stat-l{font-size:10px}
 
-  .t-identity{padding:28px 20px;min-height:auto}
-  .t-identity-ghost{font-size:80px;bottom:20px;right:16px}
+  /* IDENTITY */
+  .t-identity{padding:32px 20px;min-height:320px}
+  .t-identity-ghost{font-size:70px;bottom:16px;right:12px}
+  .t-identity-title{font-size:32px}
+  .t-identity-desc{font-size:14px;max-width:100%}
 
-  /* IG: shrink mosaic on mobile */
-  .ig-mosaic{min-height:260px}
-  .ig-header{padding:18px 20px 14px}
-  .ig-footer{padding:12px 20px}
+  /* INSTAGRAM */
+  .ig-header{padding:16px 20px 14px}
+  .ig-handle{font-size:14px}
+  .ig-mosaic{min-height:280px}
+  .ig-footer{padding:12px 20px;font-size:10px}
 
-  /* Prozis: 1 card on mobile */
-  .t-prozis{}
-  .prozis-hdr{padding:18px 20px 16px;gap:8px}
+  /* PROZIS */
+  .prozis-hdr{padding:16px 20px;gap:8px}
+  .prozis-mark{font-size:26px}
   .prozis-sub{display:none}
+  .prozis-sep{display:none}
   .pick-card{width:100%;border-right:none}
-  .pick-img{height:120px}
+  .pick-img{height:110px}
   .pick-body{padding:14px 16px}
+  .pick-name{font-size:15px}
+  .pick-why{font-size:13px;line-height:1.55}
   .pick-foot{padding:10px 16px}
   .prozis-nav{padding:10px 20px}
+  .prozis-shop-link{font-size:10px;padding:6px 12px}
 
+  /* MARQUEE */
+  .mq-item{font-size:20px;padding:0 18px;gap:18px}
+  .mq-track{padding:14px 0;animation-duration:14s}
+
+  /* RAW GYMS */
   .t-rawgym{padding:28px 20px;min-height:auto}
   .rawgym-name{font-size:40px}
+  .rawgym-desc{font-size:14px;max-width:100%}
 
+  /* FORM */
   .t-form{padding:28px 20px}
   .t-form-hdr{margin-bottom:20px}
+  .t-form-hdr h2{font-size:32px}
+  .spots{font-size:10px}
   .form-fields{grid-template-columns:1fr}
-  .f-field{border-right:none;border-bottom:1px solid var(--border)}
+  .f-field{
+    border-right:none;
+    border-bottom:1px solid var(--border);
+    padding:16px 0;
+  }
   .f-field:last-of-type{border-bottom:none}
+  .f-lbl{font-size:10px}
+  .f-in,.f-sel{font-size:16px} /* prevents iOS auto-zoom */
   .form-bottom{flex-direction:column}
-  .f-submit{padding:18px 24px;justify-content:center;width:100%}
+  .f-msg-wrap{
+    padding:16px 0;border-right:none;
+    border-bottom:1px solid var(--border);
+  }
+  .f-msg-wrap textarea{font-size:16px;min-height:80px}
+  .f-submit{
+    padding:18px 24px;
+    justify-content:center;
+    width:100%;font-size:14px;
+  }
+  .form-ok{padding:32px 20px}
+  .form-ok .ok-head{font-size:28px}
+  .form-ok p{font-size:14px}
 
+  /* QUOTE */
   .t-quote{flex-direction:column;padding:40px 20px;gap:20px}
+  .t-quote blockquote{font-size:clamp(22px,6.5vw,36px);line-height:1.05}
   .t-quote-attr{margin-left:0;text-align:left}
-  .t-stats .stat{padding:14px 0}
-  .stat-n{font-size:24px}
+  .t-quote-attr p{font-size:11px}
 
-  footer{padding:28px 20px;gap:20px}
-  .footer-links{gap:16px}
-
-  /* No tilt on mobile */
+  /* No tilt on touch */
   .t{transform:none!important}
+
+  /* FOOTER */
+  footer{padding:28px 20px;flex-direction:column;align-items:flex-start;gap:20px}
+  .footer-links{gap:20px}
+  .footer-copy{font-size:12px}
 }
 </style>
 </head>
@@ -805,8 +929,17 @@ footer{
 
 <div id="cur"></div>
 
+<!-- MOBILE NAV DRAWER -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="#about" onclick="closeDrawer()">About</a>
+  <a href="#ig" onclick="closeDrawer()">Instagram</a>
+  <a href="#prozis" onclick="closeDrawer()">Picks</a>
+  <a href="#train" class="drawer-cta" onclick="closeDrawer()">Train with me</a>
+  <div class="nav-drawer-footer">Kass Diarra — PT · Athlete · Creator</div>
+</div>
+
 <!-- NAV -->
-<nav>
+<nav id="mainNav">
   <a href="#top" class="nav-logo">Kass Diarra</a>
   <div class="nav-links">
     <a href="#about">About</a>
@@ -814,6 +947,9 @@ footer{
     <a href="#prozis">Picks</a>
     <a href="#train" class="nav-cta">Train with me</a>
   </div>
+  <button class="nav-burger" id="burger" aria-label="Menu" onclick="toggleDrawer()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -849,9 +985,9 @@ footer{
       <h2>Built<br>Different</h2>
       <p>Certified PT at Raw Gyms, Prozis-sponsored athlete, and content creator who documents the real grind — no filters, no shortcuts. Kass brings elite programming and relentless energy to every session.</p>
       <div class="t-stats">
-        <div class="stat"><div class="stat-n">5+</div><div class="stat-l">Years coaching</div></div>
-        <div class="stat"><div class="stat-n">100+</div><div class="stat-l">Clients coached</div></div>
-        <div class="stat"><div class="stat-n">10K+</div><div class="stat-l">Community</div></div>
+        <div class="stat"><div class="stat-n">3+</div><div class="stat-l">Years coaching</div></div>
+        <div class="stat"><div class="stat-n">X</div><div class="stat-l">Clients coached</div></div>
+        <div class="stat"><div class="stat-n">3K+</div><div class="stat-l">Community</div></div>
       </div>
     </div>
   </div>
@@ -918,9 +1054,9 @@ footer{
       <div class="picks-track" id="picksTrack">
 
         <div class="pick-card">
-          <div class="pick-img">
-            <div class="pick-img-inner">
-              <div class="supp"><div class="supp-lid"></div><div class="supp-body"><div class="supp-text">WHEY<br>PRO</div></div></div>
+          <div class="pick-img" style="padding:0">
+            <div class="pick-img-inner" style="background:#0d1f0f">
+              <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=400&q=80" alt="Whey Protein" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.75;filter:contrast(1.1) saturate(.8)">
             </div>
             <span class="pick-badge">Bestseller</span>
           </div>
@@ -936,9 +1072,9 @@ footer{
         </div>
 
         <div class="pick-card">
-          <div class="pick-img">
-            <div class="pick-img-inner">
-              <div class="supp"><div class="supp-lid"></div><div class="supp-body"><div class="supp-text">PRE<br>WKT</div></div></div>
+          <div class="pick-img" style="padding:0">
+            <div class="pick-img-inner" style="background:#0d1f0f">
+              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80" alt="Pre-Workout" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.75;filter:contrast(1.1) saturate(.8)">
             </div>
             <span class="pick-badge">Kass's #1</span>
           </div>
@@ -954,9 +1090,9 @@ footer{
         </div>
 
         <div class="pick-card">
-          <div class="pick-img">
-            <div class="pick-img-inner">
-              <div class="supp"><div class="supp-lid"></div><div class="supp-body"><div class="supp-text">CREA<br>TINE</div></div></div>
+          <div class="pick-img" style="padding:0">
+            <div class="pick-img-inner" style="background:#0d1f0f">
+              <img src="https://images.unsplash.com/photo-1644982647869-35ed7f9c3b8e?w=400&q=80" alt="Creatine" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.75;filter:contrast(1.1) saturate(.8)">
             </div>
           </div>
           <div class="pick-body">
@@ -971,9 +1107,9 @@ footer{
         </div>
 
         <div class="pick-card">
-          <div class="pick-img">
-            <div class="pick-img-inner">
-              <div class="supp"><div class="supp-lid"></div><div class="supp-body"><div class="supp-text">BCAA<br>EAA</div></div></div>
+          <div class="pick-img" style="padding:0">
+            <div class="pick-img-inner" style="background:#0d1f0f">
+              <img src="https://images.unsplash.com/photo-1579722820308-d74e571900a9?w=400&q=80" alt="BCAA" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.75;filter:contrast(1.1) saturate(.8)">
             </div>
           </div>
           <div class="pick-body">
@@ -988,9 +1124,9 @@ footer{
         </div>
 
         <div class="pick-card">
-          <div class="pick-img">
-            <div class="pick-img-inner">
-              <div class="supp"><div class="supp-lid"></div><div class="supp-body"><div class="supp-text">COLLA<br>GEN</div></div></div>
+          <div class="pick-img" style="padding:0">
+            <div class="pick-img-inner" style="background:#0d1f0f">
+              <img src="https://images.unsplash.com/photo-1612965607446-25e1332775ae?w=400&q=80" alt="Collagen" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.75;filter:contrast(1.1) saturate(.8)">
             </div>
             <span class="pick-badge">New</span>
           </div>
@@ -1116,6 +1252,30 @@ footer{
 
 <script>
 (function(){
+
+/* ── NAV SCROLL STATE ── */
+const mainNav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  mainNav.classList.toggle('scrolled', window.scrollY > 40);
+}, {passive:true});
+
+/* ── HAMBURGER / DRAWER ── */
+const burger = document.getElementById('burger');
+const drawer = document.getElementById('navDrawer');
+let drawerOpen = false;
+
+window.toggleDrawer = function(){
+  drawerOpen = !drawerOpen;
+  burger.classList.toggle('open', drawerOpen);
+  drawer.classList.toggle('open', drawerOpen);
+  document.body.style.overflow = drawerOpen ? 'hidden' : '';
+};
+window.closeDrawer = function(){
+  drawerOpen = false;
+  burger.classList.remove('open');
+  drawer.classList.remove('open');
+  document.body.style.overflow = '';
+};
 
 /* ── CURSOR (desktop only) ── */
 const cur = document.getElementById('cur');
