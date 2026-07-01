@@ -474,6 +474,91 @@ footer{
 /* ── REVEAL ── */
 [data-r]{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94)}
 [data-r].on{opacity:1;transform:none}
+/* ── WAITLIST MODAL ── */
+.modal-overlay{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s;
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{
+  background:var(--surface);
+  border:1px solid var(--border);
+  max-width:480px;width:100%;
+  padding:48px 44px;
+  position:relative;
+  transform:translateY(24px);
+  transition:transform .3s cubic-bezier(.25,.46,.45,.94);
+}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-close{
+  position:absolute;top:20px;right:20px;
+  background:none;border:none;
+  font-size:18px;color:var(--mid);cursor:pointer;
+  transition:color .2s;line-height:1;padding:4px;
+}
+.modal-close:hover{color:var(--fg)}
+.modal-kicker{
+  font-family:var(--f-body);font-size:11px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent-bright);margin-bottom:12px;
+}
+.modal-title{
+  font-family:var(--f-head);font-weight:900;
+  font-size:clamp(36px,6vw,56px);
+  line-height:.92;letter-spacing:-.01em;text-transform:uppercase;
+  margin-bottom:16px;
+}
+.modal-title em{font-style:italic;color:var(--accent-bright)}
+.modal-desc{
+  font-size:14px;font-weight:300;line-height:1.7;
+  color:rgba(240,238,255,.5);margin-bottom:32px;
+}
+.wl-field{
+  border-bottom:1px solid var(--border);
+  padding:16px 0;margin-bottom:0;
+  display:flex;flex-direction:column;gap:6px;
+}
+.wl-field:first-of-type{border-top:1px solid var(--border)}
+.wl-field:focus-within .f-label{color:var(--accent-bright)}
+.wl-input{
+  background:transparent;border:none;outline:none;
+  font-family:var(--f-head);font-weight:700;font-size:18px;
+  letter-spacing:-.01em;color:var(--fg);width:100%;
+}
+.wl-input::placeholder{color:rgba(240,238,255,.18)}
+.wl-submit{
+  margin-top:24px;width:100%;
+  font-family:var(--f-head);font-weight:700;font-size:17px;
+  letter-spacing:.1em;text-transform:uppercase;
+  background:var(--accent);color:#fff;border:none;
+  padding:18px;cursor:pointer;
+  transition:background .2s,transform .15s;
+}
+.wl-submit:hover{background:var(--accent-bright);transform:translateY(-2px)}
+.wl-note{
+  font-size:12px;color:var(--mid);text-align:center;
+  margin-top:12px;letter-spacing:.02em;
+}
+.wl-ok{
+  display:none;flex-direction:column;
+  align-items:center;text-align:center;gap:12px;
+  padding:16px 0;
+}
+.wl-ok-check{
+  font-family:var(--f-head);font-weight:900;
+  font-size:64px;color:var(--accent-bright);line-height:1;
+}
+.wl-ok h3{
+  font-family:var(--f-head);font-weight:900;font-size:28px;
+  text-transform:uppercase;letter-spacing:.02em;color:var(--fg);
+}
+.wl-ok p{font-size:14px;color:var(--mid);font-weight:300}
+
 </style>
 </head>
 <body>
@@ -587,14 +672,43 @@ footer{
 <!-- PROGRAMME TEASER -->
 <section class="programme" id="programme" data-r>
   <div class="programme-left">
-    <div class="programme-kicker">New Coming Soon</div>
+    <div class="programme-kicker">New — Coming Soon</div>
     <h2 class="programme-title">12-Week<br>Weight Loss<br>Programme</h2>
   </div>
   <div class="programme-right">
-    <p class="programme-desc">A fully structured, science-backed 12-week plan designed to strip body fat, preserve muscle, and build the habits that last. Limited spots. Join the waitlist now.</p>
-    <a href="#train" class="btn-dark">Join the waitlist →</a>
+    <p class="programme-desc">A fully structured, science-backed 12-week plan designed to strip body fat, preserve muscle, and build the habits that last. Limited spots available.</p>
+    <button class="btn-dark" onclick="openWaitlist()">Join the waitlist →</button>
   </div>
 </section>
+
+<!-- WAITLIST MODAL -->
+<div class="modal-overlay" id="waitlistOverlay" onclick="closeWaitlist(event)">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Join the waitlist">
+    <button class="modal-close" onclick="overlay.classList.remove('open');document.body.style.overflow=''" aria-label="Close">✕</button>
+    <p class="modal-kicker">12-Week Weight Loss Programme</p>
+    <h2 class="modal-title">Join the<br><em>Waitlist.</em></h2>
+    <p class="modal-desc">Be the first to know when spots open. Drop your name and email and Kass will reach out directly when the programme launches.</p>
+    <div id="waitlistBody">
+      <div class="wl-field">
+        <label class="f-label">Your name</label>
+        <input class="f-input wl-input" type="text" id="wlName" placeholder="First name" autocomplete="given-name">
+      </div>
+      <div class="wl-field">
+        <label class="f-label">Email address</label>
+        <input class="f-input wl-input" type="email" id="wlEmail" placeholder="your@email.com" autocomplete="email">
+      </div>
+      <button class="wl-submit" onclick="submitWaitlist()">
+        Secure my spot →
+      </button>
+      <p class="wl-note">No spam. Just one email when the programme is ready.</p>
+    </div>
+    <div class="wl-ok" id="waitlistOk">
+      <div class="wl-ok-check">✓</div>
+      <h3>You're on the list.</h3>
+      <p>Kass will be in touch when the programme launches. Stay consistent.</p>
+    </div>
+  </div>
+</div>
 
 <!-- FORM -->
 <section class="form-section" id="train">
@@ -719,7 +833,34 @@ window.submitForm=function(){
   ok.style.display='flex';
 };
 
-/* MARQUEE pause when hidden */
+/* WAITLIST MODAL */
+const overlay = document.getElementById('waitlistOverlay');
+window.openWaitlist = function(){
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+window.closeWaitlist = function(e){
+  if(e && e.target !== overlay) return;
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+};
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape'){ overlay.classList.remove('open'); document.body.style.overflow=''; }
+});
+window.submitWaitlist = function(){
+  const name  = document.getElementById('wlName').value.trim();
+  const email = document.getElementById('wlEmail').value.trim();
+  const ni = document.getElementById('wlName');
+  const ei = document.getElementById('wlEmail');
+  ni.style.borderBottom = ''; ei.style.borderBottom = '';
+  if(!name){  ni.style.borderBottom='2px solid var(--accent-bright)'; ni.focus(); return; }
+  if(!email){ ei.style.borderBottom='2px solid var(--accent-bright)'; ei.focus(); return; }
+  document.getElementById('waitlistBody').style.display = 'none';
+  const ok = document.getElementById('waitlistOk');
+  ok.style.display = 'flex';
+};
+
+
 document.addEventListener('visibilitychange',()=>{
   const mq=document.querySelector('.marquee-track');
   if(mq)mq.style.animationPlayState=document.hidden?'paused':'running';
