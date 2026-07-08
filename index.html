@@ -246,6 +246,9 @@ nav.scrolled{
   animation:mq 20s linear infinite;
 }
 .marquee-track:hover{animation-play-state:paused}
+@media(max-width:768px){
+  .marquee-track{animation-duration:20s}
+}
 .marquee-item{
   font-family:var(--f-head);font-weight:700;font-size:18px;
   letter-spacing:.08em;text-transform:uppercase;
@@ -306,11 +309,12 @@ nav.scrolled{
 .about-tag{
   font-family:var(--f-head);font-size:12px;font-weight:600;
   letter-spacing:.1em;text-transform:uppercase;
-  border:1px solid var(--border);color:var(--mid);
-  padding:6px 14px;
-  transition:border-color .2s,color .2s;
+  border:1px solid var(--accent);
+  color:var(--accent-bright);
+  padding:7px 16px;border-radius:40px;
+  transition:background .2s,color .2s;
 }
-.about-tag:hover{border-color:var(--accent-bright);color:var(--accent-bright)}
+.about-tag:hover{background:var(--accent);color:#fff}
 
 /* About flip card */
 .about-flip{
@@ -347,17 +351,7 @@ nav.scrolled{
 }
 .about-flip:hover .about-flip-front img{transform:scale(1.03)}
 .about-flip-back img{filter:contrast(1.08) saturate(1.05)}
-.about-flip-hint{
-  position:absolute;bottom:16px;right:16px;z-index:2;
-  font-family:var(--f-body);font-size:11px;font-weight:500;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(240,238,255,.5);
-  display:flex;align-items:center;gap:5px;
-  background:rgba(10,10,10,.6);
-  padding:5px 10px;
-  backdrop-filter:blur(4px);
-}
-.about-flip-back .about-flip-hint{color:rgba(240,238,255,.6)}
+
 
 @media(max-width:768px){
   .about-tile{grid-template-columns:1fr;gap:40px;padding:56px 20px}
@@ -427,28 +421,12 @@ nav.scrolled{
 }
 .flip-label-before{background:rgba(10,10,10,.75);color:var(--mid)}
 .flip-label-after{background:var(--accent);color:#fff}
-.flip-hint{
-  position:absolute;bottom:14px;right:14px;z-index:2;
-  font-family:var(--f-body);font-size:11px;font-weight:500;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(240,238,255,.5);
-  display:flex;align-items:center;gap:6px;
-}
-.flip-hint svg{opacity:.5}
-.flip-card-back .flip-result{
-  position:relative;z-index:2;
-  padding:20px;
-  background:linear-gradient(to top,rgba(10,10,10,.95) 0%,rgba(10,10,10,.5) 60%,transparent 100%);
-}
-.flip-result-name{
-  font-family:var(--f-head);font-weight:900;font-size:18px;
-  letter-spacing:.04em;text-transform:uppercase;color:var(--fg);
-  margin-bottom:4px;
-}
-.flip-result-stat{
-  font-family:var(--f-head);font-weight:700;font-size:14px;
-  color:var(--accent-bright);letter-spacing:.06em;text-transform:uppercase;
-}
+/* Hide BEFORE label when card is flipped */
+.flip-card.flipped .flip-card-front .flip-label-before{opacity:0;pointer-events:none}
+/* Back face labels need counter-rotation to display correctly on Safari/iOS */
+.flip-card-back .flip-label{transform:scaleX(1)}
+
+
 
 /* Testimonial quote cards */
 .testimonials-quotes{
@@ -585,14 +563,28 @@ nav.scrolled{
   font-size:16px;font-weight:300;line-height:1.7;
   color:rgba(240,238,255,.55);max-width:360px;margin-bottom:32px;
 }
-.form-proof{display:flex;flex-direction:column;gap:0}
-.proof-row{
-  padding:16px 0;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:12px;
-  font-size:14px;color:rgba(240,238,255,.6);
+.form-proof{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:12px;margin-top:8px;
 }
-.proof-row:last-child{border-bottom:none}
-.proof-dot{width:6px;height:6px;border-radius:50%;background:var(--accent-bright);flex-shrink:0}
+.proof-tile{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  padding:20px 16px;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;gap:10px;
+  transition:border-color .2s;
+}
+.proof-tile:hover{border-color:var(--accent)}
+.proof-tile-icon{font-size:22px;line-height:1}
+.proof-tile-text{
+  font-size:13px;font-weight:400;
+  color:rgba(240,238,255,.65);
+  line-height:1.4;
+}
+@media(max-width:480px){
+  .form-proof{grid-template-columns:1fr 1fr}
+}
 
 /* form */
 .form-right{}
@@ -878,7 +870,7 @@ footer{
     <p class="hero-desc">Whatever your starting point, Kass will meet you there. Real programming, genuine support, and a coach who is with you every step of the way.</p>
     <div class="hero-actions">
       <a href="#train" class="btn-primary">Achieve Your Goals →</a>
-      <a href="https://www.instagram.com/_kassdiarra/" target="_blank" rel="noopener" class="btn-ghost">Follow the journey ↗</a>
+      <a href="https://www.instagram.com/_kassdiarra/" target="_blank" rel="noopener" class="btn-ghost">📷 Follow on Instagram</a>
     </div>
   </div>
 
@@ -909,10 +901,10 @@ footer{
     <h2 class="section-title">Train<br>with<br><em>Kass.</em></h2>
     <p>Limited spots available. Fill in the form and Kass will be in touch within 48 hours to discuss your goals.</p>
     <div class="form-proof">
-      <div class="proof-row"><span class="proof-dot"></span>Response within 48 hours</div>
-      <div class="proof-row"><span class="proof-dot"></span>Complimentary initial consultation call</div>
-      <div class="proof-row"><span class="proof-dot"></span>In-person or online coaching</div>
-      <div class="proof-row"><span class="proof-dot"></span>Fully customised programming</div>
+      <div class="proof-tile"><div class="proof-tile-icon">⚡</div><div class="proof-tile-text">Response within 48 hours</div></div>
+      <div class="proof-tile"><div class="proof-tile-icon">📞</div><div class="proof-tile-text">Complimentary consultation call</div></div>
+      <div class="proof-tile"><div class="proof-tile-icon">🏋️</div><div class="proof-tile-text">In-person or online coaching</div></div>
+      <div class="proof-tile"><div class="proof-tile-icon">📋</div><div class="proof-tile-text">Fully customised programming</div></div>
     </div>
   </div>
   <div class="form-right" data-r>
@@ -986,18 +978,11 @@ footer{
         <div class="flip-card-front">
           <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Before photo — Client 1">
           <span class="flip-label flip-label-before">Before</span>
-          <div class="flip-hint">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
-            Tap to flip
-          </div>
         </div>
         <div class="flip-card-back">
           <img src="https://images.unsplash.comeccentric/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="After photo — Client 1">
           <span class="flip-label flip-label-after">After</span>
-          <div class="flip-result">
-            <div class="flip-result-name">Sarah M.</div>
-            <div class="flip-result-stat">8 weeks · 11kg lost</div>
-          </div>
+        </div>
         </div>
       </div>
     </div>
@@ -1007,18 +992,11 @@ footer{
         <div class="flip-card-front">
           <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80" alt="Before photo — Client 2">
           <span class="flip-label flip-label-before">Before</span>
-          <div class="flip-hint">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
-            Tap to flip
-          </div>
         </div>
         <div class="flip-card-back">
           <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80" alt="After photo — Client 2">
           <span class="flip-label flip-label-after">After</span>
-          <div class="flip-result">
-            <div class="flip-result-name">James R.</div>
-            <div class="flip-result-stat">16 weeks · 8kg lost · PB squat</div>
-          </div>
+        </div>
         </div>
       </div>
     </div>
@@ -1028,18 +1006,11 @@ footer{
         <div class="flip-card-front">
           <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600&q=80" alt="Before photo — Client 3">
           <span class="flip-label flip-label-before">Before</span>
-          <div class="flip-hint">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
-            Tap to flip
-          </div>
         </div>
         <div class="flip-card-back">
           <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80" alt="After photo — Client 3">
           <span class="flip-label flip-label-after">After</span>
-          <div class="flip-result">
-            <div class="flip-result-name">Emma T.</div>
-            <div class="flip-result-stat">8 weeks · Body recomposition</div>
-          </div>
+        </div>
         </div>
       </div>
     </div>
@@ -1068,7 +1039,6 @@ footer{
 <section class="about-tile" data-r>
   <div class="about-tile-left">
     <div class="about-tile-label">About Kass</div>
-    <h2>Your coach.<br><em>Your corner.</em></h2>
     <p>Kass Diarra is a certified personal trainer and coach based in Dublin. He creates informative and educational gym content across social media, helping people train smarter and understand the process behind real results.</p>
     <p>No generic plans. No empty promises. Just science-backed programming, real accountability, and a coach who shows up for you every single week.</p>
     <div class="about-tags">
@@ -1082,17 +1052,9 @@ footer{
     <div class="about-flip-inner">
       <div class="about-flip-front">
         <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=90&auto=format&fit=crop" alt="Kass Diarra — hero shot">
-        <div class="about-flip-hint">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
-          Tap to flip
-        </div>
       </div>
       <div class="about-flip-back">
         <img src="https://images.unsplash.com/photo-1549476464-37392f717541?w=800&q=90&auto=format&fit=crop" alt="Kass Diarra — training">
-        <div class="about-flip-hint">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
-          Tap to flip back
-        </div>
       </div>
     </div>
   </div>
@@ -1149,7 +1111,7 @@ footer{
 <footer>
   <span class="footer-logo">Kass <span>Diarra</span></span>
   <ul class="footer-links">
-    <li><a href="https://www.instagram.com/_kassdiarra/" target="_blank" rel="noopener">Instagram ↗</a></li>
+    <li><a href="https://www.instagram.com/_kassdiarra/" target="_blank" rel="noopener">📷 Instagram</a></li>
     <li><a href="#train">Achieve Your Goals</a></li>
   </ul>
   <p class="footer-copy">Every rep counts. Every session matters.</p>
