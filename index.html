@@ -434,12 +434,14 @@ nav.scrolled{
 }
 
 @media(max-width:960px){
-  .flip-grid{grid-template-columns:repeat(2,1fr)}
+  .flip-grid{grid-template-columns:repeat(2,1fr);max-width:600px}
+  .flip-card{max-height:none}
   .testimonials-quotes{grid-template-columns:repeat(2,1fr)}
   .testimonials{padding:72px 24px}
 }
 @media(max-width:640px){
-  .flip-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .flip-grid{grid-template-columns:1fr;gap:16px;max-width:360px}
+  .flip-card{max-height:none;aspect-ratio:4/5}
   .testimonials-quotes{grid-template-columns:1fr}
   .testimonials{padding:56px 20px}
 }
