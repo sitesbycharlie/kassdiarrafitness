@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>12 Week Fat Loss Programme — Kass Diarra</title>
-<meta name="description" content="Join Kass Diarra's 12 Week Fat Loss Programme. Science-backed, structured, and built to deliver real results. Limited spots available.">
+<title>8 Week Fat Loss Programme — Kass Diarra</title>
+<meta name="description" content="Join Kass Diarra's 8 Week Fat Loss Programme. Science-backed, structured, and built to deliver real results. Limited spots available.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
@@ -35,12 +35,18 @@ nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 48px;height:68px;
-  background:rgba(10,10,10,.85);
-  backdrop-filter:blur(12px);
+  background:rgba(10,10,10,0);
+  -webkit-backdrop-filter:blur(0px);
+  backdrop-filter:blur(0px);
   border-bottom:1px solid transparent;
-  transition:border-color .3s;
+  transition:background .4s ease,border-color .4s ease,-webkit-backdrop-filter .4s ease,backdrop-filter .4s ease;
 }
-nav.scrolled{border-color:var(--border)}
+nav.scrolled{
+  background:rgba(10,10,10,.92);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  border-color:var(--border);
+}
 .nav-logo{
   font-family:var(--f-head);font-weight:900;font-size:22px;
   letter-spacing:.06em;text-transform:uppercase;
@@ -57,13 +63,21 @@ nav.scrolled{border-color:var(--border)}
 .nav-links a:hover{opacity:1}
 .nav-links a.active{opacity:1;color:var(--accent-bright)}
 .nav-cta{
-  background:var(--accent);color:#fff!important;opacity:1!important;
-  padding:10px 24px;font-family:var(--f-head)!important;
+  color:#fff!important;opacity:1!important;
+  padding:10px 24px;
+  font-family:var(--f-head)!important;
   font-size:14px!important;font-weight:700!important;
   letter-spacing:.1em!important;text-transform:uppercase!important;
-  transition:background .2s,transform .15s!important;
+  border:none;border-radius:0.4em;cursor:pointer;
+  background:var(--accent)!important;
+  box-shadow:0px 0px 14px rgba(124,58,237,.35);
+  -webkit-appearance:none;
+  text-decoration:none;
+  transition:background .2s,transform .15s,box-shadow .2s!important;
 }
-.nav-cta:hover{background:var(--accent-bright)!important;transform:translateY(-1px)}
+.nav-cta:hover{background:var(--accent-bright)!important;transform:translateY(-1px);box-shadow:0px 0px 20px rgba(157,92,255,.5)!important}
+.nav-cta:active{transform:translateY(0)!important}
+.nav-cta:focus-visible{outline:2px solid var(--accent-bright);outline-offset:3px}
 .nav-burger{
   display:none;flex-direction:column;gap:5px;
   background:none;border:none;cursor:pointer;padding:4px;
@@ -104,8 +118,9 @@ nav.scrolled{border-color:var(--border)}
 /* ── HERO ── */
 .hero{
   min-height:100svh;
-  display:flex;flex-direction:column;justify-content:flex-end;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
   position:relative;overflow:hidden;
+  text-align:center;
 }
 .hero-bg{
   position:absolute;inset:0;
@@ -125,7 +140,9 @@ nav.scrolled{border-color:var(--border)}
 }
 .hero-content{
   position:relative;z-index:2;
-  padding:0 48px 80px;
+  padding:80px 48px;
+  max-width:860px;width:100%;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
 }
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;
@@ -147,22 +164,31 @@ nav.scrolled{border-color:var(--border)}
   color:transparent;-webkit-text-stroke:2px var(--accent-bright);
 }
 .hero-bottom{
-  display:flex;align-items:flex-end;justify-content:space-between;gap:48px;
+  display:flex;flex-direction:column;align-items:center;gap:24px;
+  width:100%;
 }
 .hero-desc{
   font-size:17px;font-weight:300;line-height:1.75;
-  color:rgba(240,238,255,.6);max-width:480px;
+  color:rgba(240,238,255,.6);max-width:520px;text-align:center;
 }
-.hero-cta-stack{display:flex;flex-direction:column;align-items:flex-end;gap:12px;flex-shrink:0}
+.hero-cta-stack{display:flex;flex-direction:column;align-items:center;gap:12px}
 .btn-primary{
   font-family:var(--f-head);font-weight:700;font-size:16px;
   letter-spacing:.1em;text-transform:uppercase;
-  background:var(--accent);color:#fff;
-  padding:18px 40px;text-decoration:none;display:inline-block;
-  border:none;cursor:pointer;
-  transition:background .2s,transform .15s;
+  color:#fff;
+  padding:16px 40px;min-height:52px;
+  text-decoration:none;
+  display:inline-flex;align-items:center;justify-content:center;
+  border:none;border-radius:0.4em;cursor:pointer;
+  background:var(--accent);
+  box-shadow:0px 0px 18px rgba(124,58,237,.4);
+  -webkit-appearance:none;
+  transition:background .2s,transform .15s,box-shadow .2s;
 }
-.btn-primary:hover{background:var(--accent-bright);transform:translateY(-2px)}
+.btn-primary:hover{background:var(--accent-bright);transform:translateY(-2px);box-shadow:0px 0px 24px rgba(157,92,255,.5)}
+.btn-primary:active{transform:translateY(0)}
+.btn-primary:focus-visible{outline:2px solid var(--accent-bright);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.btn-primary{transition:none}}
 .hero-scroll{
   font-family:var(--f-body);font-size:11px;letter-spacing:.15em;
   text-transform:uppercase;color:var(--mid);
@@ -172,10 +198,10 @@ nav.scrolled{border-color:var(--border)}
 @keyframes pulse{0%,100%{opacity:.25}50%{opacity:1}}
 
 @media(max-width:768px){
-  .hero-content{padding:0 20px 56px}
-  .hero-title{font-size:clamp(52px,16vw,100px)}
-  .hero-bottom{flex-direction:column;gap:24px;align-items:flex-start}
-  .hero-cta-stack{align-items:flex-start;width:100%}
+  .hero-content{padding:72px 24px 56px}
+  .hero-title{font-size:clamp(48px,13vw,92px)}
+  .hero-desc{font-size:15px}
+  .hero-bottom{gap:20px}
   .btn-primary{width:100%;text-align:center}
   .hero-scroll{display:none}
 }
@@ -184,6 +210,7 @@ nav.scrolled{border-color:var(--border)}
 .marquee{background:var(--accent);padding:14px 0;overflow:hidden}
 .marquee-track{display:flex;white-space:nowrap;animation:mq 22s linear infinite}
 .marquee-track:hover{animation-play-state:paused}
+@media(max-width:768px){.marquee-track{animation-duration:20s}}
 .marquee-item{
   font-family:var(--f-head);font-weight:700;font-size:18px;
   letter-spacing:.08em;text-transform:uppercase;
@@ -198,9 +225,9 @@ nav.scrolled{border-color:var(--border)}
 .section-label{
   font-family:var(--f-body);font-size:11px;font-weight:500;
   letter-spacing:.22em;text-transform:uppercase;color:var(--accent-bright);
-  display:flex;align-items:center;gap:10px;margin-bottom:20px;
+  display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px;
 }
-.section-label::before{content:'';display:block;width:24px;height:1px;background:var(--accent-bright)}
+.section-label::before,.section-label::after{content:'';display:block;width:20px;height:1px;background:var(--accent-bright)}
 .section-title{
   font-family:var(--f-head);font-weight:900;
   font-size:clamp(40px,6vw,80px);
@@ -366,47 +393,6 @@ nav.scrolled{border-color:var(--border)}
   .who{grid-template-columns:1fr;gap:40px;padding:64px 20px}
 }
 
-/* ── COACH ── */
-.coach{
-  background:var(--surface);
-  display:grid;grid-template-columns:1fr 1fr;gap:0;
-}
-.coach-img{
-  position:relative;overflow:hidden;min-height:520px;
-}
-.coach-img img{
-  width:100%;height:100%;object-fit:cover;object-position:center top;
-  filter:contrast(1.05);
-  transition:transform .6s ease;
-}
-.coach:hover .coach-img img{transform:scale(1.03)}
-.coach-img-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to right,transparent 60%,var(--surface));
-}
-.coach-body{
-  padding:80px 56px;display:flex;flex-direction:column;justify-content:center;
-}
-.coach-body p{
-  font-size:15px;font-weight:300;line-height:1.75;
-  color:rgba(240,238,255,.55);margin-bottom:20px;max-width:440px;
-}
-.coach-creds{display:flex;flex-direction:column;gap:0;margin-top:8px}
-.cred{
-  padding:14px 0;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:10px;
-  font-size:14px;color:rgba(240,238,255,.65);
-}
-.cred:last-child{border-bottom:none}
-.cred-dot{width:5px;height:5px;border-radius:50%;background:var(--accent-bright);flex-shrink:0}
-
-@media(max-width:768px){
-  .coach{grid-template-columns:1fr}
-  .coach-img{min-height:300px}
-  .coach-img-overlay{background:linear-gradient(to bottom,transparent 60%,var(--surface))}
-  .coach-body{padding:40px 20px}
-}
-
 /* ── CTA BAND ── */
 .cta-band{
   background:var(--accent);
@@ -435,10 +421,12 @@ nav.scrolled{border-color:var(--border)}
   letter-spacing:.1em;text-transform:uppercase;
   background:var(--bg);color:var(--fg);
   padding:18px 40px;text-decoration:none;display:inline-block;
-  border:none;cursor:pointer;
-  transition:background .2s,color .2s;
+  border:none;border-radius:0.4em;cursor:pointer;
+  -webkit-appearance:none;
+  transition:background .2s,color .2s,transform .15s;
 }
-.btn-dark:hover{background:#fff;color:#000}
+.btn-dark:hover{background:#fff;color:#000;transform:translateY(-2px)}
+.btn-dark:active{transform:translateY(0)}
 
 @media(max-width:768px){
   .cta-band{flex-direction:column;padding:56px 20px;gap:28px;align-items:flex-start}
@@ -562,6 +550,50 @@ footer{
 /* ── REVEAL ── */
 [data-r]{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94)}
 [data-r].on{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .overview{grid-template-columns:1fr 1fr}
+  .overview-item:nth-child(2){border-right:none}
+  .overview-item:nth-child(3){border-top:1px solid var(--border)}
+  .overview-item:nth-child(4){border-top:1px solid var(--border);border-right:none}
+  .included{grid-template-columns:1fr;gap:40px;padding:56px 20px}
+  .included-left p{max-width:100%;font-size:15px}
+  .included-left .btn-primary{width:100%;text-align:center;display:block}
+  .phases{padding:56px 20px}
+  .phases-grid{grid-template-columns:1fr;gap:12px}
+  .who{grid-template-columns:1fr;gap:36px;padding:56px 20px}
+  .who-left p{max-width:100%}
+  .coach{grid-template-columns:1fr}
+  .coach-img{min-height:280px;order:1}
+  .coach-img-overlay{background:linear-gradient(to bottom,transparent 50%,var(--surface))}
+  .coach-body{padding:36px 20px;order:2}
+  .coach-body p{font-size:15px}
+  .cta-band{flex-direction:column;padding:56px 20px;gap:24px;align-items:center;text-align:center}
+  .cta-band-right{align-items:center;width:100%}
+  .cta-desc{text-align:center;max-width:100%}
+  .btn-dark{width:100%;text-align:center}
+  .waitlist-section{grid-template-columns:1fr;gap:40px;padding:56px 20px}
+  .wl-left p{font-size:15px;max-width:100%}
+  .wl-submit{font-size:16px;padding:18px}
+  .f-input,.f-select{font-size:16px}
+  .f-textarea{font-size:16px}
+}
+
+/* ── FADE UP ANIMATIONS ── */
+[data-fade]{
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity .6s cubic-bezier(.25,.46,.45,.94),transform .6s cubic-bezier(.25,.46,.45,.94);
+}
+[data-fade].on{opacity:1;transform:none}
+
+/* Stagger delays */
+[data-fade][data-delay="1"]{transition-delay:.1s}
+[data-fade][data-delay="2"]{transition-delay:.2s}
+[data-fade][data-delay="3"]{transition-delay:.3s}
+[data-fade][data-delay="4"]{transition-delay:.4s}
+[data-fade][data-delay="5"]{transition-delay:.5s}
+[data-fade][data-delay="6"]{transition-delay:.6s}
 </style>
 </head>
 <body>
@@ -569,7 +601,6 @@ footer{
 <!-- MOBILE DRAWER -->
 <div class="nav-drawer" id="navDrawer">
   <a href="index.html" onclick="closeDrawer()">Home</a>
-  <a href="index.html#about" onclick="closeDrawer()">About</a>
   <a href="#waitlist" class="drawer-cta" onclick="closeDrawer()">Join Waitlist</a>
 </div>
 
@@ -578,7 +609,6 @@ footer{
   <a href="index.html" class="nav-logo">Kass <span>Diarra</span></a>
   <div class="nav-links">
     <a href="index.html">Home</a>
-    <a href="index.html#about">About</a>
     <a href="#" class="active">Programme</a>
     <a href="#waitlist" class="nav-cta">Join Waitlist</a>
   </div>
@@ -598,12 +628,12 @@ footer{
       Limited spots available
     </div>
     <h1 class="hero-title">
-      12 Week<br>Fat Loss<br><em>Programme.</em>
+      8 Week<br>Fat Loss<br><em>Programme.</em>
     </h1>
     <div class="hero-bottom">
       <p class="hero-desc">A fully structured, science-backed plan designed to strip body fat, preserve muscle, and build the habits that actually last. Coached by Kass Diarra, personally.</p>
       <div class="hero-cta-stack">
-        <button class="btn-primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join the waitlist →</button>
+        <button class="btn-primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join Now →</button>
         <div class="hero-scroll"><span class="hero-scroll-line"></span>Scroll to learn more</div>
       </div>
     </div>
@@ -613,13 +643,13 @@ footer{
 <!-- MARQUEE -->
 <div class="marquee">
   <div class="marquee-track">
-    <div class="marquee-item">12 Weeks<div class="marquee-dot"></div></div>
+    <div class="marquee-item">8 Weeks<div class="marquee-dot"></div></div>
     <div class="marquee-item">Real Results<div class="marquee-dot"></div></div>
     <div class="marquee-item">Fat Loss<div class="marquee-dot"></div></div>
     <div class="marquee-item">Muscle Preservation<div class="marquee-dot"></div></div>
     <div class="marquee-item">coached by Kass<div class="marquee-dot"></div></div>
     <div class="marquee-item">Limited Spots<div class="marquee-dot"></div></div>
-    <div class="marquee-item">12 Weeks<div class="marquee-dot"></div></div>
+    <div class="marquee-item">8 Weeks<div class="marquee-dot"></div></div>
     <div class="marquee-item">Real Results<div class="marquee-dot"></div></div>
     <div class="marquee-item">Fat Loss<div class="marquee-dot"></div></div>
     <div class="marquee-item">Muscle Preservation<div class="marquee-dot"></div></div>
@@ -628,21 +658,63 @@ footer{
   </div>
 </div>
 
+<!-- WAITLIST FORM -->
+<section class="waitlist-section" id="waitlist">
+  <div class="wl-left" data-r>
+      <h2 class="section-title">Join the<br><em>waitlist.</em></h2>
+    <p>Fill in your details and Kass will reach out personally when spots open. No spam, no pressure, just a direct message from your future coach.</p>
+    <div class="wl-proof">
+      <div class="proof-row" data-fade data-delay="1"><span class="proof-dot"></span>Kass responds personally within 48 hours</div>
+      <div class="proof-row" data-fade data-delay="2"><span class="proof-dot"></span>Complimentary intro call to discuss your goals</div>
+      <div class="proof-row" data-fade data-delay="3"><span class="proof-dot"></span>Programme starts when you are ready</div>
+      <div class="proof-row" data-fade data-delay="4"><span class="proof-dot"></span>Online or in-person at Dublin</div>
+    </div>
+  </div>
+  <div class="wl-right" data-r>
+    <div class="spots"><span class="spots-dot"></span>Limited spots currently available</div>
+    <div id="formBody">
+      <div class="wl-form">
+        <div class="f-group">
+          <label class="f-label">Your name</label>
+          <input class="f-input" type="text" id="wlName" placeholder="First name" autocomplete="given-name" required>
+        </div>
+        <div class="f-group">
+          <label class="f-label">Email address *</label>
+          <input class="f-input" type="email" id="wlEmail" placeholder="your@email.com" autocomplete="email" required>
+        </div>
+        <div class="f-group">
+          <label class="f-label">Mobile number *</label>
+          <input class="f-input" type="tel" id="wlPhone" placeholder="+353 87 000 0000" autocomplete="tel" required>
+        </div>
+      </div>
+      <button class="wl-submit" onclick="submitWaitlist()">
+        Join Now →
+      </button>
+      <p class="wl-note">No spam. Just one message from Kass when your spot is ready.</p>
+    </div>
+    <div class="form-ok" id="formOk">
+      <div class="form-ok-check">✓</div>
+      <h3>You are on the list.</h3>
+      <p>Kass will be in touch within 48 hours. Get ready to work.</p>
+    </div>
+  </div>
+</section>
+
 <!-- OVERVIEW STATS -->
 <div class="overview" data-r>
-  <div class="overview-item">
-    <div class="overview-n">12</div>
+  <div class="overview-item" data-fade data-delay="1">
+    <div class="overview-n">8</div>
     <div class="overview-l">Weeks structured</div>
   </div>
-  <div class="overview-item">
+  <div class="overview-item" data-fade data-delay="2">
     <div class="overview-n">3</div>
     <div class="overview-l">Training phases</div>
   </div>
-  <div class="overview-item">
+  <div class="overview-item" data-fade data-delay="3">
     <div class="overview-n">1:1</div>
     <div class="overview-l">Direct coaching</div>
   </div>
-  <div class="overview-item">
+  <div class="overview-item" data-fade data-delay="4">
     <div class="overview-n">0</div>
     <div class="overview-l">Shortcuts</div>
   </div>
@@ -651,45 +723,44 @@ footer{
 <!-- WHAT'S INCLUDED -->
 <section class="included" data-r>
   <div class="included-left">
-    <p class="section-label">What you get</p>
-    <h2 class="section-title">Everything<br>you need to<br><em>succeed.</em></h2>
+      <h2 class="section-title">Everything<br>you need to<br><em>succeed.</em></h2>
     <p>This is not a generic PDF plan or a cookie-cutter programme. Every element is built around you, your schedule, and your goals, delivered with the same intensity Kass brings to every session on the gym floor.</p>
-    <button class="btn-primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Secure your spot →</button>
+    <button class="btn-primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join Now →</button>
   </div>
   <div class="included-right">
-    <div class="include-item">
+    <div class="include-item" data-fade data-delay="1">
       <span class="include-num">01</span>
       <div class="include-text">
         <h3>Fully customised training plan</h3>
-        <p>A 12-week progressive training programme built around your current fitness level, available equipment, and weekly schedule. Updated and adapted as you progress.</p>
+        <p>A 8-week progressive training programme built around your current fitness level, available equipment, and weekly schedule. Updated and adapted as you progress.</p>
       </div>
     </div>
-    <div class="include-item">
+    <div class="include-item" data-fade data-delay="2">
       <span class="include-num">02</span>
       <div class="include-text">
-        <h3>Nutrition guidance</h3>
-        <p>Practical, sustainable nutrition principles tailored to your lifestyle. No crash diets. No calorie obsessing. Just clear, actionable guidance that works long term.</p>
+        <h3>Meal Plan</h3>
+        <p>A practical, sustainable meal plan built around your lifestyle and goals. No crash diets, no obsessing over calories. Just clear, actionable nutrition that works long term.</p>
       </div>
     </div>
-    <div class="include-item">
+    <div class="include-item" data-fade data-delay="3">
       <span class="include-num">03</span>
       <div class="include-text">
-        <h3>Weekly check-ins with Kass</h3>
-        <p>Direct access to Kass every week to review your progress, adjust the plan, and keep you accountable. You will never be left wondering what to do next.</p>
-      </div>
-    </div>
-    <div class="include-item">
-      <span class="include-num">04</span>
-      <div class="include-text">
         <h3>Progress tracking</h3>
-        <p>Structured check-in system to monitor body composition, strength, and energy levels across all 12 weeks so you can see exactly what is working.</p>
+        <p>Structured check-in system to monitor body composition, strength, and energy levels across all 8 weeks so you can see exactly what is working.</p>
       </div>
     </div>
-    <div class="include-item">
-      <span class="include-num">05</span>
+    <div class="include-item" data-fade data-delay="4">
+      <span class="include-num">04</span>
       <div class="include-text">
         <h3>Mindset and habit coaching</h3>
         <p>Fat loss is as much mental as it is physical. Kass works with you on consistency, discipline, and building the habits that keep the results permanent.</p>
+      </div>
+    </div>
+    <div class="include-item" data-fade data-delay="5">
+      <span class="include-num">05</span>
+      <div class="include-text">
+        <h3>Your roadmap to keep progressing</h3>
+        <p>Giving you the roadmap to continue progressing on your own. The plan does not end after 8 weeks — your knowledge, habits, and confidence will carry you forward long after.</p>
       </div>
     </div>
   </div>
@@ -697,24 +768,23 @@ footer{
 
 <!-- PHASES -->
 <section class="phases" data-r>
-  <p class="section-label">How it works</p>
-  <h2 class="section-title">Three phases.<br><em>One transformation.</em></h2>
+  <h2 class="section-title">Three phases.<br><em>8 weeks. Real results.</em></h2>
   <div class="phases-grid">
-    <div class="phase">
+    <div class="phase" data-fade data-delay="1">
       <div class="phase-num">1</div>
-      <div class="phase-weeks">Weeks 1 to 4</div>
-      <div class="phase-title">Foundation</div>
-      <p class="phase-desc">Build the base. Establish training habits, understand your nutrition, and set the platform for the weeks ahead. Most people are surprised by how effective this phase is on its own.</p>
+      <div class="phase-weeks">Weeks 1 to 2</div>
+      <div class="phase-title">Onboarding</div>
+      <p class="phase-desc">Getting everything in place so you hit the ground running. This phase is about setting you up for success before the real work begins.</p>
       <ul class="phase-goals">
-        <li>Training pattern established</li>
-        <li>Calorie baseline set</li>
-        <li>Body composition baseline measured</li>
-        <li>First results visible</li>
+        <li>Onboarding and programme details</li>
+        <li>Consultation call with Kass</li>
+        <li>Training and meal plan delivered</li>
+        <li>Baseline measurements taken</li>
       </ul>
     </div>
-    <div class="phase">
+    <div class="phase" data-fade data-delay="2">
       <div class="phase-num">2</div>
-      <div class="phase-weeks">Weeks 5 to 8</div>
+      <div class="phase-weeks">Weeks 2 to 4</div>
       <div class="phase-title">Acceleration</div>
       <p class="phase-desc">Intensity increases. Training volume goes up, nutrition is dialled in tighter, and the real fat loss accelerates. This is where the transformation becomes visible to everyone around you.</p>
       <ul class="phase-goals">
@@ -724,9 +794,9 @@ footer{
         <li>Energy levels noticeably higher</li>
       </ul>
     </div>
-    <div class="phase">
+    <div class="phase" data-fade data-delay="3">
       <div class="phase-num">3</div>
-      <div class="phase-weeks">Weeks 9 to 12</div>
+      <div class="phase-weeks">Weeks 4 to 8</div>
       <div class="phase-title">Peak</div>
       <p class="phase-desc">Push through the final stretch. Locking in the results, refining the physique, and most importantly building the habits and mindset that make this permanent rather than temporary.</p>
       <ul class="phase-goals">
@@ -742,110 +812,37 @@ footer{
 <!-- WHO IT'S FOR -->
 <section class="who" data-r>
   <div class="who-left">
-    <p class="section-label">Who this is for</p>
-    <h2 class="section-title">This is<br>for you <em>if...</em></h2>
-    <p>This programme is built for people who are serious about making a real change and are ready to put in the work to get there.</p>
+      <h2 class="section-title">Built for people<br>that are <em>serious.</em></h2>
+    <p>This is for you if you have tried other programmes and have not seen the results you deserve. If you are ready to stop guessing and start working with a real plan and a real coach, this is where it changes.</p>
     <div class="not-for">
-      <p><strong>Not the right fit?</strong> If you are looking for a quick fix or a passive approach, this programme is not for you. Kass only works with people who are genuinely committed.</p>
+      <p><strong>Not the right fit</strong> if you are not committed to putting your health first. This programme requires effort, consistency, and a genuine desire to change. If that is not you right now, that is okay — but this is not for you yet.</p>
     </div>
   </div>
   <div class="who-right">
     <ul class="who-list">
-      <li class="who-item"><span class="who-dot"></span>You want to lose body fat without sacrificing muscle</li>
-      <li class="who-item"><span class="who-dot"></span>You have tried diets before but not seen lasting results</li>
-      <li class="who-item"><span class="who-dot"></span>You are ready to commit to 12 weeks of consistent effort</li>
-      <li class="who-item"><span class="who-dot"></span>You want a structured plan, not guesswork</li>
-      <li class="who-item"><span class="who-dot"></span>You want direct access to a coach who will keep you accountable</li>
-      <li class="who-item"><span class="who-dot"></span>You are done making excuses and ready to see real change</li>
+      <li class="who-item" data-fade data-delay="1"><span class="who-dot"></span>You have tried other programmes and not seen the results you wanted</li>
+      <li class="who-item" data-fade data-delay="2"><span class="who-dot"></span>You want to lose body fat without sacrificing the muscle you have built</li>
+      <li class="who-item" data-fade data-delay="3"><span class="who-dot"></span>You are ready to commit to 8 weeks of real, consistent effort</li>
+      <li class="who-item" data-fade data-delay="4"><span class="who-dot"></span>You want a structured plan built around you, not a generic PDF</li>
+      <li class="who-item" data-fade data-delay="5"><span class="who-dot"></span>You are serious about putting your health first and making a lasting change</li>
+      <li class="who-item" data-fade data-delay="6"><span class="who-dot"></span>You are done starting over and ready to finally see it through</li>
     </ul>
   </div>
 </section>
 
-<!-- COACH -->
-<section class="coach" data-r>
-  <div class="coach-img">
-    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=90&auto=format&fit=crop" alt="Kass coaching" loading="lazy">
-    <div class="coach-img-overlay"></div>
-  </div>
-  <div class="coach-body">
-    <p class="section-label">Your coach</p>
-    <h2 class="section-title">Coached<br>by <em>Kass.</em></h2>
-    <p>Kass Diarra is a certified personal trainer at Raw Gyms Dublin, a content creator, and an athlete who lives what she coaches. She has helped clients at every level transform their bodies and their relationship with training.</p>
-    <p>When you join this programme, you are not getting a plan handed to you and left alone. You are getting Kass in your corner for 12 weeks.</p>
-    <div class="coach-creds">
-      <div class="cred"><span class="cred-dot"></span>Certified Personal Trainer</div>
-      <div class="cred"><span class="cred-dot"></span>Based at Raw Gyms Dublin</div>
-      <div class="cred"><span class="cred-dot"></span>3K+ community following</div>
-      <div class="cred"><span class="cred-dot"></span>3+ years coaching experience</div>
-    </div>
-  </div>
-</section>
 
 <!-- CTA BAND -->
 <div class="cta-band" data-r>
   <div class="cta-band-left">
     <div class="cta-kicker">Limited spots available</div>
-    <h2 class="cta-title">Ready to<br>start your<br>12 weeks?</h2>
+    <h2 class="cta-title">Ready to<br>start your<br>8 weeks?</h2>
   </div>
   <div class="cta-band-right">
     <p class="cta-desc">Spots are limited and fill up fast. Get your name on the waitlist now and Kass will be in touch with everything you need to get started.</p>
-    <button class="btn-dark" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join the waitlist →</button>
+    <button class="btn-dark" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join Now →</button>
   </div>
 </div>
 
-<!-- WAITLIST FORM -->
-<section class="waitlist-section" id="waitlist">
-  <div class="wl-left" data-r>
-    <p class="section-label">Secure your spot</p>
-    <h2 class="section-title">Join the<br><em>waitlist.</em></h2>
-    <p>Fill in your details and Kass will reach out personally when spots open. No spam, no pressure, just a direct message from your future coach.</p>
-    <div class="wl-proof">
-      <div class="proof-row"><span class="proof-dot"></span>Kass responds personally within 48 hours</div>
-      <div class="proof-row"><span class="proof-dot"></span>Free intro call to discuss your goals</div>
-      <div class="proof-row"><span class="proof-dot"></span>Programme starts when you are ready</div>
-      <div class="proof-row"><span class="proof-dot"></span>Online or in-person at Raw Gyms Dublin</div>
-    </div>
-  </div>
-  <div class="wl-right" data-r>
-    <div class="spots"><span class="spots-dot"></span>Limited spots currently available</div>
-    <div id="formBody">
-      <div class="wl-form">
-        <div class="f-group">
-          <label class="f-label">Your name</label>
-          <input class="f-input" type="text" id="wlName" placeholder="First name" autocomplete="given-name">
-        </div>
-        <div class="f-group">
-          <label class="f-label">Email address</label>
-          <input class="f-input" type="email" id="wlEmail" placeholder="your@email.com" autocomplete="email">
-        </div>
-        <div class="f-group">
-          <label class="f-label">Your main goal</label>
-          <select class="f-select f-input" id="wlGoal">
-            <option value="" disabled selected>Select your goal</option>
-            <option>Lose body fat</option>
-            <option>Lose fat and build muscle</option>
-            <option>Improve fitness and energy</option>
-            <option>Prepare for an event or holiday</option>
-            <option>Build long term healthy habits</option>
-          </select>
-        </div>
-        <div class="f-group">
-          <label class="f-label">Anything else Kass should know?</label>
-          <textarea class="f-textarea" placeholder="Training history, schedule, questions..."></textarea>
-        </div>
-      </div>
-      <button class="wl-submit" onclick="submitWaitlist()">
-        Secure my spot →
-      </button>
-      <p class="wl-note">No spam. Just one message from Kass when your spot is ready.</p>
-    </div>
-    <div class="form-ok" id="formOk">
-      <div class="form-ok-check">✓</div>
-      <h3>You are on the list.</h3>
-      <p>Kass will be in touch within 48 hours. Get ready to work.</p>
-    </div>
-  </div>
-</section>
 
 <!-- FOOTER -->
 <footer>
@@ -883,6 +880,14 @@ window.closeDrawer = function(){
   drawer.classList.remove('open');
   document.body.style.overflow = '';
 };
+
+/* FADE UP */
+const fo = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('on'); fo.unobserve(e.target); }
+  });
+}, {threshold: 0.08});
+document.querySelectorAll('[data-fade]').forEach(el => fo.observe(el));
 
 /* REVEAL */
 const ro = new IntersectionObserver(entries => {
