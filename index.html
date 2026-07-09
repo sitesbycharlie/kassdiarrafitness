@@ -796,6 +796,66 @@ footer{
   .sticky-cta{right:16px;bottom:24px}
   .sticky-cta.near-footer{bottom:96px}
 }
+
+/* ── MOBILE CAROUSELS ── */
+.carousel-dots{
+  display:none;
+  justify-content:center;gap:8px;
+  margin-top:16px;margin-bottom:8px;
+}
+.cdot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--border);cursor:pointer;
+  transition:background .25s,transform .25s;
+  display:block;
+}
+.cdot.active{background:var(--accent-bright);transform:scale(1.3)}
+
+@media(max-width:640px){
+  /* Flip card carousel */
+  .flip-grid{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scroll-behavior:smooth;
+    gap:16px;
+    padding:0 20px 8px;
+    max-width:100%;
+    margin-left:-20px;
+    margin-right:-20px;
+    scrollbar-width:none;
+    margin-bottom:0;
+  }
+  .flip-grid::-webkit-scrollbar{display:none}
+  .flip-card{
+    flex-shrink:0;
+    width:calc(100vw - 64px);
+    max-height:none;
+    aspect-ratio:3/4;
+    scroll-snap-align:center;
+  }
+  /* Testimonials carousel */
+  .testimonials-quotes{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scroll-behavior:smooth;
+    gap:16px;
+    padding:0 20px 8px;
+    margin-left:-20px;
+    margin-right:-20px;
+    scrollbar-width:none;
+  }
+  .testimonials-quotes::-webkit-scrollbar{display:none}
+  .tq{
+    flex-shrink:0;
+    width:calc(100vw - 64px);
+    scroll-snap-align:center;
+  }
+  .carousel-dots{display:flex}
+}
 </style>
 </head>
 <body>
@@ -874,8 +934,8 @@ footer{
       <div class="form-body">
         <div class="f-row">
           <div class="f-group">
-            <label class="f-label">First name *</label>
-            <input class="f-input" type="text" id="fname" placeholder="e.g. Sarah" autocomplete="given-name" required>
+            <label class="f-label">Full name *</label>
+            <input class="f-input" type="text" id="fname" placeholder="Full name" autocomplete="given-name" required>
           </div>
           <div class="f-group">
             <label class="f-label">Email *</label>
@@ -932,54 +992,54 @@ footer{
   <p class="testimonials-sub">These are real people who showed up, did the work, and changed their lives. Tap a card to see the transformation.</p>
 
   <!-- FLIP CARDS -->
-  <div class="flip-grid">
-
-    <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" role="button" aria-label="Flip to see after photo">
+  <!-- Desktop: grid | Mobile: carousel -->
+  <div class="flip-grid" id="flipGrid">
+    <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" role="button" aria-label="Tap to see after photo">
       <div class="flip-card-inner">
         <div class="flip-card-front">
-          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Before photo — Client 1">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Before — Client 1" loading="lazy">
           <span class="flip-label flip-label-before">Before</span>
         </div>
         <div class="flip-card-back">
-          <img src="https://images.unsplash.comeccentric/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="After photo — Client 1">
+          <img src="https://images.unsplash.com/photo-1549476464-37392f717541?w=600&q=80" alt="After — Client 1" loading="lazy">
           <span class="flip-label flip-label-after">After</span>
-        </div>
         </div>
       </div>
     </div>
-
-    <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" role="button" aria-label="Flip to see after photo">
+    <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" role="button" aria-label="Tap to see after photo">
       <div class="flip-card-inner">
         <div class="flip-card-front">
-          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80" alt="Before photo — Client 2">
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80" alt="Before — Client 2" loading="lazy">
           <span class="flip-label flip-label-before">Before</span>
         </div>
         <div class="flip-card-back">
-          <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80" alt="After photo — Client 2">
+          <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80" alt="After — Client 2" loading="lazy">
           <span class="flip-label flip-label-after">After</span>
-        </div>
         </div>
       </div>
     </div>
-
-    <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" role="button" aria-label="Flip to see after photo">
+    <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" role="button" aria-label="Tap to see after photo">
       <div class="flip-card-inner">
         <div class="flip-card-front">
-          <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600&q=80" alt="Before photo — Client 3">
+          <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600&q=80" alt="Before — Client 3" loading="lazy">
           <span class="flip-label flip-label-before">Before</span>
         </div>
         <div class="flip-card-back">
-          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80" alt="After photo — Client 3">
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80" alt="After — Client 3" loading="lazy">
           <span class="flip-label flip-label-after">After</span>
-        </div>
         </div>
       </div>
     </div>
-
+  </div>
+  <!-- Mobile carousel dots -->
+  <div class="carousel-dots" id="flipDots">
+    <span class="cdot active" onclick="goFlip(0)"></span>
+    <span class="cdot" onclick="goFlip(1)"></span>
+    <span class="cdot" onclick="goFlip(2)"></span>
   </div>
 
   <!-- TESTIMONIAL QUOTES -->
-  <div class="testimonials-quotes">
+  <div class="testimonials-quotes" id="tqGrid">
     <div class="tq">
       <p class="tq-quote">"I had tried so many programmes before and nothing stuck. Kass genuinely changed how I think about training. Within 6 weeks I could already see the difference and people around me were noticing too."</p>
       <div class="tq-author">Sarah M.</div>
@@ -992,6 +1052,12 @@ footer{
       <p class="tq-quote">"I was nervous to start because I had never worked with a PT before. Kass made me feel completely comfortable from day one. The results speak for themselves but honestly the confidence I have gained is the biggest win."</p>
       <div class="tq-author">Emma T.</div>
     </div>
+  </div>
+  <!-- Mobile carousel dots -->
+  <div class="carousel-dots" id="tqDots">
+    <span class="cdot active" onclick="goTq(0)"></span>
+    <span class="cdot" onclick="goTq(1)"></span>
+    <span class="cdot" onclick="goTq(2)"></span>
   </div>
 </section>
 
@@ -1042,8 +1108,8 @@ footer{
     <p class="modal-desc">Be the first to know when spots open. Drop your name and email and Kass will reach out directly when the programme launches.</p>
     <div id="waitlistBody">
       <div class="wl-field">
-        <label class="f-label">Your name</label>
-        <input class="f-input wl-input" type="text" id="wlName" placeholder="First name" autocomplete="given-name" required>
+        <label class="f-label">Your name *</label>
+        <input class="f-input wl-input" type="text" id="wlName" placeholder="Full name" autocomplete="given-name" required>
       </div>
       <div class="wl-field">
         <label class="f-label">Email address *</label>
@@ -1189,6 +1255,71 @@ document.addEventListener('visibilitychange',()=>{
   const mq=document.querySelector('.marquee-track');
   if(mq)mq.style.animationPlayState=document.hidden?'paused':'running';
 });
+
+
+/* ── MOBILE CAROUSELS ── */
+(function(){
+  function initCarousel(gridId, dotsId, autoMs) {
+    const grid = document.getElementById(gridId);
+    const dotsEl = document.getElementById(dotsId);
+    if(!grid || !dotsEl) return;
+    const dots = Array.from(dotsEl.querySelectorAll('.cdot'));
+    const items = Array.from(grid.children).filter(el => !el.classList.contains('carousel-dots'));
+    let current = 0;
+    let timer = null;
+    let paused = false;
+
+    function goTo(idx) {
+      if(idx < 0) idx = items.length - 1;
+      if(idx >= items.length) idx = 0;
+      current = idx;
+      const item = items[idx];
+      grid.scrollTo({left: item.offsetLeft - grid.offsetLeft, behavior:'smooth'});
+      dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+    }
+
+    function startAuto() {
+      if(timer) clearInterval(timer);
+      timer = setInterval(() => {
+        if(!paused) goTo(current + 1);
+      }, autoMs);
+    }
+
+    // Update dot on manual scroll
+    grid.addEventListener('scroll', () => {
+      paused = true;
+      clearTimeout(grid._pauseTimer);
+      grid._pauseTimer = setTimeout(() => { paused = false; }, 2000);
+      const scrollLeft = grid.scrollLeft;
+      let closest = 0, minDiff = Infinity;
+      items.forEach((item, i) => {
+        const diff = Math.abs(item.offsetLeft - grid.offsetLeft - scrollLeft);
+        if(diff < minDiff) { minDiff = diff; closest = i; }
+      });
+      dots.forEach((d,i) => d.classList.toggle('active', i === closest));
+      current = closest;
+    }, {passive:true});
+
+    // Touch pause
+    grid.addEventListener('touchstart', () => { paused = true; }, {passive:true});
+    grid.addEventListener('touchend', () => {
+      clearTimeout(grid._pauseTimer);
+      grid._pauseTimer = setTimeout(() => { paused = false; }, 3000);
+    }, {passive:true});
+
+    // Expose goTo globally for dot clicks
+    return goTo;
+  }
+
+  // Only run on mobile
+  function setup() {
+    if(window.innerWidth > 640) return;
+    window.goFlip = initCarousel('flipGrid', 'flipDots', 3500);
+    window.goTq   = initCarousel('tqGrid',  'tqDots',  4500);
+  }
+  setup();
+  window.addEventListener('resize', setup, {passive:true});
+})();
 
 })();
 </script>
