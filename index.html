@@ -539,6 +539,15 @@ nav.scrolled{
 }
 .form-left{}
 .form-left .section-title{margin-bottom:24px}
+@media(max-width:960px){
+  .form-left .section-title{
+    text-align:center;
+    font-size:clamp(36px,11vw,64px);
+    white-space:nowrap;
+    margin-bottom:20px;
+  }
+  .form-left p{text-align:center}
+}
 .form-left p{
   font-size:16px;font-weight:300;line-height:1.7;
   color:rgba(240,238,255,.55);max-width:360px;margin-bottom:32px;
@@ -850,7 +859,7 @@ footer{
 <section class="form-section" id="train">
   <div class="form-left" data-r>
     <p class="section-label">Apply now</p>
-    <h2 class="section-title">Train<br>with<br><em>Kass.</em></h2>
+    <h2 class="section-title">Train with <em>Kass.</em></h2>
     <p>Limited spots available. Fill in the form and Kass will be in touch within 48 hours to discuss your goals.</p>
     <div class="form-proof">
       <div class="proof-tile"><div class="proof-tile-icon">⚡</div><div class="proof-tile-text">Response within 48 hours</div></div>
