@@ -360,11 +360,22 @@ nav.scrolled{
   aspect-ratio:3/4;
   max-height:360px;
   cursor:pointer;
+  /* Explicit height fallback for browsers where aspect-ratio alone
+     doesn't give children a concrete height to fill */
+  height:0;
+  padding-bottom:calc(100% * 4/3);
+  position:relative;
+}
+@supports (aspect-ratio:3/4){
+  .flip-card{height:auto;padding-bottom:0;position:static}
 }
 .flip-card-inner{
-  position:relative;width:100%;height:100%;
+  position:absolute;inset:0;
   transform-style:preserve-3d;
   transition:transform .65s cubic-bezier(.25,.46,.45,.94);
+}
+@supports (aspect-ratio:3/4){
+  .flip-card-inner{position:relative;width:100%;height:100%}
 }
 .flip-card.flipped .flip-card-inner{transform:rotateY(180deg)}
 .flip-card-front,.flip-card-back{
@@ -441,7 +452,7 @@ nav.scrolled{
 }
 @media(max-width:640px){
   .flip-grid{grid-template-columns:1fr;gap:16px;max-width:360px}
-  .flip-card{max-height:none;aspect-ratio:4/5}
+  .flip-card{max-height:none;aspect-ratio:3/4;height:auto}
   .testimonials-quotes{grid-template-columns:1fr}
   .testimonials{padding:56px 20px}
 }
@@ -833,7 +844,9 @@ footer{
     width:calc(100vw - 64px);
     max-height:none;
     aspect-ratio:3/4;
+    height:calc((100vw - 64px) * 4 / 3);
     scroll-snap-align:center;
+    position:relative;
   }
   /* Testimonials carousel */
   .testimonials-quotes{
@@ -863,6 +876,7 @@ footer{
 <!-- MOBILE DRAWER -->
 <div class="nav-drawer" id="navDrawer">
   <a href="programme.html" onclick="closeDrawer()">Programme</a>
+  <a href="whothisisfor.html" onclick="closeDrawer()">Who Is It For</a>
   <a href="#train" class="drawer-cta" onclick="closeDrawer()">Achieve Your Goals</a>
 </div>
 
@@ -871,6 +885,7 @@ footer{
   <a href="#" class="nav-logo">Kass <span>Diarra</span></a>
   <div class="nav-links">
     <a href="programme.html">Programme</a>
+    <a href="whothisisfor.html">Who Is It For</a>
     <a href="#train" class="nav-cta">Achieve Your Goals</a>
   </div>
   <button class="nav-burger" id="burger" onclick="toggleDrawer()" aria-label="Menu">
@@ -1268,6 +1283,7 @@ document.addEventListener('visibilitychange',()=>{
     let current = 0;
     let timer = null;
     let paused = false;
+    let started = false;
 
     function goTo(idx) {
       if(idx < 0) idx = items.length - 1;
@@ -1285,25 +1301,44 @@ document.addEventListener('visibilitychange',()=>{
       }, autoMs);
     }
 
+    function stopAuto() {
+      if(timer){ clearInterval(timer); timer = null; }
+    }
+
+    // Start auto-play only when section scrolls into view
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting && !started){
+          started = true;
+          // Small delay so the user notices the first card before it starts moving
+          setTimeout(startAuto, 1200);
+          observer.unobserve(grid);
+        }
+      });
+    }, {threshold: 0.4});
+    observer.observe(grid);
+
     // Update dot on manual scroll
     grid.addEventListener('scroll', () => {
       paused = true;
       clearTimeout(grid._pauseTimer);
-      grid._pauseTimer = setTimeout(() => { paused = false; }, 2000);
+      grid._pauseTimer = setTimeout(() => { paused = false; }, 2500);
       const scrollLeft = grid.scrollLeft;
       let closest = 0, minDiff = Infinity;
       items.forEach((item, i) => {
         const diff = Math.abs(item.offsetLeft - grid.offsetLeft - scrollLeft);
-        if(diff < minDiff) { minDiff = diff; closest = i; }
+        if(diff < minDiff){ minDiff = diff; closest = i; }
       });
       dots.forEach((d,i) => d.classList.toggle('active', i === closest));
       current = closest;
     }, {passive:true});
 
-    // Touch pause
-    grid.addEventListener('touchstart', () => { paused = true; }, {passive:true});
-    grid.addEventListener('touchend', () => {
+    // Touch — pause on press, resume after lift
+    grid.addEventListener('touchstart', () => {
+      paused = true;
       clearTimeout(grid._pauseTimer);
+    }, {passive:true});
+    grid.addEventListener('touchend', () => {
       grid._pauseTimer = setTimeout(() => { paused = false; }, 3000);
     }, {passive:true});
 
