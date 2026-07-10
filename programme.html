@@ -386,10 +386,49 @@ nav.scrolled{
 }
 
 @media(max-width:960px){
-  .phases-grid{grid-template-columns:1fr}
   .phases{padding:64px 20px}
 }
 
+
+/* ── PHASES MOBILE CAROUSEL ── */
+.phase-dots{
+  display:none;
+  justify-content:center;gap:8px;
+  margin-top:20px;
+}
+.phase-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--border);cursor:pointer;
+  transition:background .25s,transform .25s;
+  display:block;
+}
+.phase-dot.active{background:var(--accent-bright);transform:scale(1.3)}
+
+@media(max-width:768px){
+  .phases-grid{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scroll-behavior:smooth;
+    gap:16px;
+    padding:0 20px 8px;
+    margin-left:-20px;
+    margin-right:-20px;
+    margin-top:32px;
+    scrollbar-width:none;
+    grid-template-columns:unset;
+  }
+  .phases-grid::-webkit-scrollbar{display:none}
+  .phase{
+    flex-shrink:0;
+    width:calc(100vw - 72px);
+    scroll-snap-align:center;
+    padding:32px 24px;
+  }
+  .phases{padding:56px 20px}
+  .phase-dots{display:flex}
+}
 /* ── WHO IT'S FOR ── */
 .who{
   background:var(--bg);padding:96px 48px;
@@ -594,7 +633,6 @@ footer{
   .included-left p{max-width:100%;font-size:15px}
   .included-left .btn-primary{width:100%;text-align:center;display:block}
   .phases{padding:56px 20px}
-  .phases-grid{grid-template-columns:1fr;gap:12px}
   .who{grid-template-columns:1fr;gap:36px;padding:56px 20px}
   .who-left p{max-width:100%}
   .coach{grid-template-columns:1fr}
@@ -838,6 +876,11 @@ footer{
       </ul>
     </div>
   </div>
+  <div class="phase-dots" id="phaseDots">
+    <span class="phase-dot active" onclick="goPhase(0)"></span>
+    <span class="phase-dot" onclick="goPhase(1)"></span>
+    <span class="phase-dot" onclick="goPhase(2)"></span>
+  </div>
 </section>
 
 <!-- WHO IT'S FOR -->
@@ -946,6 +989,71 @@ document.addEventListener('visibilitychange', () => {
   const mq = document.querySelector('.marquee-track');
   if(mq) mq.style.animationPlayState = document.hidden ? 'paused' : 'running';
 });
+
+
+/* ── PHASES CAROUSEL (mobile only) ── */
+(function(){
+  function initPhases(){
+    if(window.innerWidth > 768) return;
+    const grid = document.querySelector('.phases-grid');
+    const dotsEl = document.getElementById('phaseDots');
+    if(!grid || !dotsEl) return;
+    const dots = Array.from(dotsEl.querySelectorAll('.phase-dot'));
+    const items = Array.from(grid.querySelectorAll('.phase'));
+    let current = 0;
+    let timer = null;
+    let paused = false;
+    let started = false;
+
+    function goTo(idx){
+      if(idx < 0) idx = items.length - 1;
+      if(idx >= items.length) idx = 0;
+      current = idx;
+      grid.scrollTo({left: items[idx].offsetLeft - grid.offsetLeft, behavior:'smooth'});
+      dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+    }
+    window.goPhase = goTo;
+
+    function startAuto(){
+      if(timer) clearInterval(timer);
+      timer = setInterval(() => { if(!paused) goTo(current + 1); }, 4000);
+    }
+
+    // Start when scrolled into view
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting && !started){
+          started = true;
+          setTimeout(startAuto, 1200);
+          obs.unobserve(grid);
+        }
+      });
+    }, {threshold: 0.4});
+    obs.observe(grid);
+
+    // Sync dots on manual scroll
+    grid.addEventListener('scroll', () => {
+      paused = true;
+      clearTimeout(grid._pt);
+      grid._pt = setTimeout(() => { paused = false; }, 2500);
+      let closest = 0, minDiff = Infinity;
+      items.forEach((item, i) => {
+        const diff = Math.abs(item.offsetLeft - grid.offsetLeft - grid.scrollLeft);
+        if(diff < minDiff){ minDiff = diff; closest = i; }
+      });
+      dots.forEach((d,i) => d.classList.toggle('active', i === closest));
+      current = closest;
+    }, {passive:true});
+
+    grid.addEventListener('touchstart', () => { paused = true; clearTimeout(grid._pt); }, {passive:true});
+    grid.addEventListener('touchend', () => {
+      grid._pt = setTimeout(() => { paused = false; }, 3000);
+    }, {passive:true});
+  }
+
+  initPhases();
+  window.addEventListener('resize', initPhases, {passive:true});
+})();
 
 })();
 </script>
