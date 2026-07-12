@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>8 Week Fat Loss Programme — Kass Diarra</title>
 <meta name="description" content="Join Kass Diarra's 8 Week Fat Loss Programme. Science-backed, structured, and built to deliver real results. Limited spots available.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="shortcut icon" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
@@ -429,6 +431,35 @@ nav.scrolled{
   .phases{padding:56px 20px}
   .phase-dots{display:flex}
 }
+
+/* ── NOT-FOR CALLOUT EFFECT ── */
+.not-for{
+  background:var(--surface);
+  padding:20px 24px;
+  border-left:2px solid var(--accent);
+  margin-top:16px;
+  position:relative;
+  overflow:hidden;
+}
+.not-for::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 40%,rgba(157,92,255,.08) 50%,transparent 60%);
+  background-size:200% 100%;
+  animation:notfor-shimmer 3s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes notfor-shimmer{
+  0%{background-position:200% 0}
+  100%{background-position:-200% 0}
+}
+.not-for p{
+  font-size:13px;color:var(--mid);line-height:1.6;
+  font-weight:300;margin-bottom:0!important;
+  position:relative;z-index:1;
+}
+.not-for strong{color:var(--fg);font-weight:600}
+
 /* ── WHO IT'S FOR ── */
 .who{
   background:var(--bg);padding:96px 48px;
@@ -452,15 +483,9 @@ nav.scrolled{
   font-size:16px;font-weight:300;line-height:1.75;
   color:rgba(240,238,255,.55);max-width:380px;margin-bottom:24px;
 }
-.not-for{
-  background:var(--surface);padding:20px 24px;
-  border-left:2px solid var(--accent);margin-top:16px;
-}
-.not-for p{
-  font-size:13px;color:var(--mid);line-height:1.6;
-  font-weight:300;margin-bottom:0!important;
-}
-.not-for strong{color:var(--fg);font-weight:500}
+
+
+
 
 @media(max-width:768px){
   .who{grid-template-columns:1fr;gap:40px;padding:64px 20px}
@@ -597,6 +622,36 @@ nav.scrolled{
   .waitlist-section{grid-template-columns:1fr;gap:56px;padding:64px 20px}
 }
 
+
+/* ── INSTAGRAM SHIMMER FOOTER ── */
+.ig-shimmer{
+  background:linear-gradient(
+    90deg,
+    rgba(107,107,122,.8) 0%,
+    rgba(107,107,122,.8) 28%,
+    rgba(255,255,255,1) 42%,
+    rgba(195,130,255,1) 50%,
+    rgba(255,255,255,1) 58%,
+    rgba(107,107,122,.8) 72%,
+    rgba(107,107,122,.8) 100%
+  );
+  background-size:300% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:ig-sh 3s ease-in-out infinite;
+  filter:drop-shadow(0 0 4px rgba(157,92,255,.4));
+}
+.ig-shimmer svg{fill:url(#igGrad);filter:drop-shadow(0 0 3px rgba(157,92,255,.5))}
+.ig-shimmer:hover{filter:drop-shadow(0 0 8px rgba(157,92,255,.8))}
+@keyframes ig-sh{
+  0%{background-position:150% center}
+  100%{background-position:-50% center}
+}
+@supports not(-webkit-background-clip:text){
+  .ig-shimmer{background:none;-webkit-text-fill-color:unset;color:var(--accent-bright)!important}
+}
+
 /* ── FOOTER ── */
 footer{
   background:var(--surface);
@@ -614,8 +669,13 @@ footer{
 .footer-links a{
   font-size:12px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--mid);text-decoration:none;transition:color .2s;
+  display:inline-flex;align-items:center;gap:6px;
 }
 .footer-links a:hover{color:var(--accent-bright)}
+
+.footer-credit{font-size:11px;color:rgba(240,238,255,.15);letter-spacing:.04em}
+.footer-credit a{color:rgba(157,92,255,.5);text-decoration:none;transition:color .2s}
+.footer-credit a:hover{color:var(--accent-bright)}
 .footer-copy{font-size:12px;color:rgba(240,238,255,.2);letter-spacing:.04em}
 
 @media(max-width:640px){footer{padding:36px 20px;flex-direction:column;align-items:flex-start}}
@@ -923,10 +983,10 @@ footer{
   <span class="footer-logo">Kass <span>Diarra</span></span>
   <ul class="footer-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="https://www.instagram.com/_kassdiarra/" target="_blank" rel="noopener">Instagram ↗</a></li>
-    <li><a href="index.html#train">Apply for PT</a></li>
+    <li><a href="https://www.instagram.com/_kassdiarra/" target="_blank" rel="noopener" class="ig-shimmer"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;vertical-align:middle"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> Instagram</a></li>
   </ul>
   <p class="footer-copy">Ready to achieve your goals?</p>
+  <p class="footer-credit">Site by <a href="https://sitesbycharlie.ie" target="_blank" rel="noopener">SitesByCharlie.ie</a></p>
 </footer>
 
 <script>
@@ -975,13 +1035,42 @@ document.querySelectorAll('[data-r]').forEach(el => ro.observe(el));
 window.submitWaitlist = function(){
   const name  = document.getElementById('wlName').value.trim();
   const email = document.getElementById('wlEmail').value.trim();
-  const ni = document.getElementById('wlName');
-  const ei = document.getElementById('wlEmail');
-  ni.style.borderBottom = ''; ei.style.borderBottom = '';
-  if(!name){  ni.style.borderBottom = '2px solid var(--accent-bright)'; ni.focus(); return; }
-  if(!email){ ei.style.borderBottom = '2px solid var(--accent-bright)'; ei.focus(); return; }
-  document.getElementById('formBody').style.display = 'none';
-  document.getElementById('formOk').style.display = 'flex';
+  const phone = document.getElementById('wlPhone') ? document.getElementById('wlPhone').value.trim() : '';
+
+  [document.getElementById('wlName'), document.getElementById('wlEmail'), document.getElementById('wlPhone')]
+    .filter(Boolean).forEach(el => el.style.borderBottom = '');
+
+  if(!name) { document.getElementById('wlName').style.borderBottom='2px solid var(--accent-bright)'; document.getElementById('wlName').focus(); return; }
+  if(!email){ document.getElementById('wlEmail').style.borderBottom='2px solid var(--accent-bright)'; document.getElementById('wlEmail').focus(); return; }
+  if(!phone){ document.getElementById('wlPhone').style.borderBottom='2px solid var(--accent-bright)'; document.getElementById('wlPhone').focus(); return; }
+
+  const btn = document.querySelector('.wl-submit');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  fetch('https://formspree.io/f/xykrgvga', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify({
+      'Full name': name,
+      'Email': email,
+      'Mobile': phone,
+      'Programme': '8 Week Fat Loss Programme'
+    })
+  })
+  .then(res => {
+    if(res.ok){
+      document.getElementById('formBody').style.display = 'none';
+      document.getElementById('formOk').style.display = 'flex';
+    } else {
+      btn.textContent = 'Try again';
+      btn.disabled = false;
+    }
+  })
+  .catch(() => {
+    btn.textContent = 'Try again';
+    btn.disabled = false;
+  });
 };
 
 /* MARQUEE pause when hidden */
