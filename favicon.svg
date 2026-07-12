@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#0a0a0a"/>
+  <rect width="64" height="64" rx="12" fill="url(#bg)"/>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111116"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+  </defs>
+  <!-- K -->
+  <text x="6" y="50" font-family="Arial Black, sans-serif" font-weight="900" font-size="42" fill="#f0eeff" letter-spacing="-2">K</text>
+  <!-- D in purple -->
+  <text x="32" y="50" font-family="Arial Black, sans-serif" font-weight="900" font-size="42" fill="#9d5cff" letter-spacing="-2">D</text>
+  <!-- subtle purple underline accent -->
+  <rect x="6" y="54" width="52" height="3" rx="1.5" fill="#7c3aed" opacity="0.8"/>
+</svg>
