@@ -484,7 +484,7 @@ nav.scrolled{
     overflow-x:auto;
     scroll-snap-type:x mandatory;
     -webkit-overflow-scrolling:touch;
-    scroll-behavior:smooth;
+    /* NO scroll-behavior:smooth — keeps swipe feeling native and instant */
     gap:16px;
     padding:0 20px 8px;
     max-width:100%;
@@ -499,6 +499,32 @@ nav.scrolled{
     width:calc(100vw - 64px);
     scroll-snap-align:center;
     aspect-ratio:9/16;
+    /* Purple glow border on mobile */
+    border:1.5px solid rgba(157,92,255,.5);
+    box-shadow:
+      0 0 0 1px rgba(157,92,255,.2),
+      0 0 16px rgba(124,58,237,.35),
+      0 0 32px rgba(124,58,237,.15),
+      inset 0 0 20px rgba(124,58,237,.05);
+    animation:video-glow 2.8s ease-in-out infinite;
+  }
+  @keyframes video-glow{
+    0%,100%{
+      box-shadow:
+        0 0 0 1px rgba(157,92,255,.2),
+        0 0 16px rgba(124,58,237,.35),
+        0 0 32px rgba(124,58,237,.15),
+        inset 0 0 20px rgba(124,58,237,.05);
+      border-color:rgba(157,92,255,.5);
+    }
+    50%{
+      box-shadow:
+        0 0 0 1px rgba(157,92,255,.4),
+        0 0 24px rgba(157,92,255,.6),
+        0 0 48px rgba(124,58,237,.25),
+        inset 0 0 30px rgba(124,58,237,.08);
+      border-color:rgba(157,92,255,.85);
+    }
   }
 }
 /* ── TESTIMONIALS ── */
@@ -1563,7 +1589,7 @@ document.addEventListener('visibilitychange',()=>{
   // Only run on mobile
   function setup() {
     if(window.innerWidth > 640) return;
-    window.goFlip = initCarousel('flipGrid', 'flipDots', 3500);
+    window.goFlip = initCarouselManual('flipGrid', 'flipDots');
     window.goTq   = initCarousel('tqGrid',  'tqDots',  4500);
   }
   setup();
