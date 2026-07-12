@@ -1182,36 +1182,38 @@ footer{
 <section class="testimonials" id="results" data-r>
   <p class="section-label">Real Results</p>
   <h2 class="section-title">The proof is<br><em>right here.</em></h2>
-  <p class="testimonials-sub">These are real people who showed up, did the work, and changed their lives. Tap a card to see the transformation.</p>
+  <p class="testimonials-sub">Real people, real results. Watch the transformations and hear what they have to say.</p>
 
-  <!-- FLIP CARDS -->
-  <!-- Desktop: grid | Mobile: carousel -->
-  <div class="flip-grid" id="flipGrid">
-    <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" role="button" aria-label="Tap to see after photo">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Before — Client 1" loading="lazy">
-          <span class="flip-label flip-label-before">Before</span>
-        </div>
-        <div class="flip-card-back">
-          <img src="https://images.unsplash.com/photo-1549476464-37392f717541?w=600&q=80" alt="After — Client 1" loading="lazy">
-          <span class="flip-label flip-label-after">After</span>
-        </div>
+  <!-- CLIENT VIDEOS -->
+  <div class="video-grid" id="flipGrid">
+    <div class="video-card">
+      <video
+        src="/videos/client1.mp4"
+        playsinline
+        loop
+        muted
+        preload="metadata"
+        onclick="toggleVideo(this)"
+      ></video>
+      <div class="video-play-btn" onclick="toggleVideo(this.previousElementSibling)">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
       </div>
+      <div class="video-label">Client Result</div>
     </div>
-    <div class="flip-card" onclick="this.classList.toggle('flipped')" tabindex="0" role="button" aria-label="Tap to see after photo">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80" alt="Before — Client 2" loading="lazy">
-          <span class="flip-label flip-label-before">Before</span>
-        </div>
-        <div class="flip-card-back">
-          <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80" alt="After — Client 2" loading="lazy">
-          <span class="flip-label flip-label-after">After</span>
-        </div>
+    <div class="video-card">
+      <video
+        src="/videos/client2.mp4"
+        playsinline
+        loop
+        muted
+        preload="metadata"
+        onclick="toggleVideo(this)"
+      ></video>
+      <div class="video-play-btn" onclick="toggleVideo(this.previousElementSibling)">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
       </div>
+      <div class="video-label">Client Result</div>
     </div>
-
   </div>
   <!-- Mobile carousel dots -->
   <div class="carousel-dots" id="flipDots">
