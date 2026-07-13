@@ -1519,7 +1519,6 @@ window.addEventListener('scroll', () => {
 window.toggleVideo = function(video){
   const card = video.closest('.video-card');
   if(video.paused){
-    // Pause all other videos first
     document.querySelectorAll('.video-card video').forEach(v => {
       if(v !== video){ v.pause(); v.closest('.video-card').classList.remove('playing'); }
     });
@@ -1531,6 +1530,22 @@ window.toggleVideo = function(video){
     card.classList.remove('playing');
   }
 };
+
+/* AUTO-PAUSE videos when scrolled out of view */
+(function(){
+  const videoObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      const video = e.target.querySelector('video');
+      if(!video) return;
+      if(!e.isIntersecting && !video.paused){
+        video.pause();
+        e.target.classList.remove('playing');
+      }
+    });
+  }, {threshold: 0.2});
+
+  document.querySelectorAll('.video-card').forEach(card => videoObs.observe(card));
+})();
 
 /* ABOUT FLIP — keyboard */
 document.querySelectorAll('.about-flip').forEach(card => {
