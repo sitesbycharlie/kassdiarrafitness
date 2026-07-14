@@ -314,7 +314,7 @@ nav.scrolled{
 @media(max-width:768px){.section{padding:64px 20px}}
 
 
-/* ── ABOUT KASS FLIP TILE ── */
+/* ── ABOUT KASS ── */
 .about-tile{
   background:var(--surface);
   padding:96px 48px;
@@ -323,76 +323,36 @@ nav.scrolled{
   gap:72px;
   align-items:center;
 }
-.about-tile-left{}
 .about-tile-label{
   font-family:var(--f-body);font-size:11px;font-weight:500;
   letter-spacing:.22em;text-transform:uppercase;color:var(--accent-bright);
-  display:flex;align-items:center;gap:10px;margin-bottom:20px;
+  display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px;
 }
 .about-tile-label::before,.about-tile-label::after{content:'';display:block;width:20px;height:1px;background:var(--accent-bright)}
-.about-tile h2{
-  font-family:var(--f-head);font-weight:900;
-  font-size:clamp(40px,5.5vw,80px);
-  line-height:.92;letter-spacing:-.01em;text-transform:uppercase;
-  margin-bottom:20px;
-}
-.about-tile h2 em{font-style:italic;color:var(--accent-bright)}
 .about-tile p{
   font-size:16px;font-weight:300;line-height:1.75;
   color:rgba(240,238,255,.55);margin-bottom:16px;
-  max-width:440px;
 }
-.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
-.about-tag{
-  font-family:var(--f-head);font-size:12px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;
-  border:1px solid var(--accent);
-  color:var(--accent-bright);
-  padding:7px 16px;border-radius:40px;
-  transition:background .2s,color .2s;
-}
-.about-tag:hover{background:var(--accent);color:#fff}
-
-/* About flip card */
-.about-flip{
-  perspective:1000px;
-  aspect-ratio:3/4;
-  cursor:pointer;
-  max-width:420px;
-  width:100%;
-  justify-self:center;
-}
-.about-flip-inner{
-  position:relative;width:100%;height:100%;
-  transform-style:preserve-3d;
-  transition:transform .7s cubic-bezier(.25,.46,.45,.94);
-}
-.about-flip.flipped .about-flip-inner{transform:rotateY(180deg)}
-.about-flip-front,.about-flip-back{
-  position:absolute;inset:0;
-  backface-visibility:hidden;
-  -webkit-backface-visibility:hidden;
+.about-photo{
+  position:relative;
   overflow:hidden;
+  /* 16:9 ratio to match the photo dimensions */
+  aspect-ratio:16/9;
+  width:100%;
   border:1px solid var(--border);
 }
-.about-flip-front{background:var(--surface)}
-.about-flip-back{
-  background:var(--surface2);
-  border-color:var(--accent);
-  transform:rotateY(180deg);
-}
-.about-flip-front img,.about-flip-back img{
-  width:100%;height:100%;object-fit:cover;
+.about-photo img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center top;
   filter:contrast(1.05);
-  transition:transform .45s ease;
+  transition:transform .6s ease;
 }
-.about-flip:hover .about-flip-front img{transform:scale(1.03)}
-.about-flip-back img{filter:contrast(1.08) saturate(1.05)}
-
+.about-tile:hover .about-photo img{transform:scale(1.03)}
 
 @media(max-width:768px){
-  .about-tile{grid-template-columns:1fr;gap:40px;padding:56px 20px}
-  .about-flip{max-width:100%;aspect-ratio:4/5}
+  .about-tile{grid-template-columns:1fr;gap:32px;padding:56px 20px}
+  .about-photo{aspect-ratio:16/9}
   .about-tile p{max-width:100%}
 }
 
@@ -1320,15 +1280,8 @@ footer{
       <span class="about-tag">Content Creator</span>
     </div>
   </div>
-  <div class="about-flip" onclick="this.classList.toggle('flipped')" tabindex="0" role="button" aria-label="Tap to see another photo of Kass">
-    <div class="about-flip-inner">
-      <div class="about-flip-front">
-        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=90&auto=format&fit=crop" alt="Kass Diarra — hero shot">
-      </div>
-      <div class="about-flip-back">
-        <img src="https://images.unsplash.com/photo-1549476464-37392f717541?w=800&q=90&auto=format&fit=crop" alt="Kass Diarra — training">
-      </div>
-    </div>
+  <div class="about-photo">
+    <img src="/kass-about.jpg" alt="Kass Diarra — Personal Trainer Dublin" loading="lazy">
   </div>
 </section>
 
@@ -1546,13 +1499,6 @@ window.toggleVideo = function(video){
 
   document.querySelectorAll('.video-card').forEach(card => videoObs.observe(card));
 })();
-
-/* ABOUT FLIP — keyboard */
-document.querySelectorAll('.about-flip').forEach(card => {
-  card.addEventListener('keydown', e => {
-    if(e.key==='Enter'||e.key===' '){e.preventDefault();card.classList.toggle('flipped');}
-  });
-});
 
 /* FLIP CARDS — keyboard support */
 document.querySelectorAll('.flip-card').forEach(card => {
