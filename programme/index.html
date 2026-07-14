@@ -136,20 +136,14 @@ nav.scrolled{
 }
 .hero-bg{
   position:absolute;inset:0;
-  background:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1800&q=90&auto=format&fit=crop') center/cover no-repeat;
-  filter:brightness(.35) contrast(1.15);
-  transform:scale(1.02);
-  transition:transform 8s ease;
+  background:#0a0a0a;
 }
-.hero:hover .hero-bg{transform:scale(1)}
+
 .hero-overlay{
   position:absolute;inset:0;
   background:linear-gradient(to top,rgba(10,10,10,1) 0%,rgba(10,10,10,.55) 45%,transparent 75%);
 }
-.hero-overlay-color{
-  position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(124,58,237,.18) 0%,transparent 60%);
-}
+
 .hero-content{
   position:relative;z-index:2;
   padding:80px 48px;
@@ -765,7 +759,6 @@ footer{
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
-  <div class="hero-overlay-color"></div>
   <div class="hero-content">
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
