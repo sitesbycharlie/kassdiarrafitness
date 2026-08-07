@@ -1601,11 +1601,13 @@ document.addEventListener('visibilitychange',()=>{
 /* Scroll to form with nav offset */
 function scrollToForm(e) {
   if(e) e.preventDefault();
-  const target = document.getElementById('train');
-  if(!target) return;
+  const target = document.getElementById('formBody');
+  const fallback = document.getElementById('train');
+  const el = target || fallback;
+  if(!el) return;
   const nav = document.getElementById('mainNav');
   const offset = nav ? nav.offsetHeight + 8 : 76;
-  const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+  const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
   window.scrollTo({top: top, behavior: 'smooth'});
 }
 
