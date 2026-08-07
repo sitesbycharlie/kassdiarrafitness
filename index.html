@@ -1598,16 +1598,22 @@ document.addEventListener('visibilitychange',()=>{
 })();
 
 
-/* Scroll to form with nav offset */
+/* Scroll to form with nav offset — mobile targets first input, desktop targets section */
 function scrollToForm(e) {
   if(e) e.preventDefault();
-  const target = document.getElementById('formBody');
-  const fallback = document.getElementById('train');
-  const el = target || fallback;
-  if(!el) return;
   const nav = document.getElementById('mainNav');
-  const offset = nav ? nav.offsetHeight + 8 : 76;
-  const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+  const navH = nav ? nav.offsetHeight : 68;
+  const isMobile = window.innerWidth <= 960;
+  let el;
+  if(isMobile) {
+    // On mobile scroll past the heading and tiles, land right at the first input
+    el = document.getElementById('fname');
+    if(!el) el = document.getElementById('formBody');
+  } else {
+    el = document.getElementById('train');
+  }
+  if(!el) return;
+  const top = el.getBoundingClientRect().top + window.pageYOffset - navH - 12;
   window.scrollTo({top: top, behavior: 'smooth'});
 }
 
