@@ -5,22 +5,11 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9J7TFD4GZW">
 window.scrollToForm = function(e) {
   if(e) e.preventDefault();
-  var isMobile = window.innerWidth <= 960;
-  if(!isMobile) {
-    var el = document.getElementById('train');
-    if(!el) return;
-    var nav = document.getElementById('mainNav');
-    var navH = nav ? nav.offsetHeight : 68;
-    window.scrollTo({top: el.getBoundingClientRect().top + window.pageYOffset - navH, behavior: 'smooth'});
-    return;
-  }
-  // On mobile: scroll so the submit button is near the bottom of the screen (thumb level)
-  var submitBtn = document.querySelector('.form-submit');
-  if(!submitBtn) { submitBtn = document.getElementById('formAnchor'); }
-  if(!submitBtn) return;
-  var btnBottom = submitBtn.getBoundingClientRect().bottom + window.pageYOffset;
-  // Position it so submit button sits at 85% of screen height
-  var top = btnBottom - (window.innerHeight * 0.85);
+  var nav = document.getElementById('mainNav');
+  var navH = nav ? nav.offsetHeight : 68;
+  var el = document.getElementById('train');
+  if(!el) return;
+  var top = el.getBoundingClientRect().top + window.pageYOffset - navH;
   window.scrollTo({top: top, behavior: 'smooth'});
 };
 </script>
@@ -865,7 +854,10 @@ nav.scrolled{
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 
 @media(max-width:960px){
-  .form-section{grid-template-columns:1fr;gap:48px;padding:64px 20px}
+  .form-section{grid-template-columns:1fr;gap:32px;padding:64px 20px}
+  .form-right{order:-1}
+  .form-left{order:1}
+}
   .f-row{grid-template-columns:1fr}
   .f-row .f-group:first-child{border-right:none;padding-right:0}
   .f-row .f-group:last-child{padding-left:0}
