@@ -5,12 +5,22 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9J7TFD4GZW">
 window.scrollToForm = function(e) {
   if(e) e.preventDefault();
-  var nav = document.getElementById('mainNav');
-  var navH = nav ? nav.offsetHeight : 68;
   var isMobile = window.innerWidth <= 960;
-  var el = isMobile ? document.getElementById('formRight') : document.getElementById('train');
-  if(!el) return;
-  var top = el.getBoundingClientRect().top + window.pageYOffset - navH + 20;
+  if(!isMobile) {
+    var el = document.getElementById('train');
+    if(!el) return;
+    var nav = document.getElementById('mainNav');
+    var navH = nav ? nav.offsetHeight : 68;
+    window.scrollTo({top: el.getBoundingClientRect().top + window.pageYOffset - navH, behavior: 'smooth'});
+    return;
+  }
+  // On mobile: scroll so the submit button is near the bottom of the screen (thumb level)
+  var submitBtn = document.querySelector('.form-submit');
+  if(!submitBtn) { submitBtn = document.getElementById('formAnchor'); }
+  if(!submitBtn) return;
+  var btnBottom = submitBtn.getBoundingClientRect().bottom + window.pageYOffset;
+  // Position it so submit button sits at 85% of screen height
+  var top = btnBottom - (window.innerHeight * 0.85);
   window.scrollTo({top: top, behavior: 'smooth'});
 };
 </script>
@@ -1150,6 +1160,7 @@ footer{
     </div>
   </div>
   <div class="form-right" id="formRight" data-r>
+    <div id="formAnchor" style="display:block;height:1px;margin:0;padding:0;border:none;background:transparent"></div>
     <div class="spots"><span class="spots-dot"></span>Limited spots currently open</div>
     <div id="formBody">
       <div class="form-body">
