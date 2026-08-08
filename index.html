@@ -1598,8 +1598,10 @@ document.addEventListener('visibilitychange',()=>{
 })();
 
 
-/* Scroll to form — mobile scrolls past heading to form fields, desktop to section */
-function scrollToForm(e) {
+})();
+
+/* Scroll to form — outside IIFE so onclick attributes can call it */
+window.scrollToForm = function(e) {
   if(e) { e.preventDefault(); e.stopPropagation(); }
   const nav = document.getElementById('mainNav');
   const navH = nav ? nav.offsetHeight : 68;
@@ -1612,9 +1614,8 @@ function scrollToForm(e) {
     const top = el.getBoundingClientRect().top + window.pageYOffset - navH - 8;
     window.scrollTo({top: top, behavior: 'smooth'});
   }, 50);
-}
+};
 
-})();
 </script>
 </body>
 </html>
