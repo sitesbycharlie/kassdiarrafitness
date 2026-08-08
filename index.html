@@ -10,7 +10,7 @@ window.scrollToForm = function(e) {
   var isMobile = window.innerWidth <= 960;
   var el = isMobile ? document.getElementById('formRight') : document.getElementById('train');
   if(!el) return;
-  var top = el.getBoundingClientRect().top + window.pageYOffset - navH - 8;
+  var top = el.getBoundingClientRect().top + window.pageYOffset - navH + 20;
   window.scrollTo({top: top, behavior: 'smooth'});
 };
 </script>
