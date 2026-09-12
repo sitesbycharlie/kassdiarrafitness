@@ -501,12 +501,20 @@ const recipes = [
   {
     slug: 'low-carb-1',
     cat: 'low', catLabel: 'Low Carb',
-    title: 'Recipe Name',
+    title: '0 Carbs Bread',
     video: '/videos/recipes/low-carb-1.mp4',
-    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
-    serves: 'Serves --',
-    ingredients: ['Ingredient one, with amount', 'Ingredient two, with amount', 'Ingredient three, with amount'],
-    method: ['Step one.', 'Step two.', 'Step three.']
+    poster: '/images/recipes/low-carb-1-thumb.jpg',
+    time: '20 min', kcal: '---', protein: '60g (80g w/ cheese)', carbs: '0g', fat: '--g',
+    serves: 'Serves 1',
+    ingredients: ['1 large egg', '500g liquid egg whites', 'Optional: 20g high-protein grated cheese (for +20g protein, 80g total)'],
+    method: [
+      'Separate the egg yolk from the white.',
+      'Whisk the egg whites (plus liquid egg whites) well until stiff, fluffy peaks form.',
+      'Gently fold the yolk back through the whisked whites.',
+      'Spread the mixture onto a lined baking tray.',
+      'Bake at 175°C / 350°F for 15 minutes until golden and set.',
+      'Optional: fold through high-protein grated cheese while warm for an extra 20g protein.'
+    ]
   },
   {
     slug: 'low-carb-2',
@@ -551,12 +559,23 @@ const recipes = [
   {
     slug: 'high-carb-1',
     cat: 'high', catLabel: 'High Carb',
-    title: 'Recipe Name',
+    title: 'Protein Maxx Pasta Bake',
     video: '/videos/recipes/high-carb-1.mp4',
-    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
-    serves: 'Serves --',
-    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
-    method: ['Step one.', 'Step two.', 'Step three.']
+    poster: '/images/recipes/high-carb-1-thumb.jpg',
+    time: '30 min', kcal: '---', protein: '70g', carbs: '--g', fat: '--g',
+    serves: 'Serves 2-3',
+    ingredientGroups: [
+      { label: 'Pasta & Protein', items: ['Ground turkey', 'Sliced mushrooms', 'Red lentil pasta (high-protein)'] },
+      { label: 'Sauce', items: ['200g fat-free cottage cheese', '2 eggs', 'High-protein grated cheese', 'Coconut milk (to loosen)'] }
+    ],
+    method: [
+      'Boil the red lentil pasta for 10 minutes, then drain.',
+      'Cook the ground turkey and sliced mushrooms together in a pan until browned.',
+      'Blend the cottage cheese, eggs, high-protein grated cheese, and coconut milk until smooth to make the sauce.',
+      'Add the drained pasta to the pan with the turkey and mushrooms.',
+      'Pour the blended sauce over the pasta mixture and stir through.',
+      'Heat everything together until the sauce thickens slightly and coats the pasta. Season to taste.'
+    ]
   },
   {
     slug: 'high-carb-2',
@@ -622,12 +641,23 @@ const recipes = [
   {
     slug: 'craving-2',
     cat: 'craving', catLabel: 'Craving Cutter',
-    title: 'Recipe Name',
+    title: 'High Protein Shortcake',
     video: '/videos/recipes/craving-2.mp4',
-    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
-    serves: 'Serves --',
-    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
-    method: ['Step one.', 'Step two.', 'Step three.']
+    poster: '/images/recipes/craving-2-thumb.jpg',
+    time: '35 min', kcal: '---', protein: '52g', carbs: '--g', fat: '--g',
+    serves: 'Serves 1',
+    ingredientGroups: [
+      { label: 'Base', items: ['200g fat-free cottage cheese', '1 egg', '1 banana', 'Sweetener (e.g. Splenda), to taste', 'Vanilla flavouring'] },
+      { label: 'Topping', items: ['200g Greek yogurt', 'Blueberries'] }
+    ],
+    method: [
+      'Blend the cottage cheese, egg, banana, sweetener, and vanilla flavouring until smooth.',
+      'Pour into a baking dish.',
+      'Bake at 175°C / 350°F for 30 minutes.',
+      'Let cool for 20+ minutes.',
+      'Fold the blueberries through the Greek yogurt.',
+      'Top the cooled base with the blueberry yogurt mix and serve.'
+    ]
   },
   {
     slug: 'craving-3',
