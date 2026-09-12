@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9J7TFD4GZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9J7TFD4GZW');
+</script>
+<script>
+window.scrollToForm = function(e) {
+  if(e) e.preventDefault();
+  window.location.href = '/#train';
+};
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nutrition — Kass Diarra</title>
+<meta name="description" content="Low carb, high carb, and craving cutter recipes with full video walkthroughs and macros.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="shortcut icon" href="/favicon-32.png">
+<meta name="theme-color" content="#7c3aed">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+img{display:block;max-width:100%}
+
+:root{
+  --bg:#0a0a0a;--surface:#111116;--surface2:#18181f;--fg:#f0eeff;
+  --accent:#7c3aed;--accent-bright:#9d5cff;
+  --mid:#6b6b7a;--border:rgba(240,238,255,.08);
+  --f-head:'Barlow Condensed',sans-serif;--f-body:'DM Sans',sans-serif;
+}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);overflow-x:hidden}
+
+/* NAV — exact copy */
+.nav-programme{position:relative;color:var(--fg)!important;background:linear-gradient(90deg,rgba(240,238,255,.35) 0%,rgba(240,238,255,.35) 28%,rgba(255,255,255,1) 42%,rgba(195,130,255,1) 50%,rgba(255,255,255,1) 58%,rgba(240,238,255,.35) 72%,rgba(240,238,255,.35) 100%);background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:nav-shimmer 4.2s ease-in-out infinite;opacity:1!important;filter:drop-shadow(0 0 6px rgba(157,92,255,.6))}
+.nav-programme:hover{animation:nav-shimmer 1s ease-in-out infinite;filter:drop-shadow(0 0 10px rgba(157,92,255,.9))}
+@keyframes nav-shimmer{0%{background-position:160% center}100%{background-position:-60% center}}
+.nav-links a.active{
+  opacity:1!important;color:var(--accent-bright)!important;
+  position:relative;
+}
+.nav-links a.active::after{
+  content:'';position:absolute;left:0;right:0;bottom:-6px;height:2px;
+  background:var(--accent-bright);border-radius:1px;
+}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(10,10,10,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--f-head);font-weight:900;font-size:22px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg);text-decoration:none}
+.nav-logo span{color:var(--accent-bright)}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{font-family:var(--f-body);font-size:13px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--fg);text-decoration:none;opacity:.5;transition:opacity .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1}
+.nav-cta{color:#fff!important;opacity:1!important;padding:10px 24px;font-family:var(--f-head)!important;font-size:14px!important;font-weight:700!important;letter-spacing:.1em!important;text-transform:uppercase!important;border:none;border-radius:0.4em;cursor:pointer;background:var(--accent)!important;box-shadow:0px 0px 14px rgba(124,58,237,.35);-webkit-appearance:none;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s!important}
+.nav-cta:hover{background:var(--accent-bright)!important;transform:translateY(-1px);box-shadow:0px 0px 20px rgba(157,92,255,.5)!important}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;position:relative;z-index:201}
+.nav-burger span{display:block;width:24px;height:2px;background:var(--fg);transition:transform .3s,opacity .3s}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer{display:none;position:fixed;inset:0;background:var(--bg);z-index:199;flex-direction:column;align-items:center;justify-content:center;gap:12px;opacity:0;pointer-events:none;transition:opacity .3s}
+.nav-drawer.open{opacity:1;pointer-events:all}
+.nav-drawer a{font-family:var(--f-head);font-weight:900;font-size:clamp(36px,10vw,64px);letter-spacing:.04em;text-transform:uppercase;color:var(--fg);text-decoration:none;opacity:0;transform:translateY(20px);transition:opacity .35s,transform .35s,color .2s}
+.nav-drawer.open a{opacity:1;transform:none}
+.nav-drawer.open a:nth-child(1){transition-delay:.05s}
+.nav-drawer.open a:nth-child(2){transition-delay:.1s}
+.nav-drawer.open a:nth-child(3){transition-delay:.15s}
+.nav-drawer a:hover{color:var(--accent-bright)}
+.nav-drawer a.drawer-cta{color:var(--accent-bright)}
+@media(max-width:768px){nav{padding:0 20px}.nav-links{display:none}.nav-burger{display:flex}.nav-drawer{display:flex}}
+
+/* PAGE HERO */
+.page-hero{padding:150px 48px 40px;text-align:center;max-width:820px;margin:0 auto}
+.section-label{font-family:var(--f-body);font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-bright);display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px}
+.section-label::before,.section-label::after{content:'';display:block;width:20px;height:1px;background:var(--accent-bright)}
+.page-hero h1{font-family:var(--f-head);font-weight:900;font-size:clamp(44px,7vw,80px);text-transform:uppercase;line-height:.92;letter-spacing:-.01em;margin-bottom:20px}
+.page-hero h1 em{font-style:italic;-webkit-text-stroke:2px var(--accent-bright);color:transparent}
+.page-hero p{color:rgba(240,238,255,.65);font-size:16px;font-weight:300;line-height:1.7;max-width:480px;margin:0 auto}
+
+/* MEAL GUIDE FORM — matches site's f-group/f-input/form-submit pattern exactly */
+.mealguide-section{max-width:760px;margin:0 auto 60px;padding:0 48px}
+.mealguide-box{
+  background:var(--surface);border:1px solid rgba(157,92,255,.3);border-radius:.8em;
+  padding:36px 40px;box-shadow:0 0 30px rgba(124,58,237,.08);
+}
+.mealguide-box .section-label{justify-content:flex-start;margin-bottom:14px}
+.mealguide-box h2{font-family:var(--f-head);font-weight:900;font-size:28px;text-transform:uppercase;margin-bottom:8px;line-height:1}
+.mealguide-box h2 em{font-style:italic;color:var(--accent-bright)}
+.mealguide-box>p{font-size:14px;color:var(--mid);max-width:480px;margin-bottom:8px}
+
+.mealguide-form .form-body{display:flex;flex-direction:column;gap:0}
+.mealguide-form .f-group{border-bottom:1px solid var(--border);padding:18px 0;display:flex;flex-direction:column;gap:6px}
+.mealguide-form .f-group:first-child{border-top:1px solid var(--border)}
+.mealguide-form .f-label{font-family:var(--f-body);font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--mid)}
+.mealguide-form .f-input,.mealguide-form .f-select{
+  background:transparent;border:none;outline:none;
+  font-family:var(--f-head);font-weight:700;font-size:18px;
+  letter-spacing:-.01em;color:var(--fg);width:100%;transition:color .2s;
+}
+.mealguide-form .f-input::placeholder{color:rgba(240,238,255,.18)}
+.mealguide-form .f-select{-webkit-appearance:none;cursor:pointer}
+.mealguide-form .f-select option{background:var(--surface);color:var(--fg)}
+.mealguide-form .f-group:focus-within .f-label{color:var(--accent-bright)}
+
+.mealguide-form .form-submit{
+  margin-top:24px;font-family:var(--f-head);font-weight:700;font-size:17px;
+  letter-spacing:.1em;text-transform:uppercase;color:#fff;border:none;
+  padding:18px 40px;cursor:pointer;width:100%;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  border-radius:.4em;background:var(--accent);
+  box-shadow:0px 0px 18px rgba(124,58,237,.4);-webkit-appearance:none;
+  transition:background .2s,transform .15s,box-shadow .2s;
+}
+.mealguide-form .form-submit:hover{background:var(--accent-bright);transform:translateY(-2px);box-shadow:0px 0px 24px rgba(157,92,255,.5)}
+.mealguide-form .form-submit:active{transform:translateY(0)}
+.mealguide-form .form-submit:disabled{opacity:.6;cursor:default;transform:none}
+.mealguide-form .form-submit svg{transition:transform .2s}
+.mealguide-form .form-submit:hover svg{transform:translate(4px,-4px)}
+
+.mealguide-ok{
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:48px 24px;gap:12px;
+}
+.mealguide-ok.show{display:flex}
+.mealguide-ok-check{font-family:var(--f-head);font-size:56px;font-weight:900;color:var(--accent-bright);line-height:1}
+.mealguide-ok h3{font-family:var(--f-head);font-weight:900;font-size:24px;text-transform:uppercase;letter-spacing:.02em;color:var(--fg)}
+.mealguide-ok p{font-size:14px;color:var(--mid)}
+
+@media(max-width:640px){
+  .mealguide-section{padding:0 20px}
+  .mealguide-box{padding:26px 22px}
+  .mealguide-form .f-input,.mealguide-form .f-select{font-size:16px}
+}
+
+/* FILTER BAR (kept but hidden by default now columns replace it — leave CSS for later) */
+.filter-bar{display:none}
+
+/* 3-COLUMN LAYOUT */
+.category-columns{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);
+  max-width:1300px;margin:0 auto 100px;
+}
+.category-col{background:var(--bg);padding:0 0 32px}
+.category-col-head{
+  padding:28px 24px 20px;border-bottom:2px solid var(--accent);
+  position:sticky;top:68px;background:var(--bg);z-index:10;
+  text-align:center;
+}
+.category-col-head h2{font-family:var(--f-head);font-weight:900;font-size:24px;text-transform:uppercase;letter-spacing:.01em}
+.category-col-head p{color:var(--mid);font-size:12px;margin-top:4px}
+.category-col-body{padding:20px 20px 0;display:flex;flex-direction:column;align-items:center;gap:18px}
+
+.recipe-card{background:var(--surface);border:1px solid var(--border);border-radius:.6em;overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;width:100%;max-width:220px;text-align:center}
+.recipe-card:hover{transform:translateY(-4px);border-color:rgba(157,92,255,.4);box-shadow:0 8px 28px rgba(124,58,237,.18)}
+.recipe-thumb{position:relative;aspect-ratio:9/16;background:var(--surface2)}
+.recipe-thumb video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.thumb-placeholder{position:absolute;inset:0;display:none;align-items:center;justify-content:center;color:var(--mid);font-size:11px;text-align:center;padding:16px;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.05em;background:var(--surface2)}
+.recipe-thumb.no-video .thumb-placeholder{display:flex}
+.recipe-thumb.no-video video,.recipe-thumb.no-video .play-badge{display:none}
+.cat-tag{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:2;font-family:var(--f-head);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:.3em;background:rgba(10,10,10,.7);border:1px solid rgba(157,92,255,.4);color:var(--accent-bright);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);white-space:nowrap}
+.play-badge{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(10,10,10,.25);transition:background .2s}
+.recipe-card:hover .play-badge{background:rgba(10,10,10,.1)}
+.play-badge svg{filter:drop-shadow(0 2px 8px rgba(0,0,0,.6));transition:transform .2s}
+.recipe-card:hover .play-badge svg{transform:scale(1.15)}
+.recipe-info{padding:14px 14px}
+.recipe-info h3{font-family:var(--f-head);font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.01em;margin-bottom:6px}
+.recipe-meta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;font-size:10.5px;color:var(--mid);font-family:var(--f-head);letter-spacing:.04em;text-transform:uppercase}
+
+/* MOBILE TABS */
+.col-tabs{display:none;gap:10px;padding:0 20px 20px;overflow-x:auto;position:sticky;top:68px;background:var(--bg);z-index:20}
+.col-tab-btn{flex:0 0 auto;padding:12px 20px;min-height:44px;border-radius:.4em;border:1px solid var(--border);background:var(--surface);color:var(--fg);font-family:var(--f-head);font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:13px;cursor:pointer}
+.col-tab-btn.active{background:var(--accent);border-color:var(--accent)}
+
+.empty-state{text-align:center;padding:60px 20px;color:var(--mid);display:none}
+.empty-state.show{display:block}
+
+@media(max-width:1024px){
+  .category-columns{gap:1px;max-width:100%;margin:0 20px 80px;width:auto}
+  .page-hero{padding:130px 32px 32px}
+  .mealguide-section{padding:0 32px}
+}
+
+@media(max-width:720px){
+  .page-hero{padding:110px 20px 24px}
+  .mealguide-section{padding:0 20px}
+  .category-columns{grid-template-columns:1fr;max-width:100%;gap:0;border:none;background:none;margin:0}
+  .category-col{display:none;border-bottom:1px solid var(--border)}
+  .category-col.active{display:block}
+  .category-col-head{top:0}
+  .col-tabs{display:flex;top:56px}
+}
+
+@media(max-width:400px){
+  .category-col-body{padding:16px 16px 0}
+  .recipe-info{padding:14px 16px}
+  .recipe-info h3{font-size:16px}
+}
+
+/* MOBILE — smaller horizontal card, less scroll, purple glow border like homepage video cards */
+@media(max-width:720px){
+  .recipe-card{display:flex;align-items:center;gap:0;max-width:100%;width:100%;text-align:left}
+  .recipe-thumb{
+    width:110px;flex-shrink:0;aspect-ratio:9/16;height:auto;
+    border:1.5px solid rgba(157,92,255,.5);
+    box-shadow:0 0 0 1px rgba(157,92,255,.2),0 0 12px rgba(124,58,237,.35),0 0 22px rgba(124,58,237,.15),inset 0 0 14px rgba(124,58,237,.05);
+    animation:video-glow 2.8s ease-in-out infinite;
+    border-radius:.5em 0 0 .5em;
+  }
+  .recipe-info{padding:12px 16px;display:flex;flex-direction:column;justify-content:center;flex:1}
+  .recipe-info h3{font-size:15px;margin-bottom:6px}
+  .recipe-meta{justify-content:flex-start}
+  .cat-tag{top:6px;left:6px;transform:none;font-size:9px;padding:3px 7px}
+  .play-badge svg{width:26px;height:26px}
+}
+@keyframes video-glow{
+  0%,100%{box-shadow:0 0 0 1px rgba(157,92,255,.2),0 0 12px rgba(124,58,237,.35),0 0 22px rgba(124,58,237,.15),inset 0 0 14px rgba(124,58,237,.05);border-color:rgba(157,92,255,.5)}
+  50%{box-shadow:0 0 0 1px rgba(157,92,255,.4),0 0 18px rgba(157,92,255,.6),0 0 32px rgba(124,58,237,.25),inset 0 0 20px rgba(124,58,237,.08);border-color:rgba(157,92,255,.85)}
+}
+
+/* ── DETAIL VIEW ── */
+#detailView{display:none;padding-top:68px}
+#detailView.show{display:block}
+#browseView.hide{display:none}
+
+.crumb{
+  position:sticky;top:68px;z-index:150;
+  background:rgba(10,10,10,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  margin-bottom:20px;
+}
+.crumb-inner{max-width:1200px;margin:0 auto;padding:18px 48px}
+.crumb button{
+  font-family:var(--f-head);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--fg);background:none;border:none;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;padding:8px 4px;min-height:44px;
+  transition:color .2s;
+}
+.crumb button:hover{color:var(--accent-bright)}
+.crumb button svg{transition:transform .2s}
+.crumb button:hover svg{transform:translateX(-3px)}
+
+.recipe-hero{max-width:1200px;margin:20px auto 0;padding:0 48px}
+.hero-media{
+  position:relative;border-radius:.8em;overflow:hidden;
+  background:var(--surface2);
+  height:min(72vh,640px);
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-backdrop{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:blur(50px) brightness(.5) saturate(1.2);transform:scale(1.3);
+}
+.hero-fg{
+  position:relative;z-index:1;height:100%;max-width:100%;aspect-ratio:9/16;
+  object-fit:cover;display:block;border-radius:.6em;
+  box-shadow:0 10px 50px rgba(0,0,0,.5),0 0 0 1px rgba(240,238,255,.08);
+}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.85) 0%,rgba(10,10,10,.1) 40%,transparent 100%);pointer-events:none;z-index:2}
+.hero-caption{position:absolute;left:32px;bottom:28px;right:32px;z-index:3}
+.hero-caption h1{font-family:var(--f-head);font-weight:900;font-size:clamp(28px,5vw,48px);text-transform:uppercase;line-height:.98;color:#fff}
+.play-btn-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(10,10,10,.55);border:1px solid rgba(240,238,255,.25);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s,background .2s;z-index:4}
+.play-btn-overlay:hover{transform:translate(-50%,-50%) scale(1.08);background:var(--accent)}
+.play-btn-overlay.hidden{display:none}
+.hero-media.no-video .hero-placeholder{display:flex}
+.hero-media .hero-placeholder{position:absolute;inset:0;display:none;align-items:center;justify-content:center;color:var(--mid);font-family:var(--f-head);text-transform:uppercase;letter-spacing:.05em;font-size:13px;background:var(--surface2);z-index:1}
+.hero-media.no-video .hero-backdrop,.hero-media.no-video .hero-fg,.hero-media.no-video .play-btn-overlay{display:none}
+
+.macro-bar{max-width:1200px;margin:28px auto 0;padding:0 48px;display:flex;gap:14px;flex-wrap:wrap}
+.macro-pill{flex:1;min-width:100px;background:var(--surface);border:1px solid var(--border);border-radius:.5em;padding:14px 16px;text-align:center}
+.macro-pill .num{display:block;font-family:var(--f-head);font-weight:800;font-size:22px;color:var(--accent-bright)}
+.macro-pill .lbl{font-size:11px;color:var(--mid);letter-spacing:.05em;text-transform:uppercase;font-family:var(--f-head)}
+
+.recipe-body{max-width:1200px;margin:0 auto;padding:56px 48px 100px;display:grid;grid-template-columns:320px 1fr;gap:56px;align-items:start}
+.ingredients-panel{background:var(--surface);border:1px solid var(--border);border-radius:.6em;padding:28px;position:sticky;top:88px}
+.ingredients-panel h2{font-family:var(--f-head);font-weight:800;font-size:20px;text-transform:uppercase;margin-bottom:6px}
+.serves-note{font-size:12px;color:var(--mid);margin-bottom:20px}
+.ingredients-panel ul{list-style:none}
+.ingredients-panel li{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14.5px;line-height:1.4}
+.ingredients-panel li:last-child{border-bottom:none}
+.ingredients-panel li input[type=checkbox]{margin-top:2px;accent-color:var(--accent);width:19px;height:19px;flex-shrink:0}
+.ingredient-group-label{
+  display:block;font-family:var(--f-head);font-size:12px;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent-bright);border-bottom:none!important;
+  padding:14px 0 4px!important;
+}
+.ingredient-group-label:first-child{padding-top:0!important}
+
+.method-panel h2{font-family:var(--f-head);font-weight:800;font-size:20px;text-transform:uppercase;margin-bottom:22px}
+.method-list{list-style:none;counter-reset:step}
+.method-list li{counter-increment:step;display:grid;grid-template-columns:40px 1fr;gap:16px;margin-bottom:26px;font-size:15px;line-height:1.65}
+.method-list li::before{content:counter(step);font-family:var(--f-head);font-weight:900;font-size:18px;color:#fff;background:var(--accent);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(124,58,237,.35)}
+
+@media(max-width:900px){
+  .recipe-body{grid-template-columns:1fr;padding:40px 20px 70px;gap:36px}
+  .ingredients-panel{position:static}
+  .crumb-inner{padding:14px 20px}
+  .recipe-hero{padding:0 20px}
+  .hero-media{height:min(65vh,560px)}
+  .macro-bar{padding:0 20px}
+}
+
+@media(max-width:1024px) and (min-width:901px){
+  .recipe-body{grid-template-columns:260px 1fr;gap:36px;padding:48px 32px 90px}
+  .recipe-hero{padding:0 32px}
+  .macro-bar{padding:0 32px}
+}
+
+@media(max-width:480px){
+  .macro-pill{min-width:calc(50% - 7px)}
+  .macro-bar{gap:10px}
+  .hero-caption{left:20px;bottom:20px;right:20px}
+  .crumb button,.play-btn-overlay{min-height:44px}
+}
+
+footer{background:var(--surface);border-top:1px solid var(--border);padding:48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-logo{font-family:var(--f-head);font-weight:900;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg)}
+.footer-logo span{color:var(--accent-bright)}
+.footer-links{display:flex;gap:28px;list-style:none;flex-wrap:wrap}
+.footer-links a{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);text-decoration:none}
+.footer-links a:hover{color:var(--accent-bright)}
+.footer-copy{font-size:12px;color:rgba(240,238,255,.2);letter-spacing:.04em}
+.footer-credit{font-size:13px;color:rgba(240,238,255,.3);letter-spacing:.04em;margin-top:4px}
+.footer-credit a{color:rgba(157,92,255,.7);text-decoration:none;font-weight:500}
+.footer-credit a:hover{color:var(--accent-bright)}
+@media(max-width:640px){footer{padding:36px 20px;flex-direction:column;align-items:center;text-align:center}}
+
+/* ── INSTAGRAM SHIMMER (exact copy) ── */
+.ig-shimmer{
+  background:linear-gradient(90deg,rgba(107,107,122,.8) 0%,rgba(107,107,122,.8) 28%,rgba(255,255,255,1) 42%,rgba(195,130,255,1) 50%,rgba(255,255,255,1) 58%,rgba(107,107,122,.8) 72%,rgba(107,107,122,.8) 100%);
+  background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:ig-sh 3s ease-in-out infinite;
+  filter:drop-shadow(0 0 4px rgba(157,92,255,.35));
+}
+.ig-shimmer:hover{filter:drop-shadow(0 0 8px rgba(157,92,255,.8))}
+@keyframes ig-sh{0%{background-position:150% center}100%{background-position:-50% center}}
+@supports not(-webkit-background-clip:text){
+  .ig-shimmer{background:none;-webkit-text-fill-color:unset;color:var(--accent-bright)!important;animation:none;filter:none}
+}
+</style>
+</head>
+<body>
+
+<div class="nav-drawer" id="navDrawer">
+  <a href="/" onclick="closeDrawer()">Home</a>
+  <a href="/programme/" onclick="closeDrawer()">Programme</a>
+  <a href="/recipe/" onclick="closeDrawer()">Nutrition</a>
+  <a href="/#train" class="drawer-cta" onclick="closeDrawer(); scrollToForm(event)">Achieve Your Goals</a>
+</div>
+
+<nav id="mainNav" class="scrolled">
+  <a href="/" class="nav-logo">Kass <span>Diarra</span></a>
+  <div class="nav-links">
+    <a href="/" class="nav-programme">Home</a>
+    <a href="/programme/" class="nav-programme">Programme</a>
+    <a href="/recipe/" class="active">Nutrition</a>
+    <a href="/#train" class="nav-cta" onclick="scrollToForm(event)">Achieve Your Goals</a>
+  </div>
+  <button class="nav-burger" id="burger" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ── BROWSE VIEW ── -->
+<div id="browseView">
+
+  <section class="page-hero">
+    <p class="section-label">Nutrition</p>
+    <h1>Food Goals Made <em>Simple.</em></h1>
+    <p>Every recipe comes with a full video and macros. Pick a category and get cooking.</p>
+  </section>
+
+  <section class="mealguide-section">
+    <div class="mealguide-box">
+      <p class="section-label">Free Meal Guide</p>
+      <h2>Get your <em>Meal Guide.</em></h2>
+      <p>Tell Kass your goal and he'll send the full Meal Guide straight to your inbox.</p>
+
+      <form class="mealguide-form" id="mealguideForm">
+        <div id="mealguideBody">
+          <div class="form-body">
+            <div class="f-group">
+              <label class="f-label">Full name *</label>
+              <input class="f-input" type="text" id="mgName" placeholder="Full name" autocomplete="given-name" required>
+            </div>
+            <div class="f-group">
+              <label class="f-label">Your goal</label>
+              <select class="f-select f-input" id="mgGoal">
+                <option value="" disabled selected>Select your goal</option>
+                <option>Build Muscle</option>
+                <option>Burn Fat</option>
+                <option>Body Recomp</option>
+              </select>
+            </div>
+            <div class="f-group">
+              <label class="f-label">Email *</label>
+              <input class="f-input" type="email" id="mgEmail" placeholder="your@email.com" autocomplete="email" required>
+            </div>
+          </div>
+          <button type="submit" class="form-submit" id="mealguideBtn">
+            Send Me The Meal Guide
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="mealguide-ok" id="mealguideOk">
+          <div class="mealguide-ok-check">✓</div>
+          <h3>Request received.</h3>
+          <p>Kass will send your Meal Guide to your inbox soon.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div class="col-tabs" id="colTabs">
+    <button class="col-tab-btn active" data-col="low">Low Carb</button>
+    <button class="col-tab-btn" data-col="high">High Carb</button>
+    <button class="col-tab-btn" data-col="craving">Craving Cutters</button>
+  </div>
+
+  <div class="category-columns" id="categoryColumns"></div>
+
+</div>
+
+<!-- ── DETAIL VIEW ── -->
+<div id="detailView">
+  <div class="crumb">
+    <div class="crumb-inner">
+      <button onclick="showBrowse()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All Recipes
+      </button>
+    </div>
+  </div>
+
+  <section class="recipe-hero">
+    <div class="hero-media" id="heroMedia">
+      <div class="hero-placeholder">Video coming soon</div>
+      <video class="hero-backdrop" id="heroBackdrop" muted playsinline preload="metadata" aria-hidden="true"></video>
+      <video class="hero-fg" id="heroVideo" playsinline preload="metadata"></video>
+      <div class="hero-overlay"></div>
+      <div class="play-btn-overlay" id="playBtn" onclick="playHeroVideo()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <div class="hero-caption">
+        <h1 id="detailTitle">Recipe Name</h1>
+      </div>
+    </div>
+  </section>
+
+  <div class="macro-bar">
+    <div class="macro-pill"><span class="num" id="mTime">-</span><span class="lbl">Time</span></div>
+    <div class="macro-pill"><span class="num" id="mKcal">-</span><span class="lbl">Kcal</span></div>
+    <div class="macro-pill"><span class="num" id="mProtein">-</span><span class="lbl">Protein</span></div>
+    <div class="macro-pill"><span class="num" id="mCarbs">-</span><span class="lbl">Carbs</span></div>
+    <div class="macro-pill"><span class="num" id="mFat">-</span><span class="lbl">Fat</span></div>
+  </div>
+
+  <div class="recipe-body">
+    <aside class="ingredients-panel">
+      <h2>Ingredients</h2>
+      <p class="serves-note" id="mServes">Serves 1</p>
+      <ul id="ingredientsList"></ul>
+    </aside>
+    <div class="method-panel">
+      <h2>Method</h2>
+      <ol class="method-list" id="methodList"></ol>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-logo">Kass <span>Diarra</span></span>
+  <ul class="footer-links"><li><a href="https://www.instagram.com/_kassdiarra/" target="_blank" rel="noopener" class="ig-shimmer">Instagram</a></li></ul>
+  <p class="footer-copy">Good food. No guesswork.</p>
+  <p class="footer-credit">Site by <a href="https://sitesbycharlie.ie" target="_blank" rel="noopener">SitesByCharlie.ie</a></p>
+</footer>
+
+<script>
+(function(){
+
+/* NAV */
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)},{passive:true});
+const burger=document.getElementById('burger');
+const drawer=document.getElementById('navDrawer');
+let navOpen=false;
+window.toggleDrawer=function(){navOpen=!navOpen;burger.classList.toggle('open',navOpen);drawer.classList.toggle('open',navOpen);document.body.style.overflow=navOpen?'hidden':''};
+window.closeDrawer=function(){navOpen=false;burger.classList.remove('open');drawer.classList.remove('open');document.body.style.overflow=''};
+
+/* ══════════════════════════════════════════════
+   RECIPE DATA — this is the only thing you edit
+   to add a recipe. Drop the IG video into
+   /videos/recipes/ and reference the filename below.
+   ══════════════════════════════════════════════ */
+const recipes = [
+  {
+    slug: 'low-carb-1',
+    cat: 'low', catLabel: 'Low Carb',
+    title: 'Recipe Name',
+    video: '/videos/recipes/low-carb-1.mp4',
+    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
+    serves: 'Serves --',
+    ingredients: ['Ingredient one, with amount', 'Ingredient two, with amount', 'Ingredient three, with amount'],
+    method: ['Step one.', 'Step two.', 'Step three.']
+  },
+  {
+    slug: 'low-carb-2',
+    cat: 'low', catLabel: 'Low Carb',
+    title: 'Recipe Name',
+    video: '/videos/recipes/low-carb-2.mp4',
+    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
+    serves: 'Serves --',
+    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
+    method: ['Step one.', 'Step two.', 'Step three.']
+  },
+  {
+    slug: 'low-carb-3',
+    cat: 'low', catLabel: 'Low Carb',
+    title: 'Recipe Name',
+    video: '/videos/recipes/low-carb-3.mp4',
+    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
+    serves: 'Serves --',
+    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
+    method: ['Step one.', 'Step two.', 'Step three.']
+  },
+  {
+    slug: 'low-carb-4',
+    cat: 'low', catLabel: 'Low Carb',
+    title: 'Recipe Name',
+    video: '/videos/recipes/low-carb-4.mp4',
+    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
+    serves: 'Serves --',
+    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
+    method: ['Step one.', 'Step two.', 'Step three.']
+  },
+  {
+    slug: 'low-carb-5',
+    cat: 'low', catLabel: 'Low Carb',
+    title: 'Recipe Name',
+    video: '/videos/recipes/low-carb-5.mp4',
+    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
+    serves: 'Serves --',
+    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
+    method: ['Step one.', 'Step two.', 'Step three.']
+  },
+  {
+    slug: 'high-carb-1',
+    cat: 'high', catLabel: 'High Carb',
+    title: 'Recipe Name',
+    video: '/videos/recipes/high-carb-1.mp4',
+    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
+    serves: 'Serves --',
+    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
+    method: ['Step one.', 'Step two.', 'Step three.']
+  },
+  {
+    slug: 'high-carb-2',
+    cat: 'high', catLabel: 'High Carb',
+    title: 'Recipe Name',
+    video: '/videos/recipes/high-carb-2.mp4',
+    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
+    serves: 'Serves --',
+    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
+    method: ['Step one.', 'Step two.', 'Step three.']
+  },
+  {
+    slug: 'high-carb-3',
+    cat: 'high', catLabel: 'High Carb',
+    title: 'Recipe Name',
+    video: '/videos/recipes/high-carb-3.mp4',
+    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
+    serves: 'Serves --',
+    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
+    method: ['Step one.', 'Step two.', 'Step three.']
+  },
+  {
+    slug: 'high-carb-4',
+    cat: 'high', catLabel: 'High Carb',
+    title: 'Recipe Name',
+    video: '/videos/recipes/high-carb-4.mp4',
+    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
+    serves: 'Serves --',
+    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
+    method: ['Step one.', 'Step two.', 'Step three.']
+  },
+  {
+    slug: 'high-carb-5',
+    cat: 'high', catLabel: 'High Carb',
+    title: 'Recipe Name',
+    video: '/videos/recipes/high-carb-5.mp4',
+    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
+    serves: 'Serves --',
+    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
+    method: ['Step one.', 'Step two.', 'Step three.']
+  },
+  {
+    slug: 'craving-1',
+    cat: 'craving', catLabel: 'Craving Cutter',
+    title: 'Sweet Tooth Protein Wrap',
+    video: '/videos/recipes/craving-1.mp4',
+    poster: '/images/recipes/craving-1-thumb.jpg',
+    time: '35 min', kcal: '---', protein: '96g', carbs: '--g', fat: '--g',
+    serves: 'Serves 1',
+    ingredientGroups: [
+      { label: 'Wrap', items: ['250g cottage cheese', '2 eggs', '2 tbsp self-raising flour', 'Sweetener (e.g. Splenda), to taste'] },
+      { label: 'Filling', items: ['Greek yogurt', 'Strawberries, diced', 'Squeeze of lemon juice'] }
+    ],
+    method: [
+      'Blend cottage cheese, eggs, flour, and sweetener until smooth batter forms.',
+      'Pour batter onto a lined baking tray, spread thin into a rectangle.',
+      'Bake at 175°C / 350°F for 25 minutes.',
+      'While baking, dice strawberries and toss with a squeeze of lemon juice; fold through Greek yogurt.',
+      'Once baked, spoon the yogurt-strawberry mix along one edge of the flatbread.',
+      'Roll up tightly, then slice in half to serve.'
+    ]
+  },
+  {
+    slug: 'craving-2',
+    cat: 'craving', catLabel: 'Craving Cutter',
+    title: 'Recipe Name',
+    video: '/videos/recipes/craving-2.mp4',
+    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
+    serves: 'Serves --',
+    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
+    method: ['Step one.', 'Step two.', 'Step three.']
+  },
+  {
+    slug: 'craving-3',
+    cat: 'craving', catLabel: 'Craving Cutter',
+    title: 'Recipe Name',
+    video: '/videos/recipes/craving-3.mp4',
+    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
+    serves: 'Serves --',
+    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
+    method: ['Step one.', 'Step two.', 'Step three.']
+  },
+  {
+    slug: 'craving-4',
+    cat: 'craving', catLabel: 'Craving Cutter',
+    title: 'Recipe Name',
+    video: '/videos/recipes/craving-4.mp4',
+    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
+    serves: 'Serves --',
+    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
+    method: ['Step one.', 'Step two.', 'Step three.']
+  },
+  {
+    slug: 'craving-5',
+    cat: 'craving', catLabel: 'Craving Cutter',
+    title: 'Recipe Name',
+    video: '/videos/recipes/craving-5.mp4',
+    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
+    serves: 'Serves --',
+    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
+    method: ['Step one.', 'Step two.', 'Step three.']
+  }
+];
+
+/* RENDER 3 COLUMNS */
+const columnsEl = document.getElementById('categoryColumns');
+const CATS = [
+  { key:'low', label:'Low Carb', sub:'Cut days and fat loss phases' },
+  { key:'high', label:'High Carb', sub:'Training days and lean bulk' },
+  { key:'craving', label:'Craving Cutters', sub:'Snacks that keep you on track' }
+];
+
+function cardHTML(r){
+  const posterAttr = r.poster ? ` poster="${r.poster}"` : '';
+  return `
+    <div class="recipe-card" data-slug="${r.slug}">
+      <div class="recipe-thumb">
+        <span class="cat-tag">${r.catLabel}</span>
+        <video muted playsinline preload="metadata"${posterAttr} src="${r.video}#t=0.5" onerror="this.closest('.recipe-thumb').classList.add('no-video')"></video>
+        <div class="thumb-placeholder">Video coming soon</div>
+        <div class="play-badge"><svg width="42" height="42" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="recipe-info">
+        <h3>${r.title}</h3>
+        <div class="recipe-meta"><span>${r.time}</span><span>${r.kcal} kcal</span></div>
+      </div>
+    </div>`;
+}
+
+function renderColumns(){
+  columnsEl.innerHTML = CATS.map((c, i) => {
+    const items = recipes.filter(r => r.cat === c.key);
+    return `
+      <div class="category-col ${i===0?'active':''}" data-col="${c.key}">
+        <div class="category-col-head">
+          <h2>${c.label}</h2>
+          <p>${c.sub}</p>
+        </div>
+        <div class="category-col-body">
+          ${items.length ? items.map(cardHTML).join('') : '<p style="color:var(--mid);font-size:13px;padding:20px 0">No recipes here yet.</p>'}
+        </div>
+      </div>`;
+  }).join('');
+
+  columnsEl.querySelectorAll('.recipe-card').forEach(card=>{
+    card.addEventListener('click', ()=> showDetail(card.dataset.slug));
+  });
+}
+renderColumns();
+
+/* MOBILE COLUMN TABS */
+const colTabBtns = document.querySelectorAll('.col-tab-btn');
+colTabBtns.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    colTabBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.category-col').forEach(col=>{
+      col.classList.toggle('active', col.dataset.col===btn.dataset.col);
+    });
+  });
+});
+
+/* DETAIL VIEW */
+const browseView = document.getElementById('browseView');
+const detailView = document.getElementById('detailView');
+const heroVideo = document.getElementById('heroVideo');
+const heroBackdrop = document.getElementById('heroBackdrop');
+const playBtn = document.getElementById('playBtn');
+
+window.showDetail = function(slug){
+  const r = recipes.find(x=>x.slug===slug);
+  if(!r) return;
+
+  document.getElementById('detailTitle').textContent = r.title;
+  document.getElementById('mTime').textContent = r.time;
+  document.getElementById('mKcal').textContent = r.kcal;
+  document.getElementById('mProtein').textContent = r.protein;
+  document.getElementById('mCarbs').textContent = r.carbs;
+  document.getElementById('mFat').textContent = r.fat;
+  document.getElementById('mServes').textContent = r.serves;
+  const ingredientsEl = document.getElementById('ingredientsList');
+  if(r.ingredientGroups){
+    ingredientsEl.innerHTML = r.ingredientGroups.map(g => `
+      <li class="ingredient-group-label">${g.label}</li>
+      ${g.items.map(i=>`<li><input type="checkbox"> ${i}</li>`).join('')}
+    `).join('');
+  } else {
+    ingredientsEl.innerHTML = r.ingredients.map(i=>`<li><input type="checkbox"> ${i}</li>`).join('');
+  }
+  document.getElementById('methodList').innerHTML = r.method.map(s=>`<li>${s}</li>`).join('');
+
+  const heroMedia = document.getElementById('heroMedia');
+  heroMedia.classList.remove('no-video');
+  heroVideo.pause();
+  heroVideo.removeAttribute('controls');
+  heroVideo.onerror = function(){ heroMedia.classList.add('no-video'); };
+  if(r.poster){ heroVideo.poster = r.poster; heroBackdrop.poster = r.poster; }
+  else { heroVideo.removeAttribute('poster'); heroBackdrop.removeAttribute('poster'); }
+  heroVideo.src = r.video;
+  heroVideo.load();
+  heroBackdrop.pause();
+  heroBackdrop.src = r.video;
+  heroBackdrop.load();
+  playBtn.classList.remove('hidden');
+
+  browseView.classList.add('hide');
+  detailView.classList.add('show');
+  window.scrollTo({top:0, behavior:'instant'});
+  history.pushState({slug}, '', '#'+slug);
+};
+
+window.showBrowse = function(){
+  heroVideo.pause();
+  heroBackdrop.pause();
+  browseView.classList.remove('hide');
+  detailView.classList.remove('show');
+  window.scrollTo({top:0, behavior:'instant'});
+  history.pushState({}, '', '/recipe/');
+};
+
+window.playHeroVideo = function(){
+  heroVideo.controls = true;
+  heroVideo.play();
+  heroBackdrop.play();
+  playBtn.classList.add('hidden');
+};
+
+/* Deep-link support: /recipe/#slug loads straight into a recipe */
+window.addEventListener('popstate', ()=>{
+  const hash = location.hash.replace('#','');
+  if(hash && recipes.some(r=>r.slug===hash)) showDetail(hash);
+  else showBrowse();
+});
+(function initFromHash(){
+  const hash = location.hash.replace('#','');
+  if(hash && recipes.some(r=>r.slug===hash)) showDetail(hash);
+})();
+
+/* MEAL GUIDE SIGNUP — Formspree emails Kass, he sends the guide manually */
+document.getElementById('mealguideForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('mgName').value.trim();
+  const goal = document.getElementById('mgGoal').value;
+  const email = document.getElementById('mgEmail').value.trim();
+  if(!name || !email) return;
+
+  const btn = document.getElementById('mealguideBtn');
+  const originalHTML = btn.innerHTML;
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  fetch('https://formspree.io/f/xwlkrabo', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify({ 'Full name': name, 'Goal': goal, 'Email': email, 'Requested': 'Meal Guide' })
+  })
+  .then(res=>{
+    if(res.ok){
+      document.getElementById('mealguideBody').style.display='none';
+      document.getElementById('mealguideOk').classList.add('show');
+    } else {
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+    }
+  })
+  .catch(()=>{
+    btn.innerHTML = originalHTML;
+    btn.disabled = false;
+  });
+});
+
+})();
+</script>
+</body>
+</html>
