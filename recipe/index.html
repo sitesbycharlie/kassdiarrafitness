@@ -171,7 +171,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .play-badge svg{filter:drop-shadow(0 2px 8px rgba(0,0,0,.6));transition:transform .2s}
 .recipe-card:hover .play-badge svg{transform:scale(1.15)}
 .recipe-info{padding:14px 14px}
-.recipe-info h3{font-family:var(--f-head);font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.01em;margin-bottom:6px}
+.recipe-info h3{font-family:var(--f-head);font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.01em;margin-bottom:0}
 .recipe-meta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;font-size:10.5px;color:var(--mid);font-family:var(--f-head);letter-spacing:.04em;text-transform:uppercase}
 
 /* MOBILE TABS */
@@ -215,7 +215,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
     border-radius:.5em 0 0 .5em;
   }
   .recipe-info{padding:12px 16px;display:flex;flex-direction:column;justify-content:center;flex:1}
-  .recipe-info h3{font-size:15px;margin-bottom:6px}
+  .recipe-info h3{font-size:15px;margin-bottom:0}
   .recipe-meta{justify-content:flex-start}
   .cat-tag{top:6px;left:6px;transform:none;font-size:9px;padding:3px 7px}
   .play-badge svg{width:26px;height:26px}
@@ -742,7 +742,6 @@ function cardHTML(r){
       </div>
       <div class="recipe-info">
         <h3>${r.title}</h3>
-        <div class="recipe-meta"><span>${r.time}</span><span>${r.kcal} kcal</span></div>
       </div>
     </div>`;
 }
