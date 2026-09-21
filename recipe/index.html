@@ -239,11 +239,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .crumb-inner{max-width:1200px;margin:0 auto;padding:18px 48px}
 .crumb button{
   font-family:var(--f-head);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--fg);background:none;border:none;cursor:pointer;
-  display:inline-flex;align-items:center;gap:8px;padding:8px 4px;min-height:44px;
-  transition:color .2s;
+  color:var(--fg);background:var(--surface);border:1px solid var(--border);cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;padding:10px 20px 10px 16px;min-height:44px;
+  border-radius:40px;
+  transition:color .2s,background .2s,border-color .2s,transform .15s;
 }
-.crumb button:hover{color:var(--accent-bright)}
+.crumb button:hover{color:#fff;background:var(--accent);border-color:var(--accent);transform:translateX(-2px)}
 .crumb button svg{transition:transform .2s}
 .crumb button:hover svg{transform:translateX(-3px)}
 
@@ -251,34 +252,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .hero-media{
   position:relative;border-radius:.8em;overflow:hidden;
   background:var(--surface2);
-  height:min(72vh,640px);
-  display:flex;align-items:center;justify-content:center;
+  width:100%;max-width:380px;aspect-ratio:9/16;
+  margin:0 auto;
+  box-shadow:0 10px 50px rgba(0,0,0,.4),0 0 0 1px rgba(240,238,255,.08);
 }
-.hero-backdrop{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  filter:blur(50px) brightness(.5) saturate(1.2);transform:scale(1.3);
-}
+.hero-backdrop{display:none}
 .hero-fg{
-  position:relative;z-index:1;height:100%;max-width:100%;aspect-ratio:9/16;
-  object-fit:cover;display:block;border-radius:.6em;
-  box-shadow:0 10px 50px rgba(0,0,0,.5),0 0 0 1px rgba(240,238,255,.08);
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;
 }
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.85) 0%,rgba(10,10,10,.1) 40%,transparent 100%);pointer-events:none;z-index:2}
-.hero-caption{position:absolute;left:32px;bottom:28px;right:32px;z-index:3}
-.hero-caption h1{font-family:var(--f-head);font-weight:900;font-size:clamp(28px,5vw,48px);text-transform:uppercase;line-height:.98;color:#fff}
+.hero-caption{position:absolute;left:24px;bottom:22px;right:24px;z-index:3}
+.hero-caption h1{font-family:var(--f-head);font-weight:900;font-size:clamp(22px,5vw,32px);text-transform:uppercase;line-height:1;color:#fff}
 .play-btn-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(10,10,10,.55);border:1px solid rgba(240,238,255,.25);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s,background .2s;z-index:4}
 .play-btn-overlay:hover{transform:translate(-50%,-50%) scale(1.08);background:var(--accent)}
 .play-btn-overlay.hidden{display:none}
 .hero-media.no-video .hero-placeholder{display:flex}
 .hero-media .hero-placeholder{position:absolute;inset:0;display:none;align-items:center;justify-content:center;color:var(--mid);font-family:var(--f-head);text-transform:uppercase;letter-spacing:.05em;font-size:13px;background:var(--surface2);z-index:1}
-.hero-media.no-video .hero-backdrop,.hero-media.no-video .hero-fg,.hero-media.no-video .play-btn-overlay{display:none}
+.hero-media.no-video .hero-fg,.hero-media.no-video .play-btn-overlay{display:none}
 
-.macro-bar{max-width:1200px;margin:28px auto 0;padding:0 48px;display:flex;gap:14px;flex-wrap:wrap}
-.macro-pill{flex:1;min-width:100px;background:var(--surface);border:1px solid var(--border);border-radius:.5em;padding:14px 16px;text-align:center}
-.macro-pill .num{display:block;font-family:var(--f-head);font-weight:800;font-size:22px;color:var(--accent-bright)}
-.macro-pill .lbl{font-size:11px;color:var(--mid);letter-spacing:.05em;text-transform:uppercase;font-family:var(--f-head)}
-
-.recipe-body{max-width:1200px;margin:0 auto;padding:56px 48px 100px;display:grid;grid-template-columns:320px 1fr;gap:56px;align-items:start}
+.recipe-body{max-width:1200px;margin:0 auto;padding:56px 48px 48px;display:grid;grid-template-columns:320px 1fr;gap:56px;align-items:start}
 .ingredients-panel{background:var(--surface);border:1px solid var(--border);border-radius:.6em;padding:28px;position:sticky;top:88px}
 .ingredients-panel h2{font-family:var(--f-head);font-weight:800;font-size:20px;text-transform:uppercase;margin-bottom:6px}
 .serves-note{font-size:12px;color:var(--mid);margin-bottom:20px}
@@ -294,28 +287,47 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .ingredient-group-label:first-child{padding-top:0!important}
 
 .method-panel h2{font-family:var(--f-head);font-weight:800;font-size:20px;text-transform:uppercase;margin-bottom:22px}
+
+.next-recipe{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  max-width:1200px;margin:0 auto 80px;padding:24px 32px;
+  background:linear-gradient(135deg,var(--surface) 0%,var(--surface2) 100%);
+  border:1px solid rgba(157,92,255,.3);border-radius:.8em;
+  cursor:pointer;width:calc(100% - 96px);
+  box-shadow:0 0 24px rgba(124,58,237,.08);
+  transition:border-color .2s,box-shadow .2s,transform .15s;
+}
+.next-recipe:hover{border-color:rgba(157,92,255,.6);box-shadow:0 0 32px rgba(124,58,237,.18);transform:translateY(-2px)}
+.next-recipe-label{
+  font-family:var(--f-head);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent-bright);flex-shrink:0;
+}
+.next-recipe-title{
+  font-family:var(--f-head);font-weight:900;font-size:22px;text-transform:uppercase;
+  color:var(--fg);flex:1;text-align:left;margin-left:20px;
+}
+.next-recipe svg{color:var(--accent-bright);flex-shrink:0;transition:transform .2s}
+.next-recipe:hover svg{transform:translateX(5px)}
 .method-list{list-style:none;counter-reset:step}
 .method-list li{counter-increment:step;display:grid;grid-template-columns:40px 1fr;gap:16px;margin-bottom:26px;font-size:15px;line-height:1.65}
 .method-list li::before{content:counter(step);font-family:var(--f-head);font-weight:900;font-size:18px;color:#fff;background:var(--accent);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(124,58,237,.35)}
 
 @media(max-width:900px){
-  .recipe-body{grid-template-columns:1fr;padding:40px 20px 70px;gap:36px}
+  .recipe-body{grid-template-columns:1fr;padding:40px 20px 40px;gap:36px}
   .ingredients-panel{position:static}
   .crumb-inner{padding:14px 20px}
   .recipe-hero{padding:0 20px}
-  .hero-media{height:min(65vh,560px)}
-  .macro-bar{padding:0 20px}
+  .hero-media{max-width:300px}
+  .next-recipe{width:calc(100% - 40px);margin:0 auto 60px;padding:20px 22px;flex-wrap:wrap}
+  .next-recipe-title{font-size:18px;margin-left:14px}
 }
 
 @media(max-width:1024px) and (min-width:901px){
   .recipe-body{grid-template-columns:260px 1fr;gap:36px;padding:48px 32px 90px}
   .recipe-hero{padding:0 32px}
-  .macro-bar{padding:0 32px}
 }
 
 @media(max-width:480px){
-  .macro-pill{min-width:calc(50% - 7px)}
-  .macro-bar{gap:10px}
   .hero-caption{left:20px;bottom:20px;right:20px}
   .crumb button,.play-btn-overlay{min-height:44px}
 }
@@ -440,7 +452,6 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
   <section class="recipe-hero">
     <div class="hero-media" id="heroMedia">
       <div class="hero-placeholder">Video coming soon</div>
-      <video class="hero-backdrop" id="heroBackdrop" muted playsinline preload="metadata" aria-hidden="true"></video>
       <video class="hero-fg" id="heroVideo" playsinline preload="metadata"></video>
       <div class="hero-overlay"></div>
       <div class="play-btn-overlay" id="playBtn" onclick="playHeroVideo()">
@@ -451,14 +462,6 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
       </div>
     </div>
   </section>
-
-  <div class="macro-bar">
-    <div class="macro-pill"><span class="num" id="mTime">-</span><span class="lbl">Time</span></div>
-    <div class="macro-pill"><span class="num" id="mKcal">-</span><span class="lbl">Kcal</span></div>
-    <div class="macro-pill"><span class="num" id="mProtein">-</span><span class="lbl">Protein</span></div>
-    <div class="macro-pill"><span class="num" id="mCarbs">-</span><span class="lbl">Carbs</span></div>
-    <div class="macro-pill"><span class="num" id="mFat">-</span><span class="lbl">Fat</span></div>
-  </div>
 
   <div class="recipe-body">
     <aside class="ingredients-panel">
@@ -471,6 +474,12 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
       <ol class="method-list" id="methodList"></ol>
     </div>
   </div>
+
+  <button class="next-recipe" id="nextRecipeBtn">
+    <span class="next-recipe-label">Up Next</span>
+    <span class="next-recipe-title" id="nextRecipeTitle">Recipe Name</span>
+    <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
 </div>
 
 <footer>
@@ -783,7 +792,6 @@ colTabBtns.forEach(btn=>{
 const browseView = document.getElementById('browseView');
 const detailView = document.getElementById('detailView');
 const heroVideo = document.getElementById('heroVideo');
-const heroBackdrop = document.getElementById('heroBackdrop');
 const playBtn = document.getElementById('playBtn');
 
 window.showDetail = function(slug){
@@ -791,11 +799,6 @@ window.showDetail = function(slug){
   if(!r) return;
 
   document.getElementById('detailTitle').textContent = r.title;
-  document.getElementById('mTime').textContent = r.time;
-  document.getElementById('mKcal').textContent = r.kcal;
-  document.getElementById('mProtein').textContent = r.protein;
-  document.getElementById('mCarbs').textContent = r.carbs;
-  document.getElementById('mFat').textContent = r.fat;
   document.getElementById('mServes').textContent = r.serves;
   const ingredientsEl = document.getElementById('ingredientsList');
   if(r.ingredientGroups){
@@ -813,34 +816,34 @@ window.showDetail = function(slug){
   heroVideo.pause();
   heroVideo.removeAttribute('controls');
   heroVideo.onerror = function(){ heroMedia.classList.add('no-video'); };
-  if(r.poster){ heroVideo.poster = r.poster; heroBackdrop.poster = r.poster; }
-  else { heroVideo.removeAttribute('poster'); heroBackdrop.removeAttribute('poster'); }
+  if(r.poster){ heroVideo.poster = r.poster; }
+  else { heroVideo.removeAttribute('poster'); }
   heroVideo.src = r.video;
   heroVideo.load();
-  heroBackdrop.pause();
-  heroBackdrop.src = r.video;
-  heroBackdrop.load();
   playBtn.classList.remove('hidden');
+
+  const currentIndex = recipes.findIndex(x=>x.slug===slug);
+  const next = recipes[(currentIndex + 1) % recipes.length];
+  document.getElementById('nextRecipeTitle').textContent = next.title;
+  document.getElementById('nextRecipeBtn').onclick = function(){ showDetail(next.slug); };
 
   browseView.classList.add('hide');
   detailView.classList.add('show');
   window.scrollTo({top:0, behavior:'instant'});
-  history.pushState({slug}, '', '#'+slug);
+  try { history.pushState({slug}, '', '#'+slug); } catch(e) {}
 };
 
 window.showBrowse = function(){
   heroVideo.pause();
-  heroBackdrop.pause();
   browseView.classList.remove('hide');
   detailView.classList.remove('show');
   window.scrollTo({top:0, behavior:'instant'});
-  history.pushState({}, '', '/recipe/');
+  try { history.pushState({}, '', '/recipe/'); } catch(e) {}
 };
 
 window.playHeroVideo = function(){
   heroVideo.controls = true;
   heroVideo.play();
-  heroBackdrop.play();
   playBtn.classList.add('hidden');
 };
 
