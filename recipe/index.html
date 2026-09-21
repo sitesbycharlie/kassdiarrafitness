@@ -174,6 +174,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .recipe-info h3{font-family:var(--f-head);font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.01em;margin-bottom:0}
 .recipe-meta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;font-size:10.5px;color:var(--mid);font-family:var(--f-head);letter-spacing:.04em;text-transform:uppercase}
 
+.coming-soon-card{
+  width:100%;max-width:220px;
+  border:1.5px dashed var(--border);border-radius:.6em;
+  padding:32px 20px;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  text-align:center;color:var(--mid);
+}
+.coming-soon-icon{color:var(--accent-bright);opacity:.7}
+.coming-soon-card p{font-family:var(--f-head);font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;line-height:1.4}
+
 /* MOBILE TABS */
 .col-tabs{display:none;gap:10px;padding:0 20px 20px;overflow-x:auto;position:sticky;top:68px;background:var(--bg);z-index:20}
 .col-tab-btn{flex:0 0 auto;padding:12px 20px;min-height:44px;border-radius:.4em;border:1px solid var(--border);background:var(--surface);color:var(--fg);font-family:var(--f-head);font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:13px;cursor:pointer}
@@ -219,6 +229,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
   .recipe-meta{justify-content:flex-start}
   .cat-tag{top:6px;left:6px;transform:none;font-size:9px;padding:3px 7px}
   .play-badge svg{width:26px;height:26px}
+  .coming-soon-card{max-width:100%;padding:20px}
 }
 @keyframes video-glow{
   0%,100%{box-shadow:0 0 0 1px rgba(157,92,255,.2),0 0 12px rgba(124,58,237,.35),0 0 22px rgba(124,58,237,.15),inset 0 0 14px rgba(124,58,237,.05);border-color:rgba(157,92,255,.5)}
@@ -739,6 +750,10 @@ const CATS = [
   { key:'craving', label:'Craving Cutters', sub:'Snacks that keep you on track' }
 ];
 
+/* Only recipes with real content are shown — placeholders stay hidden
+   until filled in, so the page never shows empty "coming soon" cards. */
+const readyRecipes = recipes.filter(r => r.title !== 'Recipe Name');
+
 function cardHTML(r){
   const posterAttr = r.poster ? ` poster="${r.poster}"` : '';
   return `
@@ -755,9 +770,19 @@ function cardHTML(r){
     </div>`;
 }
 
+function moreComingSoonHTML(){
+  return `
+    <div class="coming-soon-card">
+      <div class="coming-soon-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <p>More recipes<br>coming soon</p>
+    </div>`;
+}
+
 function renderColumns(){
   columnsEl.innerHTML = CATS.map((c, i) => {
-    const items = recipes.filter(r => r.cat === c.key);
+    const items = readyRecipes.filter(r => r.cat === c.key);
     return `
       <div class="category-col ${i===0?'active':''}" data-col="${c.key}">
         <div class="category-col-head">
@@ -765,7 +790,8 @@ function renderColumns(){
           <p>${c.sub}</p>
         </div>
         <div class="category-col-body">
-          ${items.length ? items.map(cardHTML).join('') : '<p style="color:var(--mid);font-size:13px;padding:20px 0">No recipes here yet.</p>'}
+          ${items.map(cardHTML).join('')}
+          ${moreComingSoonHTML()}
         </div>
       </div>`;
   }).join('');
@@ -822,8 +848,8 @@ window.showDetail = function(slug){
   heroVideo.load();
   playBtn.classList.remove('hidden');
 
-  const currentIndex = recipes.findIndex(x=>x.slug===slug);
-  const next = recipes[(currentIndex + 1) % recipes.length];
+  const currentIndex = readyRecipes.findIndex(x=>x.slug===slug);
+  const next = readyRecipes[(currentIndex + 1) % readyRecipes.length];
   document.getElementById('nextRecipeTitle').textContent = next.title;
   document.getElementById('nextRecipeBtn').onclick = function(){ showDetail(next.slug); };
 
