@@ -561,12 +561,22 @@ const recipes = [
   {
     slug: 'low-carb-3',
     cat: 'low', catLabel: 'Low Carb',
-    title: 'Recipe Name',
+    title: 'Low Carb Buns',
     video: '/videos/recipes/low-carb-3.mp4',
-    time: '-- min', kcal: '---', protein: '--g', carbs: '--g', fat: '--g',
-    serves: 'Serves --',
-    ingredients: ['Ingredient one', 'Ingredient two', 'Ingredient three'],
-    method: ['Step one.', 'Step two.', 'Step three.']
+    poster: '/images/recipes/low-carb-3-thumb.jpg',
+    time: '35 min', kcal: '---', protein: '30g+', carbs: 'Under 3g', fat: '--g',
+    serves: '3 servings (6 buns)',
+    ingredientGroups: [
+      { label: 'Buns', items: ['500g liquid egg whites', '1-2 egg yolks (for the bases)'] },
+      { label: 'Filling', items: ['3 slices high-protein cheese', '3 slices corned beef', '50g avocado', 'Hot sauce, to taste'] }
+    ],
+    method: [
+      'Brush the egg yolk discs onto a parchment-lined baking tray to form the bun bases.',
+      'Whip the 500g egg whites to stiff peaks.',
+      'Portion the whipped whites into 6 bun shapes over the yolk discs.',
+      'Bake at 175°C for 20 minutes.',
+      'Assemble the sandwiches with cheese, corned beef, avocado, and hot sauce.'
+    ]
   },
   {
     slug: 'low-carb-4',
