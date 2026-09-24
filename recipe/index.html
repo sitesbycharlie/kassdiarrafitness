@@ -290,8 +290,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;display:block;
 }
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.85) 0%,rgba(10,10,10,.1) 40%,transparent 100%);pointer-events:none;z-index:2}
-.hero-caption{position:absolute;left:24px;bottom:22px;right:24px;z-index:3}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.85) 0%,rgba(10,10,10,.1) 40%,transparent 100%);pointer-events:none;z-index:2;transition:opacity .2s}
+.hero-caption{position:absolute;left:24px;bottom:22px;right:24px;z-index:3;transition:opacity .2s}
+.hero-media.playing .hero-overlay,
+.hero-media.playing .hero-caption{
+  opacity:0;pointer-events:none;
+}
 .hero-caption h1{font-family:var(--f-head);font-weight:900;font-size:clamp(22px,5vw,32px);text-transform:uppercase;line-height:1;color:#fff}
 .play-btn-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(10,10,10,.55);border:1px solid rgba(240,238,255,.25);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s,background .2s;z-index:4}
 .play-btn-overlay:hover{transform:translate(-50%,-50%) scale(1.08);background:var(--accent)}
@@ -959,6 +963,7 @@ window.showDetail = function(slug){
 
   const heroMedia = document.getElementById('heroMedia');
   heroMedia.classList.remove('no-video');
+  heroMedia.classList.remove('playing');
   heroVideo.pause();
   heroVideo.removeAttribute('controls');
   heroVideo.onerror = function(){ heroMedia.classList.add('no-video'); };
@@ -1037,7 +1042,18 @@ window.playHeroVideo = function(){
   heroVideo.controls = true;
   heroVideo.play();
   playBtn.classList.add('hidden');
+  document.getElementById('heroMedia').classList.add('playing');
 };
+
+heroVideo.addEventListener('pause', ()=>{
+  document.getElementById('heroMedia').classList.remove('playing');
+});
+heroVideo.addEventListener('play', ()=>{
+  document.getElementById('heroMedia').classList.add('playing');
+});
+heroVideo.addEventListener('ended', ()=>{
+  document.getElementById('heroMedia').classList.remove('playing');
+});
 
 /* Deep-link support: /nutrition/#slug loads straight into a recipe */
 window.addEventListener('popstate', ()=>{
