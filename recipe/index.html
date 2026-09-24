@@ -146,13 +146,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
   overflow:hidden;box-shadow:0 0 24px rgba(124,58,237,.08);
 }
 .cat-flow-wrap .flow-item{
-  height:130px;background-size:cover;background-position:center;
+  height:130px;background:var(--bg);
   position:relative;z-index:1;
   transition:box-shadow .35s ease;
 }
-.cat-flow-wrap .flow-item-link{font-size:clamp(24px,4vw,36px);color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.cat-flow-wrap .flow-item-link{font-size:clamp(24px,4vw,36px);color:var(--fg)}
 .cat-flow-wrap .flow-marquee-part span{font-size:clamp(24px,4vw,36px)}
-.cat-flow-wrap .flow-item.active .flow-item-link{color:var(--accent-bright);text-shadow:none}
+.cat-flow-wrap .flow-item.active .flow-item-link{color:var(--accent-bright)}
 .cat-flow-wrap .flow-item.active{box-shadow:inset 0 0 0 2px rgba(157,92,255,.7)}
 
 .cat-flow-wrap .flow-item.kb-glow{
@@ -374,10 +374,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
   white-space:nowrap;text-transform:uppercase;font-weight:900;
   font-family:var(--f-head);font-size:clamp(18px,3vw,26px);line-height:1;
   padding:0 24px;color:#fff;
-}
-.flow-marquee-img{
-  width:80px;height:52px;margin:0 16px;border-radius:8px;
-  background-size:cover;background-position:center;flex-shrink:0;
 }
 @media(hover:none){
   .flow-marquee{display:none}
@@ -871,19 +867,13 @@ function moreComingSoonHTML(){
 let activeCat = null;
 
 function catFlowItemHTML(c){
-  const sample = readyRecipes.find(r => r.cat === c.key && r.poster);
-  const imgStyle = sample ? `background-image:url('${sample.poster}')` : `background:var(--surface2)`;
-  const rowBg = sample
-    ? `background-image:linear-gradient(100deg, rgba(10,10,10,.82) 20%, rgba(10,10,10,.45) 100%), url('${sample.poster}')`
-    : `background:var(--surface2)`;
   const parts = Array.from({length:8}).map(()=>`
     <div class="flow-marquee-part">
       <span>${c.label}</span>
-      <div class="flow-marquee-img" style="${imgStyle}"></div>
     </div>
   `).join('');
   return `
-    <div class="flow-item" data-cat="${c.key}" style="${rowBg}">
+    <div class="flow-item" data-cat="${c.key}">
       <a class="flow-item-link" href="#">${c.label}</a>
       <div class="flow-marquee">
         <div class="flow-marquee-inner-wrap">
