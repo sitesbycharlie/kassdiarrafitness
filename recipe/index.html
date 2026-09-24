@@ -229,22 +229,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
   .cat-flow-wrap .flow-item{height:84px}
   .category-results{padding:0 20px 70px}
   .results-grid{
-    display:flex;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;
-    scroll-snap-type:x mandatory;gap:16px;justify-content:flex-start;
-    padding:2px 2px 10px;margin:0 -2px;
-    scrollbar-width:none;
+    grid-template-columns:repeat(2,1fr);gap:12px;
+    justify-items:stretch;
   }
-  .results-grid::-webkit-scrollbar{display:none}
   .results-grid .recipe-card,
   .results-grid .coming-soon-card{
-    flex:0 0 auto;width:170px;scroll-snap-align:start;
+    width:100%;max-width:100%;
   }
+  .recipe-info{padding:10px 10px}
+  .recipe-info h3{font-size:12.5px;line-height:1.25}
+  .cat-tag{font-size:8.5px;padding:3px 7px}
+  .play-badge svg{width:30px;height:30px}
+  .coming-soon-card{padding:22px 14px}
+  .coming-soon-card p{font-size:11px}
 }
 
-@media(max-width:400px){
-  .recipe-info{padding:14px 16px}
-  .recipe-info h3{font-size:16px}
-}
 /* ── DETAIL VIEW ── */
 #detailView{display:none;padding-top:68px}
 #detailView.show{display:block}
