@@ -139,24 +139,51 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
   .mealguide-form .f-input,.mealguide-form .f-select{font-size:16px}
 }
 
-/* FILTER BAR (kept but hidden by default now columns replace it — leave CSS for later) */
-.filter-bar{display:none}
+/* CATEGORY FLOWING MENU */
+.cat-flow-section{max-width:760px;margin:0 auto 56px;padding:0 48px}
+.cat-flow-wrap{
+  background:var(--surface);border:1px solid rgba(157,92,255,.3);border-radius:.8em;
+  overflow:hidden;box-shadow:0 0 24px rgba(124,58,237,.08);
+}
+.cat-flow-wrap .flow-item{
+  height:130px;background-size:cover;background-position:center;
+  position:relative;z-index:1;
+  transition:box-shadow .35s ease;
+}
+.cat-flow-wrap .flow-item-link{font-size:clamp(24px,4vw,36px);color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.cat-flow-wrap .flow-marquee-part span{font-size:clamp(24px,4vw,36px)}
+.cat-flow-wrap .flow-item.active .flow-item-link{color:var(--accent-bright);text-shadow:none}
+.cat-flow-wrap .flow-item.active{box-shadow:inset 0 0 0 2px rgba(157,92,255,.7)}
 
-/* 3-COLUMN LAYOUT */
-.category-columns{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
-  background:var(--border);border:1px solid var(--border);
-  max-width:1300px;margin:0 auto 100px;
+.cat-flow-wrap .flow-item.kb-glow{
+  box-shadow:0 0 34px rgba(157,92,255,.55),inset 0 0 0 1px rgba(157,92,255,.35);
+  z-index:2;
 }
-.category-col{background:var(--bg);padding:0 0 32px}
-.category-col-head{
-  padding:28px 24px 20px;border-bottom:2px solid var(--accent);
-  position:sticky;top:68px;background:var(--bg);z-index:10;
-  text-align:center;
+.cat-flow-wrap .flow-item.active.kb-glow{
+  box-shadow:0 0 38px rgba(157,92,255,.6),inset 0 0 0 2px rgba(157,92,255,.85);
 }
-.category-col-head h2{font-family:var(--f-head);font-weight:900;font-size:24px;text-transform:uppercase;letter-spacing:.01em}
-.category-col-head p{color:var(--mid);font-size:12px;margin-top:4px}
-.category-col-body{padding:20px 20px 0;display:flex;flex-direction:column;align-items:center;gap:18px}
+@media(hover:hover){
+  .cat-flow-wrap .flow-item:hover{
+    box-shadow:0 0 34px rgba(157,92,255,.55),inset 0 0 0 1px rgba(157,92,255,.35);
+    z-index:2;
+  }
+  .cat-flow-wrap .flow-item.active:hover{
+    box-shadow:0 0 38px rgba(157,92,255,.6),inset 0 0 0 2px rgba(157,92,255,.85);
+  }
+}
+
+.category-results{max-width:1300px;margin:0 auto;padding:0 48px 100px}
+.results-placeholder{
+  text-align:center;color:var(--mid);padding:50px 20px;
+  font-family:var(--f-head);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:14px;
+}
+.results-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,220px));gap:24px;
+  justify-items:center;justify-content:center;
+  opacity:0;transform:translateY(14px);
+  transition:opacity .45s ease,transform .45s ease;
+}
+.results-grid.show{opacity:1;transform:none}
 
 .recipe-card{background:var(--surface);border:1px solid var(--border);border-radius:.6em;overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;width:100%;max-width:220px;text-align:center}
 .recipe-card:hover{transform:translateY(-4px);border-color:rgba(157,92,255,.4);box-shadow:0 8px 28px rgba(124,58,237,.18)}
@@ -184,32 +211,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .coming-soon-icon{color:var(--accent-bright);opacity:.7}
 .coming-soon-card p{font-family:var(--f-head);font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;line-height:1.4}
 
-/* MOBILE TABS */
-.col-tabs{display:none;gap:10px;padding:0 20px 20px;overflow-x:auto;position:sticky;top:68px;background:var(--bg);z-index:20}
-.col-tab-btn{flex:0 0 auto;padding:12px 20px;min-height:44px;border-radius:.4em;border:1px solid var(--border);background:var(--surface);color:var(--fg);font-family:var(--f-head);font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:13px;cursor:pointer}
-.col-tab-btn.active{background:var(--accent);border-color:var(--accent)}
-
-.empty-state{text-align:center;padding:60px 20px;color:var(--mid);display:none}
-.empty-state.show{display:block}
-
 @media(max-width:1024px){
-  .category-columns{gap:1px;max-width:100%;margin:0 20px 80px;width:auto}
   .page-hero{padding:130px 32px 32px}
   .mealguide-section{padding:0 32px}
+  .cat-flow-section{padding:0 32px}
+  .category-results{padding:0 32px 90px}
 }
 
 @media(max-width:720px){
   .page-hero{padding:110px 20px 24px}
   .mealguide-section{padding:0 20px}
-  .category-columns{grid-template-columns:1fr;max-width:100%;gap:0;border:none;background:none;margin:0}
-  .category-col{display:none;border-bottom:1px solid var(--border)}
-  .category-col.active{display:block}
-  .category-col-head{top:0}
-  .col-tabs{display:flex;top:56px}
+  .cat-flow-section{padding:0 20px;margin-bottom:36px}
+  .cat-flow-wrap .flow-item{height:84px}
+  .category-results{padding:0 20px 70px}
+  .results-grid{grid-template-columns:1fr;gap:16px}
 }
 
 @media(max-width:400px){
-  .category-col-body{padding:16px 16px 0}
   .recipe-info{padding:14px 16px}
   .recipe-info h3{font-size:16px}
 }
@@ -299,26 +317,72 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 
 .method-panel h2{font-family:var(--f-head);font-weight:800;font-size:20px;text-transform:uppercase;margin-bottom:22px}
 
+.recipe-nav-pair{
+  display:flex;gap:16px;flex-wrap:wrap;
+  max-width:1200px;margin:0 auto 80px;padding:0 48px;
+}
 .next-recipe{
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
-  max-width:1200px;margin:0 auto 80px;padding:24px 32px;
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  flex:1 1 260px;padding:22px 24px;
   background:linear-gradient(135deg,var(--surface) 0%,var(--surface2) 100%);
   border:1px solid rgba(157,92,255,.3);border-radius:.8em;
-  cursor:pointer;width:calc(100% - 96px);
+  cursor:pointer;
   box-shadow:0 0 24px rgba(124,58,237,.08);
   transition:border-color .2s,box-shadow .2s,transform .15s;
 }
 .next-recipe:hover{border-color:rgba(157,92,255,.6);box-shadow:0 0 32px rgba(124,58,237,.18);transform:translateY(-2px)}
+.next-recipe-text{display:flex;flex-direction:column;text-align:left}
 .next-recipe-label{
   font-family:var(--f-head);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--accent-bright);flex-shrink:0;
+  color:var(--accent-bright);
 }
 .next-recipe-title{
-  font-family:var(--f-head);font-weight:900;font-size:22px;text-transform:uppercase;
-  color:var(--fg);flex:1;text-align:left;margin-left:20px;
+  font-family:var(--f-head);font-weight:900;font-size:20px;text-transform:uppercase;
+  color:var(--fg);
 }
 .next-recipe svg{color:var(--accent-bright);flex-shrink:0;transition:transform .2s}
 .next-recipe:hover svg{transform:translateX(5px)}
+.prev-recipe:hover svg{transform:translateX(-5px)}
+
+/* ── FLOWING MENU — shared mechanics, used by the category selector ── */
+.flow-item{
+  position:relative;overflow:hidden;border-top:1px solid var(--border);
+  height:76px;
+}
+.flow-item:first-child{border-top:none}
+.flow-item-link{
+  display:flex;align-items:center;justify-content:center;height:100%;
+  position:relative;z-index:1;cursor:pointer;
+  font-family:var(--f-head);font-weight:900;font-size:clamp(18px,3vw,26px);
+  text-transform:uppercase;color:var(--fg);text-decoration:none;
+  transition:color .2s;
+}
+.flow-item-link:focus-visible{
+  outline:2px solid var(--accent-bright);outline-offset:-4px;
+  border-radius:.3em;
+}
+.flow-marquee{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  overflow:hidden;pointer-events:none;z-index:2;
+  background:var(--accent);
+  transform:translate3d(0,101%,0);
+}
+.flow-marquee-inner-wrap{height:100%;width:100%;overflow:hidden}
+.flow-marquee-inner{display:flex;align-items:center;position:relative;height:100%;width:max-content;will-change:transform}
+.flow-marquee-part{display:flex;align-items:center;flex-shrink:0}
+.flow-marquee-part span{
+  white-space:nowrap;text-transform:uppercase;font-weight:900;
+  font-family:var(--f-head);font-size:clamp(18px,3vw,26px);line-height:1;
+  padding:0 24px;color:#fff;
+}
+.flow-marquee-img{
+  width:80px;height:52px;margin:0 16px;border-radius:8px;
+  background-size:cover;background-position:center;flex-shrink:0;
+}
+@media(hover:none){
+  .flow-marquee{display:none}
+}
+
 .method-list{list-style:none;counter-reset:step}
 .method-list li{counter-increment:step;display:grid;grid-template-columns:40px 1fr;gap:16px;margin-bottom:26px;font-size:15px;line-height:1.65}
 .method-list li::before{content:counter(step);font-family:var(--f-head);font-weight:900;font-size:18px;color:#fff;background:var(--accent);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(124,58,237,.35)}
@@ -329,8 +393,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
   .crumb-inner{padding:14px 20px}
   .recipe-hero{padding:0 20px}
   .hero-media{max-width:300px}
-  .next-recipe{width:calc(100% - 40px);margin:0 auto 60px;padding:20px 22px;flex-wrap:wrap}
-  .next-recipe-title{font-size:18px;margin-left:14px}
+  .recipe-nav-pair{flex-direction:column;padding:0 20px;margin-bottom:60px;gap:12px}
+  .next-recipe{flex:1 1 auto;padding:18px 20px}
+  .next-recipe-title{font-size:17px}
 }
 
 @media(max-width:1024px) and (min-width:901px){
@@ -368,13 +433,14 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
   .ig-shimmer{background:none;-webkit-text-fill-color:unset;color:var(--accent-bright)!important;animation:none;filter:none}
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
 
 <div class="nav-drawer" id="navDrawer">
   <a href="/" onclick="closeDrawer()">Home</a>
   <a href="/programme/" onclick="closeDrawer()">Programme</a>
-  <a href="/recipe/" onclick="closeDrawer()">Nutrition</a>
+  <a href="/nutrition/" onclick="closeDrawer()">Nutrition</a>
   <a href="/#train" class="drawer-cta" onclick="closeDrawer(); scrollToForm(event)">Achieve Your Goals</a>
 </div>
 
@@ -383,7 +449,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
   <div class="nav-links">
     <a href="/" class="nav-programme">Home</a>
     <a href="/programme/" class="nav-programme">Programme</a>
-    <a href="/recipe/" class="active">Nutrition</a>
+    <a href="/nutrition/" class="active">Nutrition</a>
     <a href="/#train" class="nav-cta" onclick="scrollToForm(event)">Achieve Your Goals</a>
   </div>
   <button class="nav-burger" id="burger" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -439,13 +505,14 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
     </div>
   </section>
 
-  <div class="col-tabs" id="colTabs">
-    <button class="col-tab-btn active" data-col="low">Low Carb</button>
-    <button class="col-tab-btn" data-col="high">High Carb</button>
-    <button class="col-tab-btn" data-col="craving">Craving Cutters</button>
-  </div>
+  <section class="cat-flow-section">
+    <div class="flow-menu-wrap cat-flow-wrap" id="catFlowWrap"></div>
+  </section>
 
-  <div class="category-columns" id="categoryColumns"></div>
+  <div class="category-results" id="categoryResults">
+    <p class="results-placeholder" id="resultsPlaceholder">Pick a category above to see the recipes.</p>
+    <div class="results-grid" id="resultsGrid"></div>
+  </div>
 
 </div>
 
@@ -486,11 +553,22 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
     </div>
   </div>
 
-  <button class="next-recipe" id="nextRecipeBtn">
-    <span class="next-recipe-label">Up Next</span>
-    <span class="next-recipe-title" id="nextRecipeTitle">Recipe Name</span>
-    <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
+  <div class="recipe-nav-pair">
+    <button class="next-recipe prev-recipe" id="prevRecipeBtn">
+      <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M15 9H3M8 4L3 9l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="next-recipe-text">
+        <span class="next-recipe-label">Previous</span>
+        <span class="next-recipe-title" id="prevRecipeTitle">Recipe Name</span>
+      </span>
+    </button>
+    <button class="next-recipe" id="nextRecipeBtn">
+      <span class="next-recipe-text">
+        <span class="next-recipe-label">Up Next</span>
+        <span class="next-recipe-title" id="nextRecipeTitle">Recipe Name</span>
+      </span>
+      <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
 </div>
 
 <footer>
@@ -704,7 +782,7 @@ const recipes = [
   {
     slug: 'craving-3',
     cat: 'craving', catLabel: 'Craving Cutter',
-    title: 'Blue Waffle',
+    title: 'Blue Protein Waffles',
     video: '/videos/recipes/craving-3.mp4',
     poster: '/images/recipes/craving-3-thumb.jpg',
     time: '15 min', kcal: '470', protein: '45g', carbs: '42g', fat: '12g',
@@ -753,11 +831,10 @@ const recipes = [
 ];
 
 /* RENDER 3 COLUMNS */
-const columnsEl = document.getElementById('categoryColumns');
 const CATS = [
-  { key:'low', label:'Low Carb', sub:'Cut days and fat loss phases' },
-  { key:'high', label:'High Carb', sub:'Training days and lean bulk' },
-  { key:'craving', label:'Craving Cutters', sub:'Snacks that keep you on track' }
+  { key:'low', label:'Low Carb' },
+  { key:'high', label:'High Carb' },
+  { key:'craving', label:'Craving Cutters' }
 ];
 
 /* Only recipes with real content are shown — placeholders stay hidden
@@ -790,39 +867,82 @@ function moreComingSoonHTML(){
     </div>`;
 }
 
-function renderColumns(){
-  columnsEl.innerHTML = CATS.map((c, i) => {
-    const items = readyRecipes.filter(r => r.cat === c.key);
-    return `
-      <div class="category-col ${i===0?'active':''}" data-col="${c.key}">
-        <div class="category-col-head">
-          <h2>${c.label}</h2>
-          <p>${c.sub}</p>
-        </div>
-        <div class="category-col-body">
-          ${items.map(cardHTML).join('')}
-          ${moreComingSoonHTML()}
-        </div>
-      </div>`;
-  }).join('');
+/* CATEGORY FLOWING MENU */
+let activeCat = null;
 
-  columnsEl.querySelectorAll('.recipe-card').forEach(card=>{
-    card.addEventListener('click', ()=> showDetail(card.dataset.slug));
+function catFlowItemHTML(c){
+  const sample = readyRecipes.find(r => r.cat === c.key && r.poster);
+  const imgStyle = sample ? `background-image:url('${sample.poster}')` : `background:var(--surface2)`;
+  const rowBg = sample
+    ? `background-image:linear-gradient(100deg, rgba(10,10,10,.82) 20%, rgba(10,10,10,.45) 100%), url('${sample.poster}')`
+    : `background:var(--surface2)`;
+  const parts = Array.from({length:8}).map(()=>`
+    <div class="flow-marquee-part">
+      <span>${c.label}</span>
+      <div class="flow-marquee-img" style="${imgStyle}"></div>
+    </div>
+  `).join('');
+  return `
+    <div class="flow-item" data-cat="${c.key}" style="${rowBg}">
+      <a class="flow-item-link" href="#">${c.label}</a>
+      <div class="flow-marquee">
+        <div class="flow-marquee-inner-wrap">
+          <div class="flow-marquee-inner">${parts}</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderCatFlowMenu(){
+  const wrap = document.getElementById('catFlowWrap');
+  wrap.innerHTML = CATS.map(catFlowItemHTML).join('');
+  wrap.querySelectorAll('.flow-item').forEach(item=>{
+    const key = item.dataset.cat;
+    item.querySelector('.flow-item-link').addEventListener('click', e=>{
+      e.preventDefault();
+      selectCategory(key);
+    });
+    initFlowItem(item);
   });
 }
-renderColumns();
 
-/* MOBILE COLUMN TABS */
-const colTabBtns = document.querySelectorAll('.col-tab-btn');
-colTabBtns.forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    colTabBtns.forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.category-col').forEach(col=>{
-      col.classList.toggle('active', col.dataset.col===btn.dataset.col);
-    });
+function selectCategory(key){
+  const resultsSection = document.getElementById('categoryResults');
+
+  if(key === activeCat){
+    resultsSection.scrollIntoView({behavior:'smooth', block:'nearest'});
+    return;
+  }
+  activeCat = key;
+
+  document.querySelectorAll('#catFlowWrap .flow-item').forEach(item=>{
+    item.classList.toggle('active', item.dataset.cat === key);
   });
-});
+
+  const grid = document.getElementById('resultsGrid');
+  const placeholder = document.getElementById('resultsPlaceholder');
+  grid.classList.remove('show');
+
+  setTimeout(()=>{
+    const items = readyRecipes.filter(r => r.cat === key);
+    grid.innerHTML = items.map(cardHTML).join('') + moreComingSoonHTML();
+    grid.querySelectorAll('.recipe-card').forEach(card=>{
+      card.addEventListener('click', ()=> showDetail(card.dataset.slug));
+    });
+    if(items.length === 0){
+      placeholder.textContent = 'No recipes in this category yet — check back soon.';
+      placeholder.style.display = '';
+    } else {
+      placeholder.style.display = 'none';
+    }
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=> grid.classList.add('show'));
+    });
+    resultsSection.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }, 180);
+}
+
+renderCatFlowMenu();
 
 /* DETAIL VIEW */
 const browseView = document.getElementById('browseView');
@@ -860,8 +980,11 @@ window.showDetail = function(slug){
 
   const currentIndex = readyRecipes.findIndex(x=>x.slug===slug);
   const next = readyRecipes[(currentIndex + 1) % readyRecipes.length];
+  const prev = readyRecipes[(currentIndex - 1 + readyRecipes.length) % readyRecipes.length];
   document.getElementById('nextRecipeTitle').textContent = next.title;
   document.getElementById('nextRecipeBtn').onclick = function(){ showDetail(next.slug); };
+  document.getElementById('prevRecipeTitle').textContent = prev.title;
+  document.getElementById('prevRecipeBtn').onclick = function(){ showDetail(prev.slug); };
 
   browseView.classList.add('hide');
   detailView.classList.add('show');
@@ -874,8 +997,51 @@ window.showBrowse = function(){
   browseView.classList.remove('hide');
   detailView.classList.remove('show');
   window.scrollTo({top:0, behavior:'instant'});
-  try { history.pushState({}, '', '/recipe/'); } catch(e) {}
+  try { history.pushState({}, '', '/nutrition/'); } catch(e) {}
 };
+
+/* FLOWING MENU — "More To Try" list on the detail page */
+/* Shared flowing-menu hover mechanics — used by the category flow menu below */
+function initFlowItem(item){
+  if(!window.gsap) return;
+  const marquee = item.querySelector('.flow-marquee');
+  const inner = item.querySelector('.flow-marquee-inner');
+  const firstPart = inner.querySelector('.flow-marquee-part');
+  const link = item.querySelector('.flow-item-link');
+  let anim = null;
+
+  function startScroll(){
+    if(!firstPart) return;
+    const w = firstPart.offsetWidth;
+    if(w === 0) return;
+    if(anim) anim.kill();
+    anim = gsap.to(inner, { x: -w, duration: 14, ease: 'none', repeat: -1 });
+  }
+  setTimeout(startScroll, 50);
+
+  function edgeFor(ev){
+    const rect = item.getBoundingClientRect();
+    const y = ev.clientY - rect.top;
+    return y < rect.height / 2 ? 'top' : 'bottom';
+  }
+
+  function reveal(edge){
+    gsap.timeline({defaults:{duration:.6,ease:'expo.out'}})
+      .set(marquee, { y: edge==='top' ? '-101%' : '101%' }, 0)
+      .to(marquee, { y: '0%' }, 0);
+  }
+  function hide(edge){
+    gsap.timeline({defaults:{duration:.6,ease:'expo.out'}})
+      .to(marquee, { y: edge==='top' ? '-101%' : '101%' }, 0);
+  }
+
+  item.addEventListener('mouseenter', ev => reveal(edgeFor(ev)));
+  item.addEventListener('mouseleave', ev => hide(edgeFor(ev)));
+
+  /* Keyboard users get the same reveal on focus, since they can't hover */
+  link.addEventListener('focus', () => { reveal('top'); item.classList.add('kb-glow'); });
+  link.addEventListener('blur', () => { hide('top'); item.classList.remove('kb-glow'); });
+}
 
 window.playHeroVideo = function(){
   heroVideo.controls = true;
@@ -883,7 +1049,7 @@ window.playHeroVideo = function(){
   playBtn.classList.add('hidden');
 };
 
-/* Deep-link support: /recipe/#slug loads straight into a recipe */
+/* Deep-link support: /nutrition/#slug loads straight into a recipe */
 window.addEventListener('popstate', ()=>{
   const hash = location.hash.replace('#','');
   if(hash && recipes.some(r=>r.slug===hash)) showDetail(hash);
