@@ -89,11 +89,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .mealguide-box{
   background:var(--surface);border:1px solid rgba(157,92,255,.3);border-radius:.8em;
   padding:36px 40px;box-shadow:0 0 30px rgba(124,58,237,.08);
+  text-align:center;
 }
-.mealguide-box .section-label{justify-content:flex-start;margin-bottom:14px}
+.mealguide-box .section-label{margin-bottom:14px}
 .mealguide-box h2{font-family:var(--f-head);font-weight:900;font-size:28px;text-transform:uppercase;margin-bottom:8px;line-height:1}
 .mealguide-box h2 em{font-style:italic;color:var(--accent-bright)}
-.mealguide-box>p{font-size:14px;color:var(--mid);max-width:480px;margin-bottom:8px}
+.mealguide-box>p{font-size:14px;color:var(--mid);max-width:480px;margin:0 auto 8px}
+.mealguide-form{text-align:left}
 
 .mealguide-form .form-body{display:flex;flex-direction:column;gap:0}
 .mealguide-form .f-group{border-bottom:1px solid var(--border);padding:18px 0;display:flex;flex-direction:column;gap:6px}
@@ -186,7 +188,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .results-grid.show{opacity:1;transform:none}
 
 .recipe-card{background:var(--surface);border:1px solid var(--border);border-radius:.6em;overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;width:100%;max-width:220px;text-align:center}
-.recipe-card:hover{transform:translateY(-4px);border-color:rgba(157,92,255,.4);box-shadow:0 8px 28px rgba(124,58,237,.18)}
+@media(hover:hover){
+  .recipe-card:hover{transform:translateY(-4px);border-color:rgba(157,92,255,.4);box-shadow:0 8px 28px rgba(124,58,237,.18)}
+}
 .recipe-thumb{position:relative;aspect-ratio:9/16;background:var(--surface2)}
 .recipe-thumb video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
 .thumb-placeholder{position:absolute;inset:0;display:none;align-items:center;justify-content:center;color:var(--mid);font-size:11px;text-align:center;padding:16px;font-family:var(--f-head);text-transform:uppercase;letter-spacing:.05em;background:var(--surface2)}
@@ -224,36 +228,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
   .cat-flow-section{padding:0 20px;margin-bottom:36px}
   .cat-flow-wrap .flow-item{height:84px}
   .category-results{padding:0 20px 70px}
-  .results-grid{grid-template-columns:1fr;gap:16px}
+  .results-grid{
+    display:flex;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;gap:16px;justify-content:flex-start;
+    padding:2px 2px 10px;margin:0 -2px;
+    scrollbar-width:none;
+  }
+  .results-grid::-webkit-scrollbar{display:none}
+  .results-grid .recipe-card,
+  .results-grid .coming-soon-card{
+    flex:0 0 auto;width:170px;scroll-snap-align:start;
+  }
 }
 
 @media(max-width:400px){
   .recipe-info{padding:14px 16px}
   .recipe-info h3{font-size:16px}
 }
-
-/* MOBILE — smaller horizontal card, less scroll, purple glow border like homepage video cards */
-@media(max-width:720px){
-  .recipe-card{display:flex;align-items:center;gap:0;max-width:100%;width:100%;text-align:left}
-  .recipe-thumb{
-    width:110px;flex-shrink:0;aspect-ratio:9/16;height:auto;
-    border:1.5px solid rgba(157,92,255,.5);
-    box-shadow:0 0 0 1px rgba(157,92,255,.2),0 0 12px rgba(124,58,237,.35),0 0 22px rgba(124,58,237,.15),inset 0 0 14px rgba(124,58,237,.05);
-    animation:video-glow 2.8s ease-in-out infinite;
-    border-radius:.5em 0 0 .5em;
-  }
-  .recipe-info{padding:12px 16px;display:flex;flex-direction:column;justify-content:center;flex:1}
-  .recipe-info h3{font-size:15px;margin-bottom:0}
-  .recipe-meta{justify-content:flex-start}
-  .cat-tag{top:6px;left:6px;transform:none;font-size:9px;padding:3px 7px}
-  .play-badge svg{width:26px;height:26px}
-  .coming-soon-card{max-width:100%;padding:20px}
-}
-@keyframes video-glow{
-  0%,100%{box-shadow:0 0 0 1px rgba(157,92,255,.2),0 0 12px rgba(124,58,237,.35),0 0 22px rgba(124,58,237,.15),inset 0 0 14px rgba(124,58,237,.05);border-color:rgba(157,92,255,.5)}
-  50%{box-shadow:0 0 0 1px rgba(157,92,255,.4),0 0 18px rgba(157,92,255,.6),0 0 32px rgba(124,58,237,.25),inset 0 0 20px rgba(124,58,237,.08);border-color:rgba(157,92,255,.85)}
-}
-
 /* ── DETAIL VIEW ── */
 #detailView{display:none;padding-top:68px}
 #detailView.show{display:block}
