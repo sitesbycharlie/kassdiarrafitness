@@ -21,7 +21,7 @@ window.scrollToForm = function(e) {
 <meta property="og:title" content="Nutrition — Kass Diarra">
 <meta property="og:description" content="Low carb, high carb, and craving cutter recipes with full video walkthroughs and macros.">
 <meta property="og:image" content="https://kasspt.ie/images/recipes/craving-3-thumb.jpg">
-<meta property="og:url" content="https://kasspt.ie/nutrition/">
+<meta property="og:url" content="https://kasspt.ie/recipe/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -460,7 +460,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
 <div class="nav-drawer" id="navDrawer">
   <a href="/" onclick="closeDrawer()">Home</a>
   <a href="/programme/" onclick="closeDrawer()">Programme</a>
-  <a href="/nutrition/" onclick="closeDrawer()">Nutrition</a>
+  <a href="/recipe/" onclick="closeDrawer()">Nutrition</a>
   <a href="/#train" class="drawer-cta" onclick="closeDrawer(); scrollToForm(event)">Achieve Your Goals</a>
 </div>
 
@@ -469,7 +469,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
   <div class="nav-links">
     <a href="/" class="nav-programme">Home</a>
     <a href="/programme/" class="nav-programme">Programme</a>
-    <a href="/nutrition/" class="active">Nutrition</a>
+    <a href="/recipe/" class="active">Nutrition</a>
     <a href="/#train" class="nav-cta" onclick="scrollToForm(event)">Achieve Your Goals</a>
   </div>
   <button class="nav-burger" id="burger" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -1019,7 +1019,7 @@ window.showBrowse = function(){
   browseView.classList.remove('hide');
   detailView.classList.remove('show');
   window.scrollTo({top:0, behavior:'instant'});
-  try { history.pushState({}, '', '/nutrition/'); } catch(e) {}
+  try { history.pushState({}, '', '/recipe/'); } catch(e) {}
 };
 
 /* FLOWING MENU — "More To Try" list on the detail page */
@@ -1082,7 +1082,7 @@ heroVideo.addEventListener('ended', ()=>{
   document.getElementById('heroMedia').classList.remove('playing');
 });
 
-/* Deep-link support: /nutrition/#slug loads straight into a recipe */
+/* Deep-link support: /recipe/#slug loads straight into a recipe */
 window.addEventListener('popstate', ()=>{
   const hash = location.hash.replace('#','');
   if(hash && recipes.some(r=>r.slug===hash)) showDetail(hash);
