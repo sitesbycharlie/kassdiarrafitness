@@ -101,7 +101,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .mealguide-box h2{font-family:var(--f-head);font-weight:900;font-size:28px;text-transform:uppercase;margin-bottom:8px;line-height:1}
 .mealguide-box h2 em{font-style:italic;color:var(--accent-bright)}
 .mealguide-box>p{font-size:14px;color:var(--mid);max-width:480px;margin:0 auto 8px}
-.mealguide-form{text-align:left}
+.mealguide-form{text-align:left;display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .5s ease,opacity .4s ease,margin-top .5s ease}
+.mealguide-form > *{overflow:hidden;min-height:0}
+.mealguide-form.open{grid-template-rows:1fr;opacity:1;margin-top:16px}
+.mealguide-form > div{grid-row:1;grid-column:1}
+
+.mealguide-open{
+  margin-top:20px;font-family:var(--f-head);font-weight:700;font-size:17px;
+  letter-spacing:.1em;text-transform:uppercase;color:#fff;border:none;
+  padding:18px 40px;cursor:pointer;width:100%;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  border-radius:.4em;background:var(--accent);
+  box-shadow:0px 0px 18px rgba(124,58,237,.4);-webkit-appearance:none;
+  transition:background .2s,transform .15s,box-shadow .2s;
+}
+.mealguide-open:hover{background:var(--accent-bright);transform:translateY(-2px);box-shadow:0px 0px 24px rgba(157,92,255,.5)}
+.mealguide-open.hidden{display:none}
 
 .mealguide-form .form-body{display:flex;flex-direction:column;gap:0}
 .mealguide-form .f-group{border-bottom:1px solid var(--border);padding:18px 0;display:flex;flex-direction:column;gap:6px}
@@ -129,8 +144,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .mealguide-form .form-submit:hover{background:var(--accent-bright);transform:translateY(-2px);box-shadow:0px 0px 24px rgba(157,92,255,.5)}
 .mealguide-form .form-submit:active{transform:translateY(0)}
 .mealguide-form .form-submit:disabled{opacity:.6;cursor:default;transform:none}
-.mealguide-form .form-submit svg{transition:transform .2s}
-.mealguide-form .form-submit:hover svg{transform:translate(4px,-4px)}
+.mealguide-form .form-submit .btn-emoji{font-size:20px;line-height:1;display:inline-block;transition:transform .2s}
+.mealguide-form .form-submit:hover .btn-emoji{transform:translate(3px,-3px) rotate(-8deg)}
 
 .mealguide-ok{
   display:none;flex-direction:column;align-items:center;justify-content:center;
@@ -490,6 +505,11 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
       <h2>Get your <em>Meal Guide.</em></h2>
       <p>Tell Kass your goal and he'll send the full Meal Guide straight to your inbox.</p>
 
+      <button type="button" class="mealguide-open" id="mealguideOpen" aria-expanded="false" aria-controls="mealguideForm">
+        Get My Meal Guide
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
       <form class="mealguide-form" id="mealguideForm">
         <div id="mealguideBody">
           <div class="form-body">
@@ -536,7 +556,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
           </div>
           <button type="submit" class="form-submit" id="mealguideBtn">
             Send Me The Meal Guide
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="btn-emoji" aria-hidden="true">📩</span>
           </button>
         </div>
         <div class="mealguide-ok" id="mealguideOk">
@@ -1117,6 +1137,12 @@ window.addEventListener('popstate', ()=>{
 })();
 
 /* MEAL GUIDE SIGNUP — Formspree emails Kass, he sends the guide manually */
+document.getElementById('mealguideOpen').addEventListener('click', function(){
+  this.classList.add('hidden');
+  this.setAttribute('aria-expanded','true');
+  document.getElementById('mealguideForm').classList.add('open');
+  setTimeout(()=>document.getElementById('mgName').focus({preventScroll:true}), 350);
+});
 document.getElementById('mealguideForm').addEventListener('submit', function(e){
   e.preventDefault();
   const name = document.getElementById('mgName').value.trim();
