@@ -117,6 +117,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 }
 .mealguide-open:hover{background:var(--accent-bright);transform:translateY(-2px);box-shadow:0px 0px 24px rgba(157,92,255,.5)}
 .mealguide-open.hidden{display:none}
+.mealguide-box>p.mealguide-done{display:none;margin-top:18px;font-family:var(--f-head);font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-bright)!important;opacity:0;transition:opacity .4s ease}
+.mealguide-box>p.mealguide-done.show{display:block;animation:mg-fade .4s ease forwards}
+@keyframes mg-fade{to{opacity:1}}
 
 .mealguide-form .form-body{display:flex;flex-direction:column;gap:0}
 .mealguide-form .f-group{border-bottom:1px solid var(--border);padding:18px 0;display:flex;flex-direction:column;gap:6px}
@@ -565,6 +568,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
           <p>Kass will send your Meal Guide to your inbox soon.</p>
         </div>
       </form>
+      <p class="mealguide-done" id="mealguideDone">✓ Request received. Your Meal Guide is on its way.</p>
     </div>
   </section>
 
@@ -1167,6 +1171,10 @@ document.getElementById('mealguideForm').addEventListener('submit', function(e){
     if(res.ok){
       document.getElementById('mealguideBody').style.display='none';
       document.getElementById('mealguideOk').classList.add('show');
+      setTimeout(()=>{
+        document.getElementById('mealguideForm').classList.remove('open');
+        document.getElementById('mealguideDone').classList.add('show');
+      }, 2500);
     } else {
       btn.innerHTML = originalHTML;
       btn.disabled = false;
