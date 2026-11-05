@@ -502,6 +502,35 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
   .app-btn-m svg{width:14px;height:14px}
 }
 @media(prefers-reduced-motion:reduce){.app-btn::after{display:none}}
+
+/* TRY APP FORM (pop-up) */
+.appform-overlay{position:fixed;inset:0;z-index:500;background:rgba(5,5,8,.78);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.appform-overlay.open{opacity:1;pointer-events:all}
+.appform-box{position:relative;width:100%;max-width:440px;background:var(--surface);border:1px solid rgba(157,92,255,.35);border-radius:.8em;padding:36px 32px 30px;box-shadow:0 0 40px rgba(124,58,237,.18);text-align:center;transform:translateY(16px) scale(.98);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.appform-overlay.open .appform-box{transform:none}
+.appform-close{position:absolute;top:12px;right:12px;width:40px;height:40px;border:none;background:none;color:var(--mid);font-size:26px;line-height:1;cursor:pointer;border-radius:50%;transition:color .2s,background .2s}
+.appform-close:hover{color:var(--fg);background:rgba(240,238,255,.06)}
+.appform-label{font-family:var(--f-body);font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:12px}
+.appform-box h2{font-family:var(--f-head);font-weight:900;font-size:30px;text-transform:uppercase;line-height:1;margin-bottom:8px;color:var(--fg)}
+.appform-box h2 em{font-style:italic;color:var(--accent-bright)}
+.appform-intro{font-size:14px;color:var(--mid);line-height:1.6;margin-bottom:18px}
+.appform-form{text-align:left}
+.appform-group{border-bottom:1px solid var(--border);padding:16px 0;display:flex;flex-direction:column;gap:6px}
+.appform-group:first-child{border-top:1px solid var(--border)}
+.appform-group label{font-family:var(--f-body);font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--mid)}
+.appform-group:focus-within label{color:var(--accent-bright)}
+.appform-group input{background:transparent;border:none;outline:none;font-family:var(--f-head);font-weight:700;font-size:18px;color:var(--fg);width:100%}
+.appform-group input::placeholder{color:rgba(240,238,255,.18)}
+.appform-submit{margin-top:22px;font-family:var(--f-head);font-weight:700;font-size:17px;letter-spacing:.1em;text-transform:uppercase;color:#fff;border:none;padding:17px 28px;cursor:pointer;width:100%;border-radius:.4em;background:var(--accent);box-shadow:0 0 18px rgba(124,58,237,.4);-webkit-appearance:none;transition:background .2s,transform .15s}
+.appform-submit:hover{background:var(--accent-bright);transform:translateY(-2px)}
+.appform-submit:disabled{opacity:.6;cursor:default;transform:none}
+.appform-error{display:none;margin-top:12px;font-size:13px;color:#ff8a8a;text-align:center}
+.appform-ok{display:none;flex-direction:column;align-items:center;gap:10px;padding:18px 0 6px}
+.appform-ok.show{display:flex}
+.appform-ok-check{font-family:var(--f-head);font-size:52px;font-weight:900;color:var(--accent-bright);line-height:1}
+.appform-ok h3{font-family:var(--f-head);font-weight:900;font-size:24px;text-transform:uppercase;color:var(--fg)}
+.appform-ok p{font-size:14px;color:var(--mid)}
+@media(max-width:480px){.appform-box{padding:32px 22px 24px}.appform-box h2{font-size:26px}.appform-group input{font-size:16px}}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
@@ -512,7 +541,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
   <a href="/programme/" onclick="closeDrawer()">Programme</a>
   <a href="/recipe/" onclick="closeDrawer()">Nutrition</a>
   <a href="/#train" class="drawer-cta" onclick="closeDrawer(); scrollToForm(event)">Achieve Your Goals</a>
-  <a href="https://app.kasspt.ie" target="_blank" rel="noopener" onclick="closeDrawer()">Get the App</a>
+  <a href="#" onclick="closeDrawer(); openAppForm(event)">Try my App for Free</a>
 </div>
 
 <nav id="mainNav" class="scrolled">
@@ -521,10 +550,10 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
     <a href="/" class="nav-programme">Home</a>
     <a href="/programme/" class="nav-programme">Programme</a>
     <a href="/recipe/" class="active">Nutrition</a>
-    <a href="https://app.kasspt.ie" class="app-btn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg><span>Get the app</span></a>
+    <a href="#" class="app-btn" onclick="openAppForm(event)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg><span>Try my App for Free</span></a>
     <a href="/#train" class="nav-cta" onclick="scrollToForm(event)">Achieve Your Goals</a>
   </div>
-  <a href="https://app.kasspt.ie" class="app-btn app-btn-m" target="_blank" rel="noopener" style="margin-left:auto;margin-right:16px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg><span>App</span></a>
+  <a href="#" class="app-btn app-btn-m" onclick="openAppForm(event)" style="margin-left:auto;margin-right:16px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg><span>Try Free</span></a>
   <button class="nav-burger" id="burger" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
@@ -1221,6 +1250,89 @@ document.getElementById('mealguideForm').addEventListener('submit', function(e){
   });
 });
 
+})();
+</script>
+
+<!-- TRY APP FORM (pop-up) -->
+<div class="appform-overlay" id="appformOverlay" aria-hidden="true">
+  <div class="appform-box" role="dialog" aria-modal="true" aria-labelledby="appformTitle">
+    <button type="button" class="appform-close" id="appformClose" aria-label="Close">&times;</button>
+    <div id="appformBody">
+      <p class="appform-label">Free Access</p>
+      <h2 id="appformTitle">Try my <em>App for Free.</em></h2>
+      <p class="appform-intro">Leave your name and number and Kass will get you set up.</p>
+      <form class="appform-form" id="appformForm" novalidate>
+        <div class="appform-group">
+          <label for="afName">Full name *</label>
+          <input type="text" id="afName" placeholder="Full name" autocomplete="name" required>
+        </div>
+        <div class="appform-group">
+          <label for="afPhone">Phone number *</label>
+          <input type="tel" id="afPhone" placeholder="08X XXX XXXX" autocomplete="tel" inputmode="tel" required>
+        </div>
+        <button type="submit" class="appform-submit" id="appformBtn">Get Free Access</button>
+        <p class="appform-error" id="appformError">Something went wrong. Please try again.</p>
+      </form>
+    </div>
+    <div class="appform-ok" id="appformOk">
+      <div class="appform-ok-check">&#10003;</div>
+      <h3>You're in.</h3>
+      <p>Kass will be in touch shortly.</p>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  /* Formspree form for "Try my App for Free". Replace with the new form ID. */
+  var APP_FORM_ID = 'xbggbkjn';
+  var overlay = document.getElementById('appformOverlay');
+  var lastFocus = null;
+  window.openAppForm = function(e){
+    if(e) e.preventDefault();
+    lastFocus = document.activeElement;
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function(){ var n=document.getElementById('afName'); if(n && document.getElementById('appformBody').style.display!=='none') n.focus(); }, 250);
+    if(window.gtag) gtag('event','app_form_open');
+  };
+  function closeAppForm(){
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.getElementById('appformClose').addEventListener('click', closeAppForm);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) closeAppForm(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && overlay.classList.contains('open')) closeAppForm(); });
+
+  document.getElementById('appformForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('afName').value.trim();
+    var phone = document.getElementById('afPhone').value.trim();
+    var err = document.getElementById('appformError');
+    err.style.display = 'none';
+    if(!name){ document.getElementById('afName').focus(); return; }
+    if(phone.replace(/[^0-9]/g,'').length < 7){ document.getElementById('afPhone').focus(); return; }
+    var btn = document.getElementById('appformBtn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    fetch('https://formspree.io/f/' + APP_FORM_ID, {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({ 'Full name': name, 'Phone': phone, 'Requested': 'Free App Trial', 'Page': location.pathname })
+    }).then(function(res){
+      if(res.ok){
+        document.getElementById('appformBody').style.display = 'none';
+        document.getElementById('appformOk').classList.add('show');
+        if(window.gtag) gtag('event','app_form_submit');
+      } else { throw new Error(); }
+    }).catch(function(){
+      btn.textContent = 'Get Free Access';
+      btn.disabled = false;
+      err.style.display = 'block';
+    });
+  });
 })();
 </script>
 </body>
